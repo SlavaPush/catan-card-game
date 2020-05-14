@@ -1,13 +1,40 @@
-import { STATE_UPDATE, ERROR } from "./actionTypes";
+import { All_Card_Random_Update, ERROR, S_T_P_CHANGE,Give_Cards} from "./types";
 import axios from "axios";
 
-export const reduxStateUpdate = (data) => {
-  console.log("action reduxStateUpdate");
+// CARDS
+export const allCardRandomUpdate = () => {
   return {
-    type: STATE_UPDATE,
-    payload: data,
+    type: All_Card_Random_Update,
   };
 };
+// {type: 'All_Card_Random_Update',
+// }
+// {type: 'Give_Cards',
+// payload:{
+//   num:50,
+//   whom:'marketCards'
+// }
+export const giveCards = (num,whom) => {
+  return {
+    type: Give_Cards,
+    payload: {
+      num,
+      whom
+    },
+  };
+};
+////////////////////////////////////
+
+// CARDS
+export const changeStep = (num) => {
+  return {
+    type: S_T_P_CHANGE,
+    payload: num,
+  };
+};
+
+////////////////////////////////////
+
 export const error = (err) => {
   return {
     type: ERROR,
@@ -15,13 +42,13 @@ export const error = (err) => {
   };
 };
 
-export const reduxStateUpdateThunk = () => (dispatch) => {
-  axios("https://api.thecatapi.com/v1/images/search").then(
-    (res) => {
-      dispatch(reduxStateUpdate(res.data));
-    },
-    (err) => {
-      dispatch(error(err.message));
-    }
-  );
-};
+// export const reduxStateUpdateThunk = () => (dispatch) => {
+//   axios("https://api.thecatapi.com/v1/images/search").then(
+//     (res) => {
+//       dispatch(reduxStateUpdate(res.data));
+//     },
+//     (err) => {
+//       dispatch(error(err.message));
+//     }
+//   );
+// };
