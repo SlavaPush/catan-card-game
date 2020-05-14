@@ -1,19 +1,27 @@
-import {ADD, SUB, SET} from './types'
+import { STATE_UPDATE, ERROR } from "./actionTypes";
+import axios from "axios";
 
-export const onADD = ()=>{
-return{
-  type:ADD
-}
-}
-export const onSUB = ()=>{
-return{
-  type:SUB
-}
-}
-export const onSET = (number)=>{
-  return{
-    type:SET,
-    number
-  }
-}
+export const reduxStateUpdate = (data) => {
+  console.log("action reduxStateUpdate");
+  return {
+    type: STATE_UPDATE,
+    payload: data,
+  };
+};
+export const error = (err) => {
+  return {
+    type: ERROR,
+    payload: err,
+  };
+};
 
+export const reduxStateUpdateThunk = () => (dispatch) => {
+  axios("https://api.thecatapi.com/v1/images/search").then(
+    (res) => {
+      dispatch(reduxStateUpdate(res.data));
+    },
+    (err) => {
+      dispatch(error(err.message));
+    }
+  );
+};
