@@ -30,11 +30,6 @@ export function rootReducer(state = initialState, { type, payload }) {
       });
     }
 
-
-
-
-
-
     case ERROR: {
       return produce(state, draft => {
         draft.loading = false;
