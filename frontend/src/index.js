@@ -2,10 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ButtonAppBar from "./component/app-bar";
 
+import {Provider} from 'react-redux'
+import store from '../src/Redux/store'
+
 
 ReactDOM.render(
-  <React.StrictMode>
-      <ButtonAppBar />
-  </React.StrictMode>,
-  document.getElementById('root')
+  <Provider store={store}>
+   <ButtonAppBar />
+  </Provider>,
+document.getElementById('root')
 );
