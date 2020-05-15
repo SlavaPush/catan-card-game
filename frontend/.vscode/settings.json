@@ -1,0 +1,5 @@
+{
+    "[json]": {
+        "remote.WSL.fileWatcher.polling": true
+    }
+}

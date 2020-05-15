@@ -12,8 +12,6 @@ const reduxResourcesCardsName = [
 ]
 
 
-const reduxResourcesCardsName = useSelector(state => state.CardName)
-
 export default function MarketCardsRow() {
     const Container = styled.div`
     padding: 10px 0;
