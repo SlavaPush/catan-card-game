@@ -1,4 +1,4 @@
-import { All_Card_Random_Update,Give_Cards,Swap_Cards} from "../types";
+import { All_Card_Random_Update,Give_Cards,Swap_Cards,Buy_Development_Cards} from "../types";
 import produce from "immer";
 import { v4 as uuid } from 'uuid';
 // uuidv4();
@@ -7,8 +7,8 @@ const initialState = {
   marketCards:[],
   cardsInGame:[],
   developmentCards:[],
-  player1:{cards:[],developmentCards:[] },
-  player2:{cards:[],developmentCards:[] },
+  player1:{cards:[],developmentCards:[], points:0 },
+  player2:{cards:[],developmentCards:[], points:0 },
 };
 
 
@@ -32,8 +32,6 @@ export default function cards(state = initialState, { type, payload }) {
     case Swap_Cards: {//обмен
       return produce(state, draft => {
         const {playerNow,idPlayerCards,whom,idWhomCards} = payload;
-        console.log("cards -> playerNow", playerNow)
-        console.log("cards -> state[playerNow]", state[playerNow])
         const playerSwapEl = state[playerNow].cards.filter(el=> el.id === idPlayerCards)
         const playerSwap = state[playerNow].cards.filter(el=> el.id !== idPlayerCards)
         if(idWhomCards){
@@ -47,6 +45,59 @@ export default function cards(state = initialState, { type, payload }) {
           draft.cardsInGame = [...origin,...playerSwapEl];
           draft[playerNow].cards=[...playerSwap,...cardForWhom]
         }
+      });
+    }
+    case Buy_Development_Cards: {//покупка карт развития
+      return produce(state, draft => {
+        const {playerNow,developmentCardName} = payload;
+        const developmentCardNow = state.developmentCards.filter(e => e.name === developmentCardName).splice(0,1)
+        if(developmentCardName === 'дорога'){
+          const arrWood = state[playerNow].cards.filter(e => e.name === 'дерево').splice(0,1)
+          const arrClay = state[playerNow].cards.filter(e => e.name === 'глина').splice(0,1)
+          draft[playerNow].cards = state[playerNow].cards.filter(e => e.id !== arrClay[0].id && e.id !== arrWood[0].id)
+          draft.cardsInGame.push(...arrWood,...arrClay)
+          draft[playerNow].points += developmentCardNow[0].point
+          draft[playerNow].developmentCards.push(...developmentCardNow)
+          draft.developmentCards = state.developmentCards.filter(el=> el.id !== developmentCardNow[0].id)
+        }
+        else if(developmentCardName === 'рыцарь'){
+          const cornWood = state[playerNow].cards.filter(e => e.name === 'зерно').splice(0,1)
+          const woolClay = state[playerNow].cards.filter(e => e.name === 'шерсть').splice(0,1)
+          const oreClay = state[playerNow].cards.filter(e => e.name === 'руда').splice(0,1)
+          draft[playerNow].cards = state[playerNow].cards.filter((e) => {
+           return e.id !== cornWood[0].id && e.id !== woolClay[0].id && e.id !== oreClay[0].id
+          })
+          draft.cardsInGame.push(...cornWood,...woolClay,...oreClay)
+          draft[playerNow].developmentCards.push(...developmentCardNow)
+          draft.developmentCards = state.developmentCards.filter(el=> el.id !== developmentCardNow[0].id)
+        }
+        else if(developmentCardName === 'город'){
+          const cornWood = state[playerNow].cards.filter(e => e.name === 'зерно').splice(0,2)
+          const oreClay = state[playerNow].cards.filter(e => e.name === 'руда').splice(0,3)
+          draft[playerNow].cards = state[playerNow].cards.filter((e) => {
+           return e.id !== cornWood[0].id &&e.id !== cornWood[1].id && e.id !== oreClay[0].id &&
+           e.id !== oreClay[1].id && e.id !== oreClay[2].id
+          })
+          draft.cardsInGame.push(...cornWood,...oreClay)
+          draft[playerNow].developmentCards.push(...developmentCardNow)
+          draft[playerNow].points += developmentCardNow[0].point
+          draft.developmentCards = state.developmentCards.filter(el=> el.id !== developmentCardNow[0].id)
+        }
+        else if(developmentCardName === 'здание'){
+          const oreClay = state[playerNow].cards.filter(e => e.name === 'руда').splice(0,1)
+          const woolClay = state[playerNow].cards.filter(e => e.name === 'шерсть').splice(0,3)
+          draft[playerNow].cards = state[playerNow].cards.filter((e) => {
+           return e.id !== oreClay[0].id && e.id !== woolClay[0].id &&
+           e.id !== woolClay[1].id && e.id !== woolClay[2].id
+          })
+          draft.cardsInGame.push(...oreClay,...woolClay)
+          draft[playerNow].developmentCards.push(...developmentCardNow)
+          draft[playerNow].points += developmentCardNow[0].point
+          draft.developmentCards = state.developmentCards.filter(el=> el.id !== developmentCardNow[0].id)
+        }
+
+
+
       });
     }
     case All_Card_Random_Update: {//randomCards && developmentCards
@@ -65,9 +116,12 @@ export default function cards(state = initialState, { type, payload }) {
         const knight = new Array(5).fill('рыцарь')
         const city = new Array(15).fill('город')
         const building = new Array(9).fill('здание')
-        let developmentCards = [...road,...knight,...city,...building]
-        let developmentCardsID = developmentCards.map(el=>{return{name:el,id: uuid()}})
-        draft.developmentCards = developmentCardsID;
+        const roadPoints = road.map(el=>{return{name:el,id:uuid(),point:1}})
+        const cityPoints = city.map(el=>{return{name:el,id:uuid(),point:2}})
+        const buildingPoints = building.map(el=>{return{name:el,id:uuid(),point:3}})
+        const knightID = knight.map(el=>{return{name:el,id: uuid()}})
+        const developmentCards = [...roadPoints,...cityPoints,...buildingPoints,...knightID]
+        draft.developmentCards = developmentCards;
       });
     }
     default:
