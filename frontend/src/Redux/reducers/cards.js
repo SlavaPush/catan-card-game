@@ -5,7 +5,7 @@ const initialState = {
   marketCards:[],
   cardsInGame:[],
   developmentCards:['city'],
-  player1:[],
+  player1:{cards:[],developmentCards:[] },
   player2:[],
 };
 
@@ -28,8 +28,15 @@ export default function cards(state = initialState, { type, payload }) {
       return produce(state, draft => {
       const origin = draft.cardsInGame
       const cardForWhom = origin.splice(0,payload.num)
-      draft[payload.whom].push(...cardForWhom)
-      draft.cardsInGame = origin;
+      const player = payload.player || false
+      if(player){
+        console.log("cards -> payload.whom", draft[payload.player][payload.whom])
+        draft[payload.player][payload.whom].push(...cardForWhom)
+        draft.cardsInGame = origin;
+      }else{
+        draft[payload.whom].push(...cardForWhom)
+        draft.cardsInGame = origin;
+      }
       });
     }
 

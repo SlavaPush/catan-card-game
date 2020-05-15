@@ -14,16 +14,23 @@ export const allCardRandomUpdate = () => {//рандомит калоду вна
 //   num:50,
 //   whom:'marketCards'
 // }}
+// {type: 'Give_Cards',
+// payload:{
+//   num:15,
+//   whom:'cards',
+//   player:'player1'
+// }}
 // {
 //   type: 'S_T_P_CHANGE',
 //   payload: 1,
 // }
-export const giveCards = (num,whom) => {// сколько карт, кому(строка)
+export const giveCards = (num,whom,player) => {// сколько карт, куда(строка), ЕСЛИ ИГРОКУ  player1
   return {
     type: Give_Cards,
     payload: {
       num,
-      whom
+      whom,
+      player
     },
   };
 };
