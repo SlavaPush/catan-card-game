@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ButtonAppBar from "./component/app-bar";
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <h1>Hello World!</h1>
+      <ButtonAppBar />
   </React.StrictMode>,
   document.getElementById('root')
 );
