@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import DevelopCardsRow from './components/DevelopCardsRow/DevelopCardsRow';
-import PlayerCardsRow from './components/PlayerCardsRow/PlayerCardsRow';
-import MarketCardsRow from './components/MarketCardsRow/MarketCardsRow';
+import DevelopCardsRow from './components/DevelopCardsRow';
+import PlayerCardsRow from './components/PlayerCardsRow';
+import MarketCardsRow from './components/MarketCardsRow';
 
 function App() {
   const Container = styled.div`
