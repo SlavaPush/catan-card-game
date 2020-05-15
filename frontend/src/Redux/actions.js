@@ -2,7 +2,7 @@ import { All_Card_Random_Update, ERROR, S_T_P_CHANGE,Give_Cards} from "./types";
 import axios from "axios";
 
 // CARDS
-export const allCardRandomUpdate = () => {
+export const allCardRandomUpdate = () => {//рандомит калоду вначале игры
   return {
     type: All_Card_Random_Update,
   };
@@ -13,8 +13,12 @@ export const allCardRandomUpdate = () => {
 // payload:{
 //   num:50,
 //   whom:'marketCards'
+// }}
+// {
+//   type: 'S_T_P_CHANGE',
+//   payload: 1,
 // }
-export const giveCards = (num,whom) => {
+export const giveCards = (num,whom) => {// сколько карт, кому(строка)
   return {
     type: Give_Cards,
     payload: {
@@ -25,8 +29,8 @@ export const giveCards = (num,whom) => {
 };
 ////////////////////////////////////
 
-// CARDS
-export const changeStep = (num) => {
+// CHANGE STEP
+export const changeStep = (num) => {//номер шага
   return {
     type: S_T_P_CHANGE,
     payload: num,

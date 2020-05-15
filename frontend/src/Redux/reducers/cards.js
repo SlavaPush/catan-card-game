@@ -28,7 +28,7 @@ export default function cards(state = initialState, { type, payload }) {
       return produce(state, draft => {
       const origin = draft.cardsInGame
       const cardForWhom = origin.splice(0,payload.num)
-      draft.marketCards.push(cardForWhom)
+      draft[payload.whom].push(...cardForWhom)
       draft.cardsInGame = origin;
       });
     }
