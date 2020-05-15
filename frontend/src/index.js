@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ButtonAppBar from "./component/app-bar";
+import ButtonAppBar from "./App";
 
 import {Provider} from 'react-redux'
 import store from '../src/Redux/store'
