@@ -1,15 +1,10 @@
 import React from 'react'
 import styled from 'styled-components';
+import { DevelopCardsParameters } from './CardsParameters'
+import Card from '../Card'
+import CardResources from '../CardResources'
 
-const reduxCardsName = [
-    'ДОРОГА',
-    'ГОРОД',
-    'РЫЦАРЬ',
-    'ЗДАНИЕ',
-]
-
-export default function DevelopCardRow() {
-    const Container = styled.div`
+const Container = styled.div`
     padding: 10px 0;
     height: 150px;
     background: #85E856;
@@ -17,22 +12,16 @@ export default function DevelopCardRow() {
     display: flex;
     justify-content: space-around;
   `;
-    const Card = styled.div`
-    height: 150px;
-    background: #FFEB5E;
-    color: green;
-    width: 100px;
-  `;
+
+
+export default function DevelopCardRow() {
+
     return (
         <Container>
-            {reduxCardsName.map(name => (
-                <Card>
-                    {name}
-                </Card>
+            {DevelopCardsParameters.map(card => (
+                <Card key={card.id} card={card} />
             ))}
-            <Card>
-                РЕСУРСЫ
-            </Card>
+            <CardResources />
         </Container>
     )
 }
