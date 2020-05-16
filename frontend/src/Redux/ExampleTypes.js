@@ -38,3 +38,7 @@ payload: {
     playerNow:'player1',
     developmentCardName:'город',
 }}
+
+{type: 'Next_Player',
+}
+
