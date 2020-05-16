@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 const reduxCardsName = [
     'ОВЦА',
     'РУДА',
@@ -7,9 +8,6 @@ const reduxCardsName = [
     'ГЛИНА',
     'ЗЕРНО',
 ]
-
-export default function MarketCardsRow() {
-
     const Container = styled.div`
     padding: 10px 0;
     height: 150px;
@@ -24,11 +22,14 @@ export default function MarketCardsRow() {
     color: green;
     width: 100px;
     `;
+
+export default function MarketCardsRow() {
+    const reduxMarketCards = useSelector(state => state.cards.marketCards)
     return (
         <Container>
-            {reduxCardsName.map(name => (
+            {reduxMarketCards.map(card => (
                 <Card>
-                    {name}
+                    {card.name}
                 </Card>
             ))}
         </Container>

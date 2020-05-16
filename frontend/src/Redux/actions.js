@@ -1,4 +1,12 @@
-import { All_Card_Random_Update, ERROR, S_T_P_CHANGE,Give_Cards,Swap_Cards,Buy_Development_Cards} from "./types";
+
+import {
+  All_Card_Random_Update,
+  ERROR, S_T_P_CHANGE,
+  Give_Cards, Swap_Cards,
+  Buy_Development_Cards,
+  SET_TOTAL_COUNT,
+} from "./types";
+
 import axios from "axios";
 
 // CARDS
@@ -52,6 +60,16 @@ export const changeStep = (num) => {//номер шага
     payload: num,
   };
 };
+// SET TOTAL COUNTS
+export const setTotalCount = (totalCount, player = 'player1') => {
+  return {
+    type: SET_TOTAL_COUNT,
+    payload: {
+      player,
+      totalCount,
+    }
+  }
+}
 
 ////////////////////////////////////
 

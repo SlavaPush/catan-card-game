@@ -1,14 +1,26 @@
-import { All_Card_Random_Update,Give_Cards,Swap_Cards,Buy_Development_Cards} from "../types";
+
+import { All_Card_Random_Update,Give_Cards,Swap_Cards,Buy_Development_Cards, SET_TOTAL_COUNT} from "../types";
 import produce from "immer";
 import { v4 as uuid } from 'uuid';
 // uuidv4();
 
 const initialState = {
-  marketCards:[],
-  cardsInGame:[],
-  developmentCards:[],
-  player1:{cards:[],developmentCards:[], points:0 },
-  player2:{cards:[],developmentCards:[], points:0 },
+  marketCards: [],
+  cardsInGame: [],
+  developmentCards: [],
+  player1: {
+    cards: [], developmentCards: [{
+      name: "Рыцарь",
+      number: 2,
+      points: 0.5
+    },
+    {
+      name: "Замок",
+      number: 4,
+      points: 0.5
+    }], points: 0
+  },
+  player2: { cards: [], developmentCards: [], countedResourcesCardsName:[], points: 0 },
 };
 
 
@@ -123,6 +135,11 @@ export default function cards(state = initialState, { type, payload }) {
         const developmentCards = [...roadPoints,...cityPoints,...buildingPoints,...knightID]
         draft.developmentCards = developmentCards;
       });
+    }
+        case SET_TOTAL_COUNT:{
+      return produce(state, draft =>{
+        draft[payload.player].points = payload.totalCount
+      })
     }
     default:
       return state;
