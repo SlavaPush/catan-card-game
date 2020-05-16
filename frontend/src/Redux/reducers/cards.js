@@ -1,9 +1,10 @@
 
-import { All_Card_Random_Update,Give_Cards,Swap_Cards,Buy_Development_Cards, SET_TOTAL_COUNT} from "../types";
+import { All_Card_Random_Update,Give_Cards,Swap_Cards,Buy_Development_Cards, SET_TOTAL_COUNT,Player_Name} from "../types";
 import produce from "immer";
 import { v4 as uuid } from 'uuid';
-// uuidv4();
 
+/* ЕСТЬ не совместимости с правками Вадима и логиги redax на 
+player[i] = countedResourcesCardsName, developmentCards.number,developmentCards.points */
 const initialState = {
   marketCards: [],
   cardsInGame: [],
@@ -18,9 +19,11 @@ const initialState = {
       name: "Замок",
       number: 4,
       points: 0.5
-    }], points: 0
+    }],
+     points: 0,
+     name:'',
   },
-  player2: { cards: [], developmentCards: [], countedResourcesCardsName:[], points: 0 },
+  player2: { cards: [], developmentCards: [], countedResourcesCardsName:[], points: 0, name:'', },
 };
 
 
@@ -40,6 +43,12 @@ export default function cards(state = initialState, { type, payload }) {
         draft.cardsInGame = origin;
       }
       });
+    }
+    case Player_Name: {//Именует игрока
+      return produce(state, draft => {
+        const {player,name} = payload;
+        draft[player].name = name;
+      })
     }
     case Swap_Cards: {//обмен
       return produce(state, draft => {

@@ -42,3 +42,8 @@ payload: {
 {type: 'Next_Player',
 }
 
+{type: 'Player_Name',
+  payload: {
+  player:'player1',
+  name:'Тарас',
+}}
