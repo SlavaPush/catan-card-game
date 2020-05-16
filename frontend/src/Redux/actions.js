@@ -1,4 +1,4 @@
-import { All_Card_Random_Update, ERROR, S_T_P_CHANGE,Give_Cards} from "./types";
+import { All_Card_Random_Update, ERROR, S_T_P_CHANGE,Give_Cards,Swap_Cards,Buy_Development_Cards} from "./types";
 import axios from "axios";
 
 // CARDS
@@ -7,30 +7,39 @@ export const allCardRandomUpdate = () => {//рандомит калоду вна
     type: All_Card_Random_Update,
   };
 };
-// {type: 'All_Card_Random_Update',
-// }
-// {type: 'Give_Cards',
-// payload:{
-//   num:50,
-//   whom:'marketCards'
-// }}
-// {type: 'Give_Cards',
-// payload:{
-//   num:15,
-//   whom:'cards',
-//   player:'player1'
-// }}
-// {
-//   type: 'S_T_P_CHANGE',
-//   payload: 1,
-// }
-export const giveCards = (num,whom,player) => {// сколько карт, куда(строка), ЕСЛИ ИГРОКУ  player1
+
+export const giveCards = (num,whom,player) => {// (сколько карт, куда(строка), ЕСЛИ ИГРОКУ  player1)
   return {
     type: Give_Cards,
     payload: {
       num,
       whom,
       player
+    },
+  };
+};
+
+export const swapCards = (playerNow,idPlayerCards,whom,idWhomCards) => {// обмен с рынком или колодой
+  //РЫНОК (игрок сейчас, idкарты игрока, у кого обмен,idкарты у кого обмен) 
+  //КОЛОДА (игрок сейчас, idкарты игрока, у кого обмен) 
+  return {
+    type: Swap_Cards,
+    payload: {
+      playerNow,
+      idPlayerCards,
+      whom,
+      idWhomCards
+    },
+  };
+};
+
+export const buyDevelopmentCards = (playerNow,developmentCardName) => {// покупка карт развития 
+  //(кто, имя карты развития типа'дорога')
+  return {
+    type: Buy_Development_Cards,
+    payload: {
+      playerNow,
+      developmentCardName,
     },
   };
 };

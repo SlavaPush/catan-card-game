@@ -2,7 +2,7 @@ import { S_T_P_CHANGE } from "../types";
 import produce from "immer";
 
 const initialState = {
-  step: [false,false,false,false,false],// 5 step in game
+  step: [/* false, */false,false,false,false],// 4 step in game
 
 };
 
