@@ -6,4 +6,3 @@ export const Swap_Cards = 'Swap_Cards'
 export const Buy_Development_Cards = 'Buy_Development_Cards'
 export const ERROR = 'ERROR'
 export const SET_TOTAL_COUNT = 'SET_TOTAL_COUNT'
-

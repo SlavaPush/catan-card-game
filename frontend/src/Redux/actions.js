@@ -1,3 +1,4 @@
+
 import {
   All_Card_Random_Update,
   ERROR, S_T_P_CHANGE,
@@ -5,6 +6,7 @@ import {
   Buy_Development_Cards,
   SET_TOTAL_COUNT,
 } from "./types";
+
 import axios from "axios";
 
 // CARDS
@@ -13,38 +15,8 @@ export const allCardRandomUpdate = () => {//рандомит калоду вна
     type: All_Card_Random_Update,
   };
 };
-// {type: 'All_Card_Random_Update',
-// }
-// {type: 'Give_Cards',
-// payload:{
-//   num:5,
-//   whom:'marketCards'
-// }}
-// {type: 'Give_Cards',
-// payload:{
-//   num:5,
-//   whom:'cards',
-//   player:'player1'
-// }}
-// {type: 'Swap_Cards',
-// payload: {
-//   playerNow:'player1',
-//   idPlayerCards:"8e4c1e11-7577-4b58-b556-ab61eaaed4c0",
-//   whom:'marketCards',
-//   idWhomCards:"dc594795-1944-436c-af11-4263f135836e",
-// }}
-// {type: 'Swap_Cards',
-// payload: {
-//   playerNow:'player1',
-//   idPlayerCards:"dc594795-1944-436c-af11-4263f135836e",
-//   whom:'cardsInGame',
-// }}
 
-// {
-//   type: 'S_T_P_CHANGE',
-//   payload: 1,
-// }
-export const giveCards = (num, whom, player) => {// (сколько карт, куда(строка), ЕСЛИ ИГРОКУ  player1)
+export const giveCards = (num,whom,player) => {// (сколько карт, куда(строка), ЕСЛИ ИГРОКУ  player1)
   return {
     type: Give_Cards,
     payload: {
@@ -54,7 +26,8 @@ export const giveCards = (num, whom, player) => {// (сколько карт, к
     },
   };
 };
-export const swapCards = (playerNow, idPlayerCards, whom, idWhomCards) => {// обмен с рынком или колодой
+
+export const swapCards = (playerNow,idPlayerCards,whom,idWhomCards) => {// обмен с рынком или колодой
   //РЫНОК (игрок сейчас, idкарты игрока, у кого обмен,idкарты у кого обмен) 
   //КОЛОДА (игрок сейчас, idкарты игрока, у кого обмен) 
   return {
@@ -67,7 +40,9 @@ export const swapCards = (playerNow, idPlayerCards, whom, idWhomCards) => {// о
     },
   };
 };
-export const buyDevelopmentCards = (playerNow, developmentCardName) => {// покупка карт развития (кто,какая карта)
+
+export const buyDevelopmentCards = (playerNow,developmentCardName) => {// покупка карт развития 
+  //(кто, имя карты развития типа'дорога')
   return {
     type: Buy_Development_Cards,
     payload: {
