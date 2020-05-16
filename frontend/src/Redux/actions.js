@@ -5,11 +5,12 @@ import {
   Give_Cards, Swap_Cards,
   Buy_Development_Cards,
   SET_TOTAL_COUNT,
+  Next_Player,
 } from "./types";
 
 import axios from "axios";
 
-// CARDS
+////////////////////////////////////CARDS
 export const allCardRandomUpdate = () => {//рандомит калоду вначале игры
   return {
     type: All_Card_Random_Update,
@@ -51,16 +52,25 @@ export const buyDevelopmentCards = (playerNow,developmentCardName) => {// пок
     },
   };
 };
-////////////////////////////////////
 
-// CHANGE STEP
+
+////////////////////////////////////CHANGE STEP
+
 export const changeStep = (num) => {//номер шага
   return {
     type: S_T_P_CHANGE,
     payload: num,
   };
 };
-// SET TOTAL COUNTS
+
+export const nextPlayer = () => {//Следующий игрок
+  return {
+    type: Next_Player,
+  };
+};
+
+////////////////////////////////////SET TOTAL COUNTS
+
 export const setTotalCount = (totalCount, player = 'player1') => {
   return {
     type: SET_TOTAL_COUNT,
@@ -71,8 +81,7 @@ export const setTotalCount = (totalCount, player = 'player1') => {
   }
 }
 
-////////////////////////////////////
-
+////////////////////////////////////ERROR
 export const error = (err) => {
   return {
     type: ERROR,
