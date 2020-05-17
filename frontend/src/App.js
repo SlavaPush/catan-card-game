@@ -7,6 +7,9 @@ import BtnNextStep from './components/BtnNextStep';
 import { useDispatch } from 'react-redux';
 import { allCardRandomUpdate, giveCards } from './Redux/actions';
 import Counter from './components/Counter';
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import SignUp from "./components/SignUp";
+import SignIn from "./components/SignIn";
 
 function App() {
   const MainContainer = styled.div`
@@ -43,17 +46,23 @@ function App() {
   }, [startGame])
 
   return (
-    <MainContainer>
-      <ContainerPlayField >
-        <DevelopCardsRow />
-        <MarketCardsRow />
-        <PlayerCardsRow />
-      </ContainerPlayField>
-      <ContainerControlPanel>
-        <BtnNextStep />
-        <Counter />
-      </ContainerControlPanel>
-    </MainContainer>
+      <Router>
+        <Route path="/" exact>
+          <MainContainer>
+            <ContainerPlayField >
+              <DevelopCardsRow />
+              <MarketCardsRow />
+              <PlayerCardsRow />
+            </ContainerPlayField>
+            <ContainerControlPanel>
+              <BtnNextStep />
+              <Counter />
+            </ContainerControlPanel>
+          </MainContainer>
+        </Route>
+      <Route path="/auth/register" component={SignUp}/>
+      <Route path="/auth/login" component={SignIn}/>
+      </Router>
   );
 }
 
