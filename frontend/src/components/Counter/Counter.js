@@ -14,10 +14,20 @@ export default function BtnNextStep() {
         vertical-align: middle;
         font-size: 2rem;
     `
-    const points = useSelector(state => state.cards.player1.points)
+    //SH Добавил счет\логику для двух игроков
+    const pointsPlayer1 = useSelector(state => state.cards.player1.points)
+    const pointsPlayer2 = useSelector(state => state.cards.player2.points)
+    const namePlayer1 = useSelector(state => state.cards.player1.name)
+    const namePlayer2 = useSelector(state => state.cards.player2.name)
     return (
+      <>
         <Counter >
-            Счет: {points}
+        Игрок: {namePlayer1}   Счет: {pointsPlayer1}
         </Counter>
+        <Counter >
+        Игрок: {namePlayer2}  Счет: {pointsPlayer2}
+        </Counter>
+        </>
     )
 }
+//SH Добавил счет\логику для двух игроков

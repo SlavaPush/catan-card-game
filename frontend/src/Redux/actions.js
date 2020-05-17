@@ -6,6 +6,8 @@ import {
   Buy_Development_Cards,
   SET_TOTAL_COUNT,
   Next_Player,
+  Player_Name,
+  Price_Development_Cards,
 } from "./types";
 
 import axios from "axios";
@@ -52,9 +54,28 @@ export const buyDevelopmentCards = (playerNow,developmentCardName) => {// пок
     },
   };
 };
+export const playerName = (player,name) => {// дать имя игроку 
+  //('player1', 'Тарас')
+  return {
+    type: Player_Name,
+    payload: {
+      player,
+      name,
+    },
+  };
+};
 
+export const setTotalCount = (totalCount, player = 'player1') => {//SET TOTAL COUNTS
+  return {
+    type: SET_TOTAL_COUNT,
+    payload: {
+      player,
+      totalCount,
+    }
+  }
+}
 
-////////////////////////////////////CHANGE STEP
+////////////////////////////////////STEP
 
 export const changeStep = (num) => {//номер шага
   return {
@@ -69,17 +90,13 @@ export const nextPlayer = () => {//Следующий игрок
   };
 };
 
-////////////////////////////////////SET TOTAL COUNTS
+////////////////////////////////////TEMPLATES
 
-export const setTotalCount = (totalCount, player = 'player1') => {
-  return {
-    type: SET_TOTAL_COUNT,
-    payload: {
-      player,
-      totalCount,
-    }
-  }
-}
+// export const priceDevelopmentCards = () => {//Следующий игрок
+//   return {
+//     type: Price_Development_Cards,
+//   };
+// };
 
 ////////////////////////////////////ERROR
 export const error = (err) => {
