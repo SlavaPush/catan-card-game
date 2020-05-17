@@ -4,12 +4,15 @@ import DevelopCardsRow from './components/DevelopCardsRow';
 import PlayerCardsRow from './components/PlayerCardsRow';
 import MarketCardsRow from './components/MarketCardsRow';
 import BtnNextStep from './components/BtnNextStep';
+import PriceDevelopmentBoard from './components/PriceDevelopmentBoard';
 import { useDispatch } from 'react-redux';
 import { allCardRandomUpdate, giveCards } from './Redux/actions';
 import Counter from './components/Counter';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
+import HelpUserBoard from './components/HelpUserBoard';
+
 
 function App() {
   const MainContainer = styled.div`
@@ -55,9 +58,12 @@ function App() {
               <PlayerCardsRow />
             </ContainerPlayField>
             <ContainerControlPanel>
+            <PriceDevelopmentBoard />
+        <HelpUserBoard />
               <BtnNextStep />
               <Counter />
             </ContainerControlPanel>
+    
           </MainContainer>
         </Route>
       <Route path="/auth/register" component={SignUp}/>
