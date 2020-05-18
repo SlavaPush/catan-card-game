@@ -1,22 +1,21 @@
 import React from 'react'
-import styled, {css} from 'styled-components';
+import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { buyDevelopmentCards } from '../../Redux/actions';
 
-
-
-
-export default function DevelopCardRow({card}) {
-
-    const Card = styled.div`
+const Card = styled.div`
     height: 150px;
     background: #FFEB5E;
     color: green;
-    ${() => card.nameCard && css`color: black;` }
     width: 100px;
   `;
-  
+
+export default function DevelopCardRow({ card,  isActive, marketStep}) {
+    const dispatch = useDispatch();
     return (
-        <Card>
-            {card.nameCard}
+        <Card onClick ={()=> isActive && marketStep && dispatch(buyDevelopmentCards(card[0].name))}>
+            {card[0].name}<br/>
+            {isActive && marketStep && 'Active'}  
         </Card>
 
     )

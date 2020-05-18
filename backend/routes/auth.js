@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const User = require('../models/user');
 const bcrypt = require('bcryptjs');
+const GameStore = require('../models/mongoStore');
 
 
 router.post('/register', async (req, res) => {

@@ -12,7 +12,7 @@ const { PORT, MONGODB_URI } = process.env;
 const corsOptions = {
   origin: 'http://localhost:3000',
   optionsSuccessStatus: 200,
-};
+};//вместо сделать proxy
 
 const authRouter = require('./routes/auth');
 

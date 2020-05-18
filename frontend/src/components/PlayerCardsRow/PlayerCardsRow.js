@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components';
-import { DevelopCardsParameters } from '../DevelopCardsRow/CardsParameters'
 import { useSelector, useDispatch } from 'react-redux';
-import { setTotalCount } from '../../Redux/actions';
+import { setTotalCount, setCounterResourcesCardName, setCounterDevelopCardsParameters } from '../../Redux/actions';
+import PlayerCardResources from '../PlayerCardResources';
 
 const Container = styled.div`
     padding: 10px 0;
@@ -34,34 +34,43 @@ const Title = styled.div`
     text-align: center;
     padding: 10px 0;
     `
-
-export default function MarketCardsRow() {
-    const reduxResourcesCardsName = useSelector(state => state.cards.player1.cards)
-    const DevelopCardsParameters = useSelector(state => state.cards.player1.developmentCards)
-    const oldTotalPoints = useSelector(state => state.cards.player1.points)
+const countCards = (cards) => {
+    return cards.reduce((final, card) => {
+        const index = final.findIndex(arr => arr[0].name === card.name)
+        if (index >= 0) {
+            final[index].push(card)
+            return final
+        } else {
+            final.push([card])
+            return final
+        }
+    }, [])
+}
+export default function PlayerCardsRow() {
     const dispatch = useDispatch()
-    const countedResourcesCardsName = reduxResourcesCardsName.
-        reduce((final, card) => {
-            const index = final.findIndex(arr => arr[0].name === card.name)
-            if (index >= 0) {
-                final[index].push(card)
-                return final
-            } else {
-                final.push([card])
-                return final
-            }
-        }, []).
-        sort((a, b) => {
-            if (a[0].name < b[0].name) return -1;
-            if (a[0].name > b[0].name) return 1;
-            return 0;
-        })
+    const playerNow = useSelector(state => state.cards.playerNow)
+    const oldTotalPoints = useSelector(state => state.cards[playerNow].points)
+    const reduxResourcesCardsName = useSelector(state => state.cards[playerNow].cards)
+    const developCardsParameters = useSelector(state => state.cards[playerNow].developmentCards)
 
-        const newTotalPoints = DevelopCardsParameters.reduce((sum, card) =>{
-            return sum + (Math.floor(card.number * card.points))
-        }, 0)
+    const countedResourcesCardsName = countCards(reduxResourcesCardsName)
+    const countedDevelopCardsParameters = countCards(developCardsParameters)
 
-        if (newTotalPoints !== oldTotalPoints) dispatch(setTotalCount(newTotalPoints))
+    const newTotalPoints = countedDevelopCardsParameters.reduce((sum, card) => {
+        return sum + (Math.floor(card.length * card[0].point))
+    }, 0)
+    // useEffect Требуется для разрешения ошибки, возникающий 
+    // при изменении стейта одновремнно с другим компонентом
+    useEffect(() => {
+        if (newTotalPoints !== oldTotalPoints) dispatch(setTotalCount(newTotalPoints, playerNow))
+        dispatch(setCounterResourcesCardName(countedResourcesCardsName))
+        dispatch(setCounterDevelopCardsParameters(countedDevelopCardsParameters))
+    }, [newTotalPoints,
+        oldTotalPoints,
+        countedResourcesCardsName,
+        countedDevelopCardsParameters,
+        playerNow,
+        dispatch,])
 
     return (
         <Container>
@@ -70,13 +79,11 @@ export default function MarketCardsRow() {
                     Постройки
                 </Title>
                 <ContainerPart>
-                    {DevelopCardsParameters.map(card => (
-                        <Card>
+                    {developCardsParameters.map(card => (
+                        <Card key={card.name}>
                             {card.name}
                             <br />
-                            Штук: {card.number}
-                            <br />
-                            Очков: {Math.floor(card.number * card.points)}
+                            Очков: {card.point}
                         </Card>
                     ))}
                 </ContainerPart>
@@ -87,11 +94,7 @@ export default function MarketCardsRow() {
                 </Title>
                 <ContainerPart>
                     {countedResourcesCardsName.map(card => (
-                        <Card>
-                            {card[0].name}
-                            <br />
-                            {card.length}
-                        </Card>
+                        <PlayerCardResources key={card[0].id} {...card} number={card.length} />
                     ))}
                 </ContainerPart>
             </ContainerTitleAndCards>

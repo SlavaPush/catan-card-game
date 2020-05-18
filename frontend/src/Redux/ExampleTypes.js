@@ -1,20 +1,20 @@
-{type: 'All_Card_Random_Update',
+{type: 'All_CARD_RANDOM_UPDATE',
 }
 
-{type: 'Give_Cards',
+{type: 'GIVE_CARDS',
 payload:{
   num:5,
   whom:'marketCards'
 }}
 
-{type: 'Give_Cards',
+{type: 'GIVE_CARDS',
 payload:{
   num:25,
   whom:'cards',
   player:'player1'
 }}
 
-{type: 'Swap_Cards',
+{type: 'SWAP_CARDS',
 payload: {
   playerNow:'player1',
   idPlayerCards:"8e4c1e11-7577-4b58-b556-ab61eaaed4c0",
@@ -22,18 +22,18 @@ payload: {
   idWhomCards:"dc594795-1944-436c-af11-4263f135836e",
 }}
 
-{type: 'Swap_Cards',
+{type: 'SWAP_CARDS',
 payload: {
   playerNow:'player1',
   idPlayerCards:"dc594795-1944-436c-af11-4263f135836e",
   whom:'cardsInGame',
 }}
 
-{type: 'S_T_P_CHANGE',
+{type: 'STEP_CHANGE',
   payload: 1,
 }
 
-{type: 'Buy_Development_Cards',
+{type: 'BUY_DEVELOPMENT_CARDS',
   payload: {
     playerNow:'player1',
     developmentCardName:'город',
@@ -42,8 +42,3 @@ payload: {
 {type: 'Next_Player',
 }
 
-{type: 'Player_Name',
-  payload: {
-  player:'player1',
-  name:'Тарас',
-}}

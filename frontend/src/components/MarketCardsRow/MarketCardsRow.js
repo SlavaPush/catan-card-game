@@ -1,14 +1,9 @@
 import React from 'react'
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-const reduxCardsName = [
-    'ОВЦА',
-    'РУДА',
-    'ДЕРЕВО',
-    'ГЛИНА',
-    'ЗЕРНО',
-]
-    const Container = styled.div`
+import CardMarket from '../CardMarket/CardMarket';
+
+const Container = styled.div`
     padding: 10px 0;
     height: 150px;
     background: #6BFFC9;
@@ -16,22 +11,24 @@ const reduxCardsName = [
     display: flex;
     justify-content: space-around;
   `;
-    const Card = styled.div`
-    height: 150px;
-    background: #FFEB5E;
-    color: green;
-    width: 100px;
-    `;
+
 
 export default function MarketCardsRow() {
+    const playerNow = useSelector(state => state.cards.playerNow)
     const reduxMarketCards = useSelector(state => state.cards.marketCards)
+    const marketAvailable = useSelector(state => {
+        const index = state.cards[playerNow].developmentCards.findIndex(card => {
+            if (card.name === 'дорога') return true
+            return false
+        })
+        if (index >= 0) return true
+        return false
+    })
+
     return (
         <Container>
             {reduxMarketCards.map(card => (
-                <Card>
-                    {card.name}
-                </Card>
-            ))}
+                <CardMarket key={card.id} {...card} marketAvailable = {marketAvailable}/>))}
         </Container>
     )
 }

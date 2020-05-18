@@ -1,27 +1,59 @@
 
 import {
-  All_Card_Random_Update,
-  ERROR, S_T_P_CHANGE,
-  Give_Cards, Swap_Cards,
-  Buy_Development_Cards,
+  ERROR,
+  GIVE_CARDS,
+  SWAP_CARDS,
+  STEP_CHANGE,
   SET_TOTAL_COUNT,
-  Next_Player,
-  Player_Name,
-  Price_Development_Cards,
+  BUY_DEVELOPMENT_CARDS,
+  All_CARD_RANDOM_UPDATE,
+  SET_COUNTER_DEVELOP_CARDS_PARAMETERS,
+  SET_COUNTER_RESOURCES_CARD_NAME,
+  TAKE_CARD_FROM_MARKET_TO_TEMPLE_BUFFER,
+  TAKE_CARD_FROM_RESOURCES_TO_TEMPLE_BUFFER,
+  TAKE_CARD_FROM_PLAYER_RESOURCES_TO_TEMPLE_BUFFER,
 } from "./types";
 
-import axios from "axios";
 
-////////////////////////////////////CARDS
-export const allCardRandomUpdate = () => {//рандомит калоду вначале игры
+export const setCounterResourcesCardName = (counter) => {
   return {
-    type: All_Card_Random_Update,
+    type: SET_COUNTER_RESOURCES_CARD_NAME,
+    payload: counter,
+  };
+};
+export const setCounterDevelopCardsParameters = (counter) => {
+  return {
+    type: SET_COUNTER_DEVELOP_CARDS_PARAMETERS,
+    payload: counter,
   };
 };
 
-export const giveCards = (num,whom,player) => {// (сколько карт, куда(строка), ЕСЛИ ИГРОКУ  player1)
+export const takeCardFromResourcesToTempleBuffer = () => {
+  return { type: TAKE_CARD_FROM_RESOURCES_TO_TEMPLE_BUFFER, };
+};
+
+export const takeCardFromMarketToTempleBuffer = (id) => {
   return {
-    type: Give_Cards,
+    type: TAKE_CARD_FROM_MARKET_TO_TEMPLE_BUFFER,
+    payload: id,
+  };
+};
+
+export const takeCardFromPlayerResourcesToTempleBuffer = (id) => {
+  return {
+    type: TAKE_CARD_FROM_PLAYER_RESOURCES_TO_TEMPLE_BUFFER,
+    payload: id,
+  };
+};
+
+export const allCardRandomUpdate = () => {
+  return { type: All_CARD_RANDOM_UPDATE, };
+};
+
+export const giveCards = (num, whom, player) => {
+  // (num - сколько карт, whom - куда, строкой, player? - если игроку)
+  return {
+    type: GIVE_CARDS,
     payload: {
       num,
       whom,
@@ -30,42 +62,24 @@ export const giveCards = (num,whom,player) => {// (сколько карт, ку
   };
 };
 
-export const swapCards = (playerNow,idPlayerCards,whom,idWhomCards) => {// обмен с рынком или колодой
-  //РЫНОК (игрок сейчас, idкарты игрока, у кого обмен,idкарты у кого обмен) 
-  //КОЛОДА (игрок сейчас, idкарты игрока, у кого обмен) 
-  return {
-    type: Swap_Cards,
-    payload: {
-      playerNow,
-      idPlayerCards,
-      whom,
-      idWhomCards
-    },
-  };
+export const swapCards = () => {
+  return { type: SWAP_CARDS, };
 };
 
-export const buyDevelopmentCards = (playerNow,developmentCardName) => {// покупка карт развития 
-  //(кто, имя карты развития типа'дорога')
+export const buyDevelopmentCards = (developmentCardName) => {
   return {
-    type: Buy_Development_Cards,
+    type: BUY_DEVELOPMENT_CARDS,
     payload: {
-      playerNow,
       developmentCardName,
     },
   };
 };
-export const playerName = (player,name) => {// дать имя игроку 
-  //('player1', 'Тарас')
-  return {
-    type: Player_Name,
-    payload: {
-      player,
-      name,
-    },
-  };
+
+export const changeStep = () => {
+  return { type: STEP_CHANGE };
 };
 
-export const setTotalCount = (totalCount, player = 'player1') => {//SET TOTAL COUNTS
+export const setTotalCount = (totalCount, player) => {
   return {
     type: SET_TOTAL_COUNT,
     payload: {
@@ -75,30 +89,7 @@ export const setTotalCount = (totalCount, player = 'player1') => {//SET TOTAL CO
   }
 }
 
-////////////////////////////////////STEP
-
-export const changeStep = (num) => {//номер шага
-  return {
-    type: S_T_P_CHANGE,
-    payload: num,
-  };
-};
-
-export const nextPlayer = () => {//Следующий игрок
-  return {
-    type: Next_Player,
-  };
-};
-
-////////////////////////////////////TEMPLATES
-
-// export const priceDevelopmentCards = () => {//Следующий игрок
-//   return {
-//     type: Price_Development_Cards,
-//   };
-// };
-
-////////////////////////////////////ERROR
+////////////////////ERROR NOT READY
 export const error = (err) => {
   return {
     type: ERROR,
@@ -106,13 +97,3 @@ export const error = (err) => {
   };
 };
 
-// export const reduxStateUpdateThunk = () => (dispatch) => {
-//   axios("https://api.thecatapi.com/v1/images/search").then(
-//     (res) => {
-//       dispatch(reduxStateUpdate(res.data));
-//     },
-//     (err) => {
-//       dispatch(error(err.message));
-//     }
-//   );
-// };
