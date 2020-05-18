@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { setTotalCount, setCounterResourcesCardName, setCounterDevelopCardsParameters } from '../../Redux/actions';
 import PlayerCardResources from '../PlayerCardResources';
+import PlayerCardDevelopment from '../PlayerCardDevelopment';
 
 const Container = styled.div`
     padding: 10px 0;
@@ -71,7 +72,7 @@ export default function PlayerCardsRow() {
         countedDevelopCardsParameters,
         playerNow,
         dispatch,])
-
+    console.log('developCardsParameters', countedDevelopCardsParameters)
     return (
         <Container>
             <ContainerTitleAndCards>
@@ -79,12 +80,11 @@ export default function PlayerCardsRow() {
                     Постройки
                 </Title>
                 <ContainerPart>
-                    {developCardsParameters.map(card => (
-                        <Card key={card.name}>
-                            {card.name}
-                            <br />
-                            Очков: {card.point}
-                        </Card>
+                    {countedDevelopCardsParameters.map(card => (
+                        <PlayerCardDevelopment
+                            {...card}
+                            key={card[0].name}
+                            number={card.length} />
                     ))}
                 </ContainerPart>
             </ContainerTitleAndCards>
@@ -94,7 +94,10 @@ export default function PlayerCardsRow() {
                 </Title>
                 <ContainerPart>
                     {countedResourcesCardsName.map(card => (
-                        <PlayerCardResources key={card[0].id} {...card} number={card.length} />
+                        <PlayerCardResources
+                            {...card}
+                            key={card[0].id}
+                            number={card.length} />
                     ))}
                 </ContainerPart>
             </ContainerTitleAndCards>
