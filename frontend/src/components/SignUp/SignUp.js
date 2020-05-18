@@ -47,7 +47,7 @@ export default function SignUp({history}) {
         const hashPass = await bcrypt.hash(password, 10);
         const response = await axios({
           method: 'post',
-          url: 'http://localhost:3000/auth/register',
+          url: '/auth/register',
           data: {
             name,
             email,
