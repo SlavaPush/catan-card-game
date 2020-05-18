@@ -12,6 +12,7 @@ import Container from '@material-ui/core/Container';
 import bcrypt from "bcryptjs";
 import axios from "axios";
 import Box from "@material-ui/core/Box";
+import setupsocket from '../../sockets/socket';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -42,6 +43,7 @@ export default function SignIn({history}) {
     const onSubmit = async (e) => {
         e.preventDefault();
         // const hashPass = await bcrypt.hash(password, 10);
+        setupsocket('test');
 
         try{
             const response = await axios({

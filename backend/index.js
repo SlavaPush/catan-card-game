@@ -5,8 +5,27 @@ const MongoStore = require('connect-mongodb-session')(session)
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
-// const WebSocket = require('ws');
+const http = require('http');
+const WebSocket = require('ws');
 require('dotenv').config();
+
+const app = express();
+const server = http.createServer(app);
+
+const wss = new WebSocket.Server({
+  server
+});
+
+wss.on('connection', ws => {
+  console.log('connect new user');
+
+  ws.on('message', (message) => {
+
+    const data = JSON.parse(message);
+    console.log(data);
+
+  })
+})
 
 const { PORT, MONGODB_URI } = process.env;
 const corsOptions = {
@@ -16,7 +35,6 @@ const corsOptions = {
 
 const authRouter = require('./routes/auth');
 
-const app = express();
 
 const store = new MongoStore({
   collection: 'sessions',
@@ -51,7 +69,7 @@ app.use('/auth', authRouter);
       useFindAndModify: false,
       useUnifiedTopology: true
     })
-    app.listen(PORT, () => {
+    server.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`)
     })
   } catch (e) {
