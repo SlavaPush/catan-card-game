@@ -1,12 +1,5 @@
-import {combineReducers} from 'redux'
+import { combineReducers } from 'redux'
 import cards from './reducers/cards'
-import steps from './reducers/steps'
-import template from './reducers/template'
+import template from './reducers/template';
 
-
-
-export default combineReducers({
-  cards,
-  steps,
-  template
-})
+export default combineReducers({ cards, })

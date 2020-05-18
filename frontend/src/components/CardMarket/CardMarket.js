@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
-import { takeCardFromResourcesToTempleBuffer } from '../../Redux/actions';
+import { takeCardFromMarketToTempleBuffer } from '../../Redux/actions';
 
 const Card = styled.div`
     height: 150px;
@@ -11,14 +11,14 @@ const Card = styled.div`
   `;
 
 
-export default function CardResources() {
+export default function CardMarket({name, id, marketAvailable}) {
     const marketStep = useSelector(state => !state.cards.step)
     const dispatch = useDispatch()
     return (
         <Card onClick={() => {
-            marketStep && dispatch(takeCardFromResourcesToTempleBuffer())} }>
-            РЕСУРСЫ ЕБТ!
-            {marketStep && 'active'}
+            marketStep && marketAvailable && dispatch(takeCardFromMarketToTempleBuffer(id))} }>
+            {name}
+            {marketAvailable && marketStep && 'active'}
         </Card>
 
     )

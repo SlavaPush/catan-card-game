@@ -1,9 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { changeStep, swapCards, giveCards } from '../../Redux/actions'
+import { actionCardModifications } from './actionCardModifications'
+import * as actions from '../../Redux/actions'
 
-export default function BtnNextStep() {
-    const Btn = styled.div`
+
+const Btn = styled.div`
         margin: auto;
         background-color: green;
         padding: 15px 40px;
@@ -14,9 +17,25 @@ export default function BtnNextStep() {
         vertical-align: middle;
         font-size: 2rem;
     `
-    const state = useSelector(state => state)
+export default function BtnNextStep() {
+    const dispatch = useDispatch()
+    const step = useSelector(state => state.cards.step)
+    const playerNow = useSelector(state => state.cards.playerNow)
+    const countedDevelopCardsParameters = useSelector(state => state.cards[playerNow].countedDevelopCardsParameters)
     return (
-        <Btn onClick ={() => console.log(state)}>
+        <Btn onClick={() => {
+            dispatch(swapCards());
+            dispatch(changeStep());
+            if (step) {
+                countedDevelopCardsParameters.forEach(cards => actionCardModifications[cards[0].name](
+                    countedDevelopCardsParameters,
+                    dispatch,
+                    actions,
+                    playerNow,
+                ))
+                dispatch(giveCards(2, "cards", playerNow))
+            }
+        }}>
             NEXT
         </Btn>
     )
