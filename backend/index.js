@@ -4,7 +4,6 @@ const session = require('express-session');
 const MongoStore = require('connect-mongodb-session')(session)
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const cors = require('cors');
 const http = require('http');
 const WebSocket = require('ws');
 require('dotenv').config();
@@ -25,15 +24,19 @@ wss.on('connection', ws => {
     console.log(data);
 
   })
+  ws.on('close', () => {
+    console.log('user disconnect');
+  })
+  ws.on('error', (error) => {
+    console.log(error);
+
+  })
 })
 
 const { PORT, MONGODB_URI } = process.env;
-const corsOptions = {
-  origin: 'http://localhost:3000',
-  optionsSuccessStatus: 200,
-};//вместо сделать proxy
 
 const authRouter = require('./routes/auth');
+const indexRouter = require('./routes/index');
 
 
 const store = new MongoStore({
@@ -58,8 +61,7 @@ app.use(session({
   }
 }));
 
-app.use(cors(corsOptions));
-
+app.use('/', indexRouter);
 app.use('/auth', authRouter);
 
 (async function start() {

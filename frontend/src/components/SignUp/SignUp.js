@@ -30,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
 export default function SignUp({history}) {
   const classes = useStyles();
   const [name, setName] = useState('');
@@ -42,14 +41,13 @@ export default function SignUp({history}) {
   const onSubmit = async (e) => {
     e.preventDefault();
     try{
-
       const validateInput = name && email && password;
 
       if (validateInput){
         const hashPass = await bcrypt.hash(password, 10);
         const response = await axios({
           method: 'post',
-          url: 'http://localhost:3001/auth/register',
+          url: '/auth/register',
           data: {
             name,
             email,

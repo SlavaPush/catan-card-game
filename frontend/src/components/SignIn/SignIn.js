@@ -48,7 +48,7 @@ export default function SignIn({history}) {
         try{
             const response = await axios({
                 method: 'post',
-                url: 'http://localhost:3001/auth/login',
+                url: '/auth/login',
                 data: {
                     email,
                     password
