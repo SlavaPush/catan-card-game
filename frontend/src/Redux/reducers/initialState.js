@@ -23,6 +23,9 @@ export const initialState = {
       giveCard: '',
       source: ''
     },
+    buyTempleBuffer: {
+      takeCard: '',
+    },
     step: false,
     playerNow: 'player1',
   };
