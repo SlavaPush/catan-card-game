@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { buyDevelopmentCards } from '../../Redux/actions';
+import { takeCardFromDevelopmentCardsToTempleBuffer } from '../../Redux/actions';
 
 const Card = styled.div`
     height: 150px;
@@ -13,7 +13,7 @@ const Card = styled.div`
 export default function DevelopCardRow({ card,  isActive, marketStep}) {
     const dispatch = useDispatch();
     return (
-        <Card onClick ={()=> isActive && marketStep && dispatch(buyDevelopmentCards(card[0].name))}>
+        <Card onClick ={()=> isActive && marketStep && dispatch(takeCardFromDevelopmentCardsToTempleBuffer(card[0].name))}>
             {card[0].name}<br/>
             {isActive && marketStep && 'Active'}  
         </Card>
