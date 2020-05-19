@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import CardMarket from '../CardMarket/CardMarket';
+import { stepCheck } from '../../helpers';
 
 const Container = styled.div`
     padding: 10px 0;
@@ -16,6 +17,8 @@ const Container = styled.div`
 export default function MarketCardsRow() {
     const playerNow = useSelector(state => state.cards.playerNow)
     const reduxMarketCards = useSelector(state => state.cards.marketCards)
+    //logic check
+    const isActiveStep = stepCheck(playerNow)
     const marketAvailable = useSelector(state => {
         const index = state.cards[playerNow].developmentCards.findIndex(card => {
             if (card.name === 'дорога') return true
@@ -28,7 +31,12 @@ export default function MarketCardsRow() {
     return (
         <Container>
             {reduxMarketCards.map(card => (
-                <CardMarket key={card.id} {...card} marketAvailable = {marketAvailable}/>))}
+                <CardMarket
+                    key={card.id}
+                    {...card}
+                    marketAvailable={marketAvailable}
+                    isActiveStep={isActiveStep}
+                />))}
         </Container>
     )
 }

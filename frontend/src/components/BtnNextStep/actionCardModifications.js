@@ -6,6 +6,6 @@ export const actionCardModifications = {
         if (numberOfCards.length > 3) dispatch(giveCards(1, "cards", playerNow))
         if (numberOfCards.length >= 1) dispatch(giveCards(1, "cards", playerNow))
     },
-    'город': [() => { }],
-    'здание': [() => { }],
+    'город': () => { },
+    'здание': () => { },
 }

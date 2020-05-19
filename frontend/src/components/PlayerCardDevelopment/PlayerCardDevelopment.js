@@ -11,15 +11,10 @@ const Card = styled.div`
   `;
 
 
-export default function PlayerCardResources(props) {
-    const marketStep = useSelector(state => !state.cards.step)
-    const dispatch = useDispatch()
+export default function PlayerCardDevelopment(props) {
+    
     return (
-        <Card onClick={() => {
-            marketStep
-                && props.isActiveStep
-                && dispatch(takeCardFromPlayerResourcesToTempleBuffer(props[0].id))
-        }}>
+        <Card>
             {props[0].name} <br />
             Штук: {props.number}
         </Card>

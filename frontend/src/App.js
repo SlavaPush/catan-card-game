@@ -5,12 +5,14 @@ import PlayerCardsRow from './components/PlayerCardsRow';
 import MarketCardsRow from './components/MarketCardsRow';
 import BtnNextStep from './components/BtnNextStep';
 import { useDispatch, useSelector } from 'react-redux';
-import { allCardRandomUpdate, giveCards } from './Redux/actions';
+import { allCardRandomUpdate, giveCards, setReceivedCardsState } from './Redux/actions';
 import SidebarCounter from './components/SidebarCounter';
 // import {sagaMiddleware} from './Redux/store';
 // import setupSocket from './sockets/socket';
 import {sagaStateTransfer} from './Redux/saga/saga-actions';
 // import sagaWatcher from './Redux/saga/saga-watcher';
+// import { socketVadim } from './socketVadim';////   для отладки логики
+
 
 const MainContainer = styled.div`
     display: flex;
@@ -39,15 +41,19 @@ function App() {
   const player1 = useSelector(state => state.cards.player1.name)
   const state = useSelector(state => state)
   
+  /////////////////////// logic testing 
+//   localStorage.setItem('player', 'player1');
+//   socketVadim.onmessage = (e) =>{
+//     const state = JSON.parse(e.data)
+//     dispatch(setReceivedCardsState(state))
+//   }
+  //////////////////////
   const startGame = useCallback(() => {
     dispatch(allCardRandomUpdate())
     dispatch(giveCards(5, "cards", 'player1'))
     dispatch(giveCards(5, "cards", 'player2'))
     dispatch(giveCards(5, "marketCards"))
   }, [dispatch])
-
-
-
   useEffect(() => {
     startGame()
     // const socket = setupSocket(dispatch, player1) //@saga_step_1
