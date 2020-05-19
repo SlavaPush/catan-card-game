@@ -7,6 +7,7 @@ import {
   SET_TOTAL_COUNT,
   BUY_DEVELOPMENT_CARDS,
   All_CARD_RANDOM_UPDATE,
+  SET_RECEIVED_CARDS_STATE,
   SET_COUNTER_RESOURCES_CARD_NAME,
   SET_COUNTER_DEVELOP_CARDS_PARAMETERS,
   TAKE_CARD_FROM_MARKET_TO_TEMPLE_BUFFER,
@@ -16,6 +17,12 @@ import {
 } from "./types";
 
 
+export const setReceivedCardsState = (state) => {
+  return {
+    type: SET_RECEIVED_CARDS_STATE,
+    payload: state,
+  };
+};
 export const takeCardFromDevelopmentCardsToTempleBuffer = (nameCard) => {
   return {
     type: TAKE_CARD_FROM_DEVELOPMENT_CARDS_TO_TEMPLE_BUFFER,

@@ -5,8 +5,10 @@ import PlayerCardsRow from './components/PlayerCardsRow';
 import MarketCardsRow from './components/MarketCardsRow';
 import BtnNextStep from './components/BtnNextStep';
 import { useDispatch } from 'react-redux';
-import { allCardRandomUpdate, giveCards } from './Redux/actions';
+import { allCardRandomUpdate, giveCards, setReceivedCardsState } from './Redux/actions';
 import SidebarCounter from './components/SidebarCounter';
+import { socketVadim } from './socketVadim';////   для отладки логики
+
 
 const MainContainer = styled.div`
     display: flex;
@@ -32,14 +34,20 @@ const ContainerControlPanel = styled.div`
 
 function App() {
   const dispatch = useDispatch()
-  
+  /////////////////////// logic testing 
+  localStorage.setItem('player', 'player1');
+  socketVadim.onmessage = (e) =>{
+    const state = JSON.parse(e.data)
+    dispatch(setReceivedCardsState(state))
+  }
+  //////////////////////
   const startGame = useCallback(() => {
     dispatch(allCardRandomUpdate())
     dispatch(giveCards(5, "cards", 'player1'))
     dispatch(giveCards(5, "cards", 'player2'))
     dispatch(giveCards(5, "marketCards"))
   }, [dispatch])
-
+  
   useEffect(() => {
     startGame()
   }, [startGame])

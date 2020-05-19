@@ -69,10 +69,6 @@ export default function SignUp({history}) {
     }catch (e) {
       console.log('REGISTER ERROR', e)
     }
-
-    // history.push('/');
-    // console.log(history)
-
   };
 
   const onLogin = (e) => {

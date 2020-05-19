@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setTotalCount, setCounterResourcesCardName, setCounterDevelopCardsParameters } from '../../Redux/actions';
 import PlayerCardResources from '../PlayerCardResources';
 import PlayerCardDevelopment from '../PlayerCardDevelopment';
+import { stepCheck } from '../../helpers';
 
 const Container = styled.div`
     padding: 10px 0;
@@ -49,10 +50,13 @@ const countCards = (cards) => {
 }
 export default function PlayerCardsRow() {
     const dispatch = useDispatch()
+    // logic test 
+    const player = localStorage.getItem('player')
+    //  Внимание, чтобы вернуться к старой версии надо замениь player на playerNow в useSelectore
     const playerNow = useSelector(state => state.cards.playerNow)
-    const oldTotalPoints = useSelector(state => state.cards[playerNow].points)
-    const reduxResourcesCardsName = useSelector(state => state.cards[playerNow].cards)
-    const developCardsParameters = useSelector(state => state.cards[playerNow].developmentCards)
+    const oldTotalPoints = useSelector(state => state.cards[player].points)
+    const reduxResourcesCardsName = useSelector(state => state.cards[player].cards)
+    const developCardsParameters = useSelector(state => state.cards[player].developmentCards)
 
     const countedResourcesCardsName = countCards(reduxResourcesCardsName)
     const countedDevelopCardsParameters = countCards(developCardsParameters)
@@ -60,6 +64,8 @@ export default function PlayerCardsRow() {
     const newTotalPoints = countedDevelopCardsParameters.reduce((sum, card) => {
         return sum + (Math.floor(card.length * card[0].point))
     }, 0)
+    // test logic
+    const isActiveStep = stepCheck(playerNow)
     // useEffect Требуется для разрешения ошибки, возникающий 
     // при изменении стейта одновремнно с другим компонентом
     useEffect(() => {
@@ -72,7 +78,6 @@ export default function PlayerCardsRow() {
         countedDevelopCardsParameters,
         playerNow,
         dispatch,])
-    console.log('developCardsParameters', countedDevelopCardsParameters)
     return (
         <Container>
             <ContainerTitleAndCards>
@@ -84,7 +89,8 @@ export default function PlayerCardsRow() {
                         <PlayerCardDevelopment
                             {...card}
                             key={card[0].name}
-                            number={card.length} />
+                            number={card.length}
+                            isActiveStep ={isActiveStep} />
                     ))}
                 </ContainerPart>
             </ContainerTitleAndCards>
@@ -97,7 +103,8 @@ export default function PlayerCardsRow() {
                         <PlayerCardResources
                             {...card}
                             key={card[0].id}
-                            number={card.length} />
+                            number={card.length}
+                            isActiveStep ={isActiveStep} />
                     ))}
                 </ContainerPart>
             </ContainerTitleAndCards>

@@ -16,8 +16,11 @@ export default function PlayerCardResources(props) {
     const dispatch = useDispatch()
     return (
         <Card onClick={() => {
-            marketStep && dispatch(takeCardFromPlayerResourcesToTempleBuffer(props[0].id))} }>
-            {props[0].name} <br/>
+            marketStep
+                && props.isActiveStep
+                && dispatch(takeCardFromPlayerResourcesToTempleBuffer(props[0].id))
+        }}>
+            {props[0].name} <br />
             Штук: {props.number}
         </Card>
     )
