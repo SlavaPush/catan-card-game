@@ -15,13 +15,41 @@ const wss = new WebSocket.Server({
   server
 });
 
-wss.on('connection', ws => {
-  console.log('connect new user');
+// send data to clients
+const broadcast = (data, ws) => {
+  wss.clients.forEach(client => {
+      // send for everyone except author
+      if (client.readyState === WebSocket.OPEN && client !== ws) {
+          client.send(JSON.stringify(data))
+      }
+  })
+};
 
-  ws.on('message', (message) => {
+const state = {
+
+};
+
+wss.on('connection', ws => {
+  console.log('connect new user'); //@saga_step_3
+
+  ws.on('message', (message) => { //@saga_step_4
 
     const data = JSON.parse(message);
-    console.log(data);
+    console.log(data, '<><><><><><><><');
+    switch (data.type) {
+      case 'TEST':  //@saga_step_5
+        console.log('TEST_SERVER');
+        broadcast({  //@saga_step_6
+          type:'TEST_SERVER_TO_CLIENT',
+          state: data.state
+        }, ws)
+        break;
+        case 'SAGA_STATE_TRANSFER':
+          console.log('SAGA_STATE_TRANSFERSAGA_STATE_TRANSFERSAGA_STATE_TRANSFER');
+          break;
+          default:
+            break;
+    }
 
   })
   ws.on('close', () => {

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { changeStep, swapCards, giveCards } from '../../Redux/actions'
 import { actionCardModifications } from './actionCardModifications'
 import * as actions from '../../Redux/actions'
+import {sagaStateTransfer} from '../../Redux/saga/saga-actions'
 
 
 const Btn = styled.div`
@@ -26,6 +27,7 @@ export default function BtnNextStep() {
         <Btn onClick={() => {
             dispatch(swapCards());
             dispatch(changeStep());
+            dispatch(sagaStateTransfer('sndjvcnjkdnjcnednfc'));
             if (step) {
                 countedDevelopCardsParameters.forEach(cards => actionCardModifications[cards[0].name](
                     countedDevelopCardsParameters,

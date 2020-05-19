@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { setTotalCount, setCounterResourcesCardName, setCounterDevelopCardsParameters } from '../../Redux/actions';
@@ -53,12 +53,13 @@ export default function PlayerCardsRow() {
     const reduxResourcesCardsName = useSelector(state => state.cards[playerNow].cards)
     const developCardsParameters = useSelector(state => state.cards[playerNow].developmentCards)
 
-    const countedResourcesCardsName = countCards(reduxResourcesCardsName)
-    const countedDevelopCardsParameters = countCards(developCardsParameters)
+    const countedResourcesCardsName = useMemo(() => countCards(reduxResourcesCardsName), [reduxResourcesCardsName])
+    const countedDevelopCardsParameters = useMemo(() => countCards(developCardsParameters), [developCardsParameters])
 
     const newTotalPoints = countedDevelopCardsParameters.reduce((sum, card) => {
         return sum + (Math.floor(card.length * card[0].point))
     }, 0)
+w
     // useEffect Требуется для разрешения ошибки, возникающий 
     // при изменении стейта одновремнно с другим компонентом
     useEffect(() => {
