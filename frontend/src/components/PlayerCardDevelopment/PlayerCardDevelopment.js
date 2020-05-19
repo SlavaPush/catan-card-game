@@ -12,7 +12,6 @@ const Card = styled.div`
 
 
 export default function PlayerCardDevelopment(props) {
-console.log("PlayerCardDevelopment -> props", props)
     
     return (
         <Card>

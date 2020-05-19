@@ -6,7 +6,6 @@ const GameStore = require('../models/mongoStore');
 
 router.post('/register', async (req, res) => {
   try{
-    console.log(req.body)
     const {name, email, hashPass} = req.body;
     const candidate = await User.findOne({
       email

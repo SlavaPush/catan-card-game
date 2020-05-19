@@ -10,8 +10,9 @@ import {
   SET_TOTAL_COUNT,
   BUY_DEVELOPMENT_CARDS,
   All_CARD_RANDOM_UPDATE,
-  SET_COUNTER_DEVELOP_CARDS_PARAMETERS,
+  SET_RECEIVED_CARDS_STATE,
   SET_COUNTER_RESOURCES_CARD_NAME,
+  SET_COUNTER_DEVELOP_CARDS_PARAMETERS,
   TAKE_CARD_FROM_MARKET_TO_TEMPLE_BUFFER,
   TAKE_CARD_FROM_RESOURCES_TO_TEMPLE_BUFFER,
   TAKE_CARD_FROM_PLAYER_RESOURCES_TO_TEMPLE_BUFFER,
@@ -20,6 +21,11 @@ import {
 
 export default function cards(state = initialState, { type, payload }) {
   switch (type) {
+    case SET_RECEIVED_CARDS_STATE: { /// logic testing
+      return produce(state, draft => {
+        draft = payload
+      });
+    }
     case TAKE_CARD_FROM_DEVELOPMENT_CARDS_TO_TEMPLE_BUFFER: {
       return produce(state, draft => {
         draft.buyTempleBuffer.takeCard = payload
@@ -124,7 +130,6 @@ export default function cards(state = initialState, { type, payload }) {
         else if (developmentCardName === 'город') {
           const cornWood = draft[draft.playerNow].cards.filter(e => e.name === 'зерно').splice(0, 2)
           const oreClay = draft[draft.playerNow].cards.filter(e => e.name === 'руда').splice(0, 3)
-          console.log('draft[draft.playerNow].cards.filter', draft[draft.playerNow].cards)
           draft[draft.playerNow].cards = draft[draft.playerNow].cards.filter((e) => {
             return e.id !== cornWood[0].id && e.id !== cornWood[1].id && e.id !== oreClay[0].id &&
               e.id !== oreClay[1].id && e.id !== oreClay[2].id

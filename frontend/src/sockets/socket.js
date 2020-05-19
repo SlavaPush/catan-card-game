@@ -1,5 +1,4 @@
 
-
 const setupsocket = (data) => {
     const socket = new WebSocket('ws://localhost:3001');
 

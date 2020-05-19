@@ -4,6 +4,7 @@ import Card from '../Card'
 import CardResources from '../CardResources'
 import { useSelector } from 'react-redux';
 import { isItEnoughResources } from './isItEnoughResources';
+import { stepCheck } from '../../helpers';
 
 
 const Container = styled.div`
@@ -20,7 +21,8 @@ export default function DevelopCardRow() {
     const playerNow = useSelector(state => state.cards.playerNow)
     const reduxDevelopmentCards = useSelector(state => state.cards.developmentCards)
     const countedResourcesCardsName = useSelector(state => state.cards[playerNow].countedResourcesCardsName)
-
+    // logic check
+    const isActiveStep = stepCheck(playerNow)
     const countedDevelopmentCards = reduxDevelopmentCards.reduce((final, card) => {
         const index = final.findIndex(arr => arr[0].name === card.name)
         if (index >= 0) {
@@ -45,6 +47,7 @@ export default function DevelopCardRow() {
                     countedResourcesCardsName={countedResourcesCardsName}
                     isActive={isItEnoughResources(card[0].name, resources)}
                     marketStep={marketStep}
+                    isActiveStep ={isActiveStep}
                 />
             ))}
             <CardResources />
