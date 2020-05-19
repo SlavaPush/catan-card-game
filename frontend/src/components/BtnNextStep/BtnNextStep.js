@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { changeStep, swapCards, giveCards, buyDevelopmentCards } from '../../Redux/actions'
 import { actionCardModifications } from './actionCardModifications'
 import * as actions from '../../Redux/actions'
+import {sagaStateTransfer} from '../../Redux/saga/saga-actions'
 import { socketVadim } from '../../socketVadim'
 import { stepCheck } from '../../helpers'
 
