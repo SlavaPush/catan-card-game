@@ -3,6 +3,7 @@ import DevelopCardsRow from './components/DevelopCardsRow';
 import PlayerCardsRow from './components/PlayerCardsRow';
 import MarketCardsRow from './components/MarketCardsRow';
 import BtnNextStep from './components/BtnNextStep';
+import Chat from './components/Chat';
 import { useDispatch, useSelector } from 'react-redux';
 import { allCardRandomUpdate, giveCards } from './Redux/actions';
 import SidebarCounter from './components/SidebarCounter';
@@ -11,8 +12,9 @@ import {sagaStateTransfer, sagaSearchStateInRoom} from './Redux/saga/saga-action
 
 import {
   MainContainer,
-   ContainerPlayField, 
-   ContainerControlPanel} from './components/CommonStyledComponents/ScApp'
+  ContainerPlayField, 
+  ContainerControlPanel
+  } from './components/CommonStyledComponents/ScApp'
 
 
 function App({match}) {
@@ -49,6 +51,7 @@ function App({match}) {
         <BtnNextStep />
         <SidebarCounter urlPl2={urlPl2}/>
       </ContainerControlPanel>
+      <Chat />
     </MainContainer>
   );
 }

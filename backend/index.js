@@ -88,6 +88,12 @@ wss.on('connection', ws => {
                 winner: data.playerNow
               }, ws);
               break;
+              case 'ADD_MESSAGE':
+                broadcast({
+                  type: 'MESSAGE_RECEIVED',
+                  message: data.message,
+                  author: data.author
+                }, ws);
           default:
             break;
     }

@@ -1,4 +1,5 @@
-import {setReceivedCardsState,resivedChangeStep} from '../Redux/actions';
+import {setReceivedCardsState,resivedChangeStep, winnerNowRedux} from '../Redux/actions';
+import {messageReceived} from '../Redux/chat-actions';
 
 
 const setupSocket = (dispatch, cb) => {
@@ -20,8 +21,11 @@ const setupSocket = (dispatch, cb) => {
                 dispatch(setReceivedCardsState(data.state))
                 break;
               case 'WINNER_NOW_TO_CLIENT':
-                dispatch(setReceivedCardsState(data.winner))
+                dispatch(winnerNowRedux(data.winner))
                 break;
+                case 'MESSAGE_RECEIVED':
+              dispatch(messageReceived(data.message, data.author));
+              break;
       }
     }
 
