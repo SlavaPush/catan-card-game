@@ -3,9 +3,69 @@ export const stepCheck = (playerNow) => {
     if (player === playerNow) return true
     else return false
 }
-export const allActive = (...args) => {
+export const allActiveCheck = (...args) => {
     return args.reduce((res, arg) => {
         if (res && arg) return true
         else return false
     })
+}
+
+export const countCards = (cards) => {
+    return cards.reduce((final, card) => {
+        const index = final.findIndex(arr => arr[0].name === card.name)
+        if (index >= 0) {
+            final[index].push(card)
+            return final
+        } else {
+            final.push([card])
+            return final
+        }
+    }, [])
+}
+export const actionCardModifications = {
+    'дорога': () => { },
+    'рыцарь': (countedDevelopCardsParameters, dispatch, { giveCards }, playerNow) => {
+        const numberOfCards = countedDevelopCardsParameters.find(cards => cards[0].name === 'рыцарь')
+        if (numberOfCards.length > 3) dispatch(giveCards(1, "cards", playerNow))
+        if (numberOfCards.length >= 1) dispatch(giveCards(1, "cards", playerNow))
+    },
+    'город': () => { },
+    'здание': () => { },
+}
+
+export const selectCheck = (parameter, arrayCards) => {
+    return arrayCards.some(card => card.name === parameter || card.id === parameter)
+}
+
+export const isItEnoughResources = (name, countedResourcesCardsName) => {
+
+    const resources = countedResourcesCardsName.reduce((resources, cards) => {
+        resources[cards[0].name] = cards.length
+        return resources
+    }, {})
+
+    const prices = {
+        'дорога': {
+            'дерево': 1,
+            'глина': 0,
+        },
+        'рыцарь': {
+            'зерно': 1,
+            'шерсть': 1,
+            'руда': 1,
+        },
+        'город': {
+            'зерно': 2,
+            'руда': 3,
+        },
+        'здание': {
+            'руда': 1,
+            'шерсть': 3,
+        },
+    }
+    for (let requiredResource in prices[name]) {
+        if (prices[name][requiredResource] > resources[requiredResource] ||
+            resources[requiredResource] === undefined) return false
+    }
+    return true
 }

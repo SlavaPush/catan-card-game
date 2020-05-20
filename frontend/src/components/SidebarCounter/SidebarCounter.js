@@ -20,8 +20,7 @@ export default function SidebarCounter({urlPl2}) {
     const namePlayer2 = useSelector(state => state.cards.player2.name)
     const pointsPlayer1 = useSelector(state => state.cards.player1.points)
     const pointsPlayer2 = useSelector(state => state.cards.player2.points)
-    const playerNowName = useSelector(state =>
-        state.cards[state.cards.playerNow].name)
+    const playerNowName = useSelector(state => state.cards[state.cards.playerNow].name)
 
     return (
         <>

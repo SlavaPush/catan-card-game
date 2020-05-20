@@ -13,6 +13,7 @@ import sagaWatcher from './Redux/saga/saga-watcher'
 
 
 
+
   const socket = setupSocket(store.dispatch, () => {
       ReactDOM.render(
         <Router>
@@ -26,9 +27,7 @@ import sagaWatcher from './Redux/saga/saga-watcher'
           </Provider>
         </Router>,
         document.getElementById('root'));
-  }) 
-
-
+  })
 
   sagaMiddleware.run(sagaWatcher, socket)
 

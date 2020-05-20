@@ -1,28 +1,19 @@
 import React from 'react'
-import styled from 'styled-components';
 import Card from '../Card'
 import CardResources from '../CardResources'
 import { useSelector } from 'react-redux';
-import { isItEnoughResources } from './isItEnoughResources';
-import { stepCheck } from '../../helpers';
+import { stepCheck, allActiveCheck, isItEnoughResources, selectCheck } from '../../helpers';
+import {Container} from './ScDevelopCardsRow'
 
-
-const Container = styled.div`
-    padding: 10px 0;
-    height: 150px;
-    background: #85E856;
-    color: white;
-    display: flex;
-    justify-content: space-around;
-  `;
 
 export default function DevelopCardRow() {
+
     const marketStep = useSelector(state => state.cards.step)
     const playerNow = useSelector(state => state.cards.playerNow)
     const reduxDevelopmentCards = useSelector(state => state.cards.developmentCards)
     const countedResourcesCardsName = useSelector(state => state.cards[playerNow].countedResourcesCardsName)
-    // logic check
-    const isActiveStep = stepCheck(playerNow)
+    const takeCard = useSelector(state => state.cards.buyTempleBuffer.takeCard)
+
     const countedDevelopmentCards = reduxDevelopmentCards.reduce((final, card) => {
         const index = final.findIndex(arr => arr[0].name === card.name)
         if (index >= 0) {
@@ -34,23 +25,28 @@ export default function DevelopCardRow() {
         }
     }, [])
 
-    const resources = {}
-    countedResourcesCardsName.forEach(cards => {
-        resources[cards[0].name] = cards.length
-    })
+    const countedDevelopmentCardsElements = countedDevelopmentCards.map(card => (
+        <Card
+            {...{
+                card,
+                countedResourcesCardsName,
+                key: card[0].id,
+                allActive: allActiveCheck(
+                    marketStep,
+                    stepCheck(playerNow),
+                    isItEnoughResources(
+                        card[0].name,
+                        countedResourcesCardsName)),
+                selected: selectCheck(takeCard, card),
+            }}
+        />
+    ))
+
     return (
         <Container>
-            {countedDevelopmentCards.map(card => (
-                <Card
-                    key={card[0].id}
-                    card={card}
-                    countedResourcesCardsName={countedResourcesCardsName}
-                    isActive={isItEnoughResources(card[0].name, resources)}
-                    marketStep={marketStep}
-                    isActiveStep ={isActiveStep}
-                />
-            ))}
+            {countedDevelopmentCardsElements}
             <CardResources />
         </Container>
     )
 }
+
