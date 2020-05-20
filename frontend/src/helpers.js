@@ -29,8 +29,15 @@ export const actionCardModifications = {
         if (numberOfCards.length > 3) dispatch(giveCards(1, "cards", playerNow))
         if (numberOfCards.length >= 1) dispatch(giveCards(1, "cards", playerNow))
     },
-    'город': () => { },
-    'здание': () => { },
+    'город': (countedDevelopCardsParameters, dispatch, { cityLogic }, playerNow) => {
+      const numberOfCards = countedDevelopCardsParameters.find(cards => cards[0].name === 'город')
+      if (numberOfCards.length = 2) dispatch(cityLogic(playerNow,'Two')) 
+      if (numberOfCards.length = 4) dispatch(cityLogic(playerNow,'Four')) 
+     },
+    'здание': (countedDevelopCardsParameters, dispatch, { removeOpponentCard }, playerNow) => { 
+      const numberOfCards = countedDevelopCardsParameters.find(cards => cards[0].name === 'здание')
+      if (numberOfCards.length >= 1) dispatch(removeOpponentCard(playerNow))
+    },
 }
 
 export const selectCheck = (parameter, arrayCards) => {

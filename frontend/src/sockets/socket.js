@@ -1,4 +1,4 @@
-import {setReceivedCardsState,resivedChangeStep} from '../Redux/actions';
+import {setReceivedCardsState,resivedChangeStep,winnerNowRedux} from '../Redux/actions';
 
 
 const setupSocket = (dispatch, cb) => {
@@ -20,7 +20,7 @@ const setupSocket = (dispatch, cb) => {
                 dispatch(setReceivedCardsState(data.state))
                 break;
               case 'WINNER_NOW_TO_CLIENT':
-                dispatch(setReceivedCardsState(data.winner))
+                dispatch(winnerNowRedux(data.winner))
                 break;
       }
     }

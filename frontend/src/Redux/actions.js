@@ -18,6 +18,8 @@ import {
   PLAYER_NAME,
   GAME_ID,
   WINNER_NOW_TO_CLIENT,
+  REMOVE_OPPONENT_CARD,
+  CITY_LOGIC,
 } from "./types";
 
 
@@ -130,6 +132,21 @@ export const winnerNowRedux = (winner) => {
   return {
     type: WINNER_NOW_TO_CLIENT,
     payload: winner
+  }
+}
+export const removeOpponentCard = (playerNow) => {
+  return {
+    type: REMOVE_OPPONENT_CARD,
+    payload: playerNow
+  }
+}
+export const cityLogic = (playerNow,countString) => {
+  return {
+    type: CITY_LOGIC,
+    payload: {
+      playerNow,
+      countString
+    }
   }
 }
 
