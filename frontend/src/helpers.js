@@ -10,7 +10,6 @@ export const allActiveCheck = (...args) => {
     })
 }
 
-
 export const countCards = (cards) => {
     return cards.reduce((final, card) => {
         const index = final.findIndex(arr => arr[0].name === card.name)
@@ -70,5 +69,3 @@ export const isItEnoughResources = (name, countedResourcesCardsName) => {
     }
     return true
 }
-
-

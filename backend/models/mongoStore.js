@@ -7,4 +7,4 @@ const storeSchema = new Schema({
   }
 });
 
-module.exports = model('gameStore', storeSchema);
+module.exports = model('GameStore', storeSchema);

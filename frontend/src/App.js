@@ -6,27 +6,37 @@ import BtnNextStep from './components/BtnNextStep';
 import { useDispatch, useSelector } from 'react-redux';
 import { allCardRandomUpdate, giveCards } from './Redux/actions';
 import SidebarCounter from './components/SidebarCounter';
+import {sagaStateTransfer, sagaSearchStateInRoom} from './Redux/saga/saga-actions';
+
+
 import {
   MainContainer,
    ContainerPlayField, 
    ContainerControlPanel} from './components/CommonStyledComponents/ScApp'
 
 
-function App() {
+function App({match}) {
   const dispatch = useDispatch()
-  const player1 = useSelector(state => state.cards.player1.name)
-  const state = useSelector(state => state)
+  if(match.params.player){
+    localStorage.setItem('player', match.params.player);
+  }
+  const urlPl2 = `http://localhost:3000/${match.params.id}/player2`
   
-  localStorage.setItem('player', 'player1');
-  const startGame = useCallback(() => {
-    dispatch(allCardRandomUpdate())
-    dispatch(giveCards(5, "cards", 'player1'))
-    dispatch(giveCards(5, "cards", 'player2'))
-    dispatch(giveCards(5, "marketCards"))
-  }, [dispatch])
-  useEffect(() => {
-    startGame()
-  }, [startGame,])
+
+    const state = useSelector(state => state.cards);
+
+    useEffect(() => {
+  if (match.params.player === 'player1'){
+    dispatch(sagaStateTransfer(match.params.id, state))
+  }
+      
+    }, [dispatch]);
+
+    useEffect(() => {
+      if(match.params.player === 'player2'){
+        dispatch(sagaSearchStateInRoom(match.params.id));
+      }
+    }, [dispatch]);
 
   return (
     <MainContainer>
@@ -37,7 +47,7 @@ function App() {
       </ContainerPlayField>
       <ContainerControlPanel>
         <BtnNextStep />
-        <SidebarCounter/>
+        <SidebarCounter urlPl2={urlPl2}/>
       </ContainerControlPanel>
     </MainContainer>
   );

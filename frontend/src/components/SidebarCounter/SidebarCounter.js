@@ -14,7 +14,7 @@ const Counter = styled.div`
         font-size: 2rem;
     `
 
-export default function SidebarCounter() {
+export default function SidebarCounter({urlPl2}) {
     const step = useSelector(state => state.cards.step)
     const namePlayer1 = useSelector(state => state.cards.player1.name)
     const namePlayer2 = useSelector(state => state.cards.player2.name)
@@ -25,6 +25,7 @@ export default function SidebarCounter() {
     return (
         <>
             <Counter >
+                urlPl2:{urlPl2}
                 Ходит: {playerNowName}
             </Counter>
             <Counter >

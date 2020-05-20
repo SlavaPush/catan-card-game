@@ -7,6 +7,7 @@ import {
   GIVE_CARDS,
   SWAP_CARDS,
   STEP_CHANGE,
+  RESEIVED_STEP_CHANGE,
   SET_TOTAL_COUNT,
   BUY_DEVELOPMENT_CARDS,
   All_CARD_RANDOM_UPDATE,
@@ -17,13 +18,19 @@ import {
   TAKE_CARD_FROM_RESOURCES_TO_TEMPLE_BUFFER,
   TAKE_CARD_FROM_PLAYER_RESOURCES_TO_TEMPLE_BUFFER,
   TAKE_CARD_FROM_DEVELOPMENT_CARDS_TO_TEMPLE_BUFFER,
+  PLAYER_NAME,
+  GAME_ID,
+  WINNER_NOW_TO_CLIENT,
 } from "../types";
 
 export default function cards(state = initialState, { type, payload }) {
   switch (type) {
-    case SET_RECEIVED_CARDS_STATE: { /// logic testing
+    case SET_RECEIVED_CARDS_STATE: {
+      return payload/* .state */;
+    }
+    case WINNER_NOW_TO_CLIENT: {
       return produce(state, draft => {
-        draft = payload
+        draft.winner = payload
       });
     }
     case TAKE_CARD_FROM_DEVELOPMENT_CARDS_TO_TEMPLE_BUFFER: {
@@ -34,6 +41,16 @@ export default function cards(state = initialState, { type, payload }) {
         } else {
           draft.buyTempleBuffer.takeCard = payload
         }
+      });
+    }
+    case GAME_ID: {
+      return produce(state, draft => {
+        draft.gameId = payload.id
+      });
+    }
+    case PLAYER_NAME: {
+      return produce(state, draft => {
+        draft[payload.who].name = payload.name
       });
     }
     case SET_COUNTER_DEVELOP_CARDS_PARAMETERS: {
@@ -207,9 +224,12 @@ export default function cards(state = initialState, { type, payload }) {
         draft[payload.player].points = payload.totalCount
       })
     }
-    case STEP_CHANGE: {
+      case STEP_CHANGE:
+      case RESEIVED_STEP_CHANGE: {
       return produce(state, draft => {
-        if (!state.step) draft.step = true
+        if (!state.step) {
+          draft.step = true
+        }
         else {
           if (state.playerNow === 'player1') {
             draft.playerNow = 'player2';

@@ -6,7 +6,6 @@ import PlayerCardDevelopment from '../PlayerCardDevelopment';
 import { stepCheck, countCards, allActiveCheck } from '../../helpers';
 import { Container, ContainerPart, ContainerTitleAndCards, Title} from './ScPlayerCardsRow';
 
-
 export default function PlayerCardsRow() {
     const dispatch = useDispatch()
     const player = localStorage.getItem('player')
