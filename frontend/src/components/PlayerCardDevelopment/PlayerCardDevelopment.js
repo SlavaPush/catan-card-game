@@ -1,22 +1,29 @@
 import React from 'react'
-import styled from 'styled-components';
-import { useSelector, useDispatch } from 'react-redux';
-import { takeCardFromPlayerResourcesToTempleBuffer } from '../../Redux/actions';
+import { Card } from '../CommonStyledComponents/ScCard';
+import './Cardstyle.css'
 
-const Card = styled.div`
-    height: 150px;
-    background: #FFEB5E;
-    color: green;
-    width: 100px;
-  `;
-
-
-export default function PlayerCardDevelopment(props) {
-    
+export default function PlayerCardDevelopment({ card }) {
     return (
-        <Card>
-            {props[0].name} <br />
-            Штук: {props.number}
+        <Card allActive={true}>
+            <div className="card-background">
+
+                <div className="card-frame">
+
+                    <div className="frame-header">
+                        <h1 className="name">{card[0].name}</h1>
+                    </div>
+
+                    <img className="frame-art" src="/house.jpg" />
+
+
+                    <div className="frame-text-box">
+                        <div className="description ftb-inner-margin">
+                            Штук: {card.length}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </Card>
     )
 }
+

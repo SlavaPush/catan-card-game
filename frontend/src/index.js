@@ -21,13 +21,8 @@ ReactDOM.render(
     </Provider>
   </Router>,
   document.getElementById('root'));
-  
-
-
 
   const socket = setupSocket(store.dispatch, "Petya") //@saga_step_1
-
-
 
   sagaMiddleware.run(sagaWatcher, socket)
 
