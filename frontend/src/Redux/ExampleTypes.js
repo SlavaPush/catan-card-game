@@ -42,3 +42,8 @@ payload: {
 {type: 'Next_Player',
 }
 
+{
+  type: 'SET_RECEIVED_CARDS_STATE',
+  payload: {'statefkfjnakfjnkjn roagn4weo'},
+}
+

@@ -7,9 +7,9 @@ import BtnNextStep from './components/BtnNextStep';
 import { useDispatch, useSelector } from 'react-redux';
 import { allCardRandomUpdate, giveCards, setReceivedCardsState } from './Redux/actions';
 import SidebarCounter from './components/SidebarCounter';
+import {sagaStateTransfer, sagaSearchStateInRoom} from './Redux/saga/saga-actions';
 // import {sagaMiddleware} from './Redux/store';
 // import setupSocket from './sockets/socket';
-import {sagaStateTransfer} from './Redux/saga/saga-actions';
 // import sagaWatcher from './Redux/saga/saga-watcher';
 // import { socketVadim } from './socketVadim';////   для отладки логики
 
@@ -36,32 +36,29 @@ const ContainerControlPanel = styled.div`
     flex-direction: column;
   `
 
-function App() {
-  const dispatch = useDispatch()
-  const player1 = useSelector(state => state.cards.player1.name)
-  const state = useSelector(state => state)
-  
-  /////////////////////// logic testing 
-//   localStorage.setItem('player', 'player1');
-//   socketVadim.onmessage = (e) =>{
-//     const state = JSON.parse(e.data)
-//     dispatch(setReceivedCardsState(state))
-//   }
-  //////////////////////
-  const startGame = useCallback(() => {
-    dispatch(allCardRandomUpdate())
-    dispatch(giveCards(5, "cards", 'player1'))
-    dispatch(giveCards(5, "cards", 'player2'))
-    dispatch(giveCards(5, "marketCards"))
-  }, [dispatch])
-  useEffect(() => {
-    startGame()
-    // const socket = setupSocket(dispatch, player1) //@saga_step_1
-    // sagaMiddleware.run(sagaWatcher, socket)
-    // console.log(state)
-    // dispatch(sagaStateTransfer(state));
+function App({match, history, location}) {
+  // const id = useSelector(state => state.cards.gameId);
 
-  }, [startGame,/*sagaStateTransfer, dispatch, state, sagaWatcher, player1, sagaMiddleware, setupSocket*/])
+  const dispatch = useDispatch()
+  if(match.params.player){
+    localStorage.setItem('player', match.params.player);
+  }
+  const urlPl2 = `http://localhost:3000/${match.params.id}/player2`
+  
+    const state = useSelector(state => state.cards);
+
+    useEffect(() => {
+  if (match.params.player === 'player1'){
+    dispatch(sagaStateTransfer(match.params.id, state))
+  }
+      
+    }, [dispatch]);
+
+    useEffect(() => {
+      if(match.params.player === 'player2'){
+        dispatch(sagaSearchStateInRoom(match.params.id));
+      }
+    }, [dispatch]);
 
   return (
     <MainContainer>
@@ -72,7 +69,7 @@ function App() {
       </ContainerPlayField>
       <ContainerControlPanel>
         <BtnNextStep />
-        <SidebarCounter/>
+        <SidebarCounter urlPl2={urlPl2}/>
       </ContainerControlPanel>
     </MainContainer>
   );

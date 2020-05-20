@@ -1,9 +1,10 @@
 export const initialState = {
+    gameId:'',
     marketCards: [],
     cardsInGame: [],
     developmentCards: [],
     player1: {
-      name: 'Петя',
+      name: '',
       cards: [],
       developmentCards: [],
       countedResourcesCardsName: [],
@@ -11,7 +12,7 @@ export const initialState = {
       points: 0
     },
     player2: {
-      name: 'Вася',
+      name: '',
       cards: [],
       developmentCards: [],
       countedResourcesCardsName: [],
@@ -28,4 +29,5 @@ export const initialState = {
     },
     step: false,
     playerNow: 'player1',
+    winner:''
   };

@@ -1,20 +1,27 @@
+import {setReceivedCardsState,resivedChangeStep} from '../Redux/actions';
 
 
-const setupSocket = (dispatch, data) => {
+const setupSocket = (dispatch, cb) => {
     const socket = new WebSocket('ws://localhost:3001');
 
-     socket.onopen = () => { //@saga_step_2
-      socket.send(JSON.stringify({
-            data,
-        }))
-    };
-
+    socket.onopen = cb
+    
     socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
       switch(data.type) {
-          case 'TEST_SERVER_TO_CLIENT':  //@saga_step_7
-            console.log(data,'TEST_SERVER_TO_CLIENT')
-            break;
+        case 'TEST_STATE_SERVER_TO_CLIENT':
+          const {state} = data;
+              dispatch(setReceivedCardsState(state))
+              break;
+              case 'CHANGE_STEP_TO_CLIENT':
+                dispatch(resivedChangeStep())
+                break;
+              case 'STATE_FOR_PLAYER_2_RECIVED':
+                dispatch(setReceivedCardsState(data.state))
+                break;
+              case 'WINNER_NOW_TO_CLIENT':
+                dispatch(setReceivedCardsState(data.winner))
+                break;
       }
     }
 

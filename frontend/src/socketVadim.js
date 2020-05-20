@@ -1,5 +1,5 @@
- const socketVadim = new WebSocket('ws://localhost:4000/test');
+//  const socketVadim = new WebSocket('ws://localhost:4000/test');
 
-export {socketVadim}
+// export {socketVadim}
 
-socketVadim.onopen = () => {console.log('socket open')}
+// socketVadim.onopen = () => {console.log('socket open')}
