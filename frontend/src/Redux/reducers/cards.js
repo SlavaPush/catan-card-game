@@ -132,10 +132,10 @@ export default function cards(state = initialState, { type, payload }) {
               else draft.cardsInGame[draft.cardsInGame.length] = giveCard
             }
           });
-          draft.exchangeTempleBuffer.takeCard = ''
-          draft.exchangeTempleBuffer.giveCard = ''
-          draft.exchangeTempleBuffer.source = ''
-        } else return state
+        } 
+        draft.exchangeTempleBuffer.takeCard = ''
+        draft.exchangeTempleBuffer.giveCard = ''
+        draft.exchangeTempleBuffer.source = ''
       })
     }
 
