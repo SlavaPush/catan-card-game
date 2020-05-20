@@ -1,5 +1,5 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, {useState, useEffect} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import { changeStep, swapCards, giveCards, buyDevelopmentCards } from '../../Redux/actions'
 import * as actions from '../../Redux/actions'
 import {sagaStateTransfer, sagaWinnerNow} from '../../Redux/saga/saga-actions'
@@ -38,6 +38,7 @@ export default function BtnNextStep() {
                 dispatch(buyDevelopmentCards(buyTempleBuffer))
                 ////////////////////// proverka winner
                 if (player1points >= 1 || player2points >= 1) {// peredelat na 10
+                    console.log("nextStep -> player2points", player2points)
                     /* dispatch (playerNow) */ // action1
                     dispatch (sagaWinnerNow(playerNow))
                 }
