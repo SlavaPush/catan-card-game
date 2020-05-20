@@ -36,10 +36,8 @@ export default function BtnNextStep() {
         if (step) {
             if (buyTempleBuffer) {
                 dispatch(buyDevelopmentCards(buyTempleBuffer))
-                ////////////////////// proverka winner
                 if (player1points >= 1 || player2points >= 1) {// peredelat na 10
                     console.log("nextStep -> player2points", player2points)
-                    /* dispatch (playerNow) */ // action1
                     dispatch (sagaWinnerNow(playerNow))
                 }
 

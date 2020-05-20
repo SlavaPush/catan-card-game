@@ -1,0 +1,25 @@
+.chat-wrapper {
+  position: relative;
+  margin: 300px 0 0 70px;
+  background-color: aliceblue;
+  min-width: 250px;
+  max-height: 400px;
+}
+
+.chat-list-row {
+  display: flex;
+  flex-direction: row;
+  margin: 5px 0 0 5px;
+}
+
+.chat-list-author {
+  display: block;
+  margin-right: 10px;
+}
+
+.chat-list-input {
+  position: absolute;
+  bottom: 0;
+  width: 98%;
+  height: 30px;
+}
