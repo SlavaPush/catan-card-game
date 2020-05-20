@@ -1,5 +1,5 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, {useState, useEffect} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import { changeStep, swapCards, giveCards, buyDevelopmentCards } from '../../Redux/actions'
 import * as actions from '../../Redux/actions'
 import {sagaStateTransfer, sagaWinnerNow} from '../../Redux/saga/saga-actions'
