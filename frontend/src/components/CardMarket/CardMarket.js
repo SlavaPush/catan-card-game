@@ -1,31 +1,42 @@
 import React from 'react'
-import styled from 'styled-components';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { takeCardFromMarketToTempleBuffer } from '../../Redux/actions';
-
-const Card = styled.div`
-    height: 150px;
-    background: #FFEB5E;
-    color: green;
-    width: 100px;
-  `;
+import { Card } from '../CommonStyledComponents/ScCard';
+import { selectCheck } from '../../helpers';
+import './Cardstyle.css'
 
 
-export default function CardMarket({ name, id, marketAvailable, isActiveStep }) {
-    const marketStep = useSelector(state => !state.cards.step)
+
+export default function CardMarket({ card, allActive }) {
     const dispatch = useDispatch()
-    return (
-        <Card onClick={() => {
-            marketStep
-                && marketAvailable
-                && isActiveStep
-                && dispatch(takeCardFromMarketToTempleBuffer(id))}}>
-            {name}
-            {marketAvailable
-                && marketStep
-                && isActiveStep
-                && 'active'}
-        </Card>
+    const takeCard = useSelector(state => state.cards.exchangeTempleBuffer.takeCard)
 
+    return (
+        <Card
+            {...{
+                allActive,
+                selected: selectCheck(takeCard.id, [card])
+            }}
+            onClick={() => allActive && dispatch(takeCardFromMarketToTempleBuffer(card.id))}>
+            <div className="card-background">
+
+                <div className="card-frame">
+
+                    <div className="frame-header">
+                        <h1 className="name">{card.name}</h1>
+                    </div>
+
+                    <img className="frame-art" src="/house.jpg" />
+
+
+                    <div className="frame-text-box">
+                        <div className="description ftb-inner-margin">
+                            5 очков
+                          </div>
+
+                    </div>
+                </div>
+            </div>
+        </Card>
     )
 }

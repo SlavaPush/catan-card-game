@@ -35,7 +35,12 @@ export default function cards(state = initialState, { type, payload }) {
     }
     case TAKE_CARD_FROM_DEVELOPMENT_CARDS_TO_TEMPLE_BUFFER: {
       return produce(state, draft => {
-        draft.buyTempleBuffer.takeCard = payload
+        const takeCard = draft.buyTempleBuffer.takeCard
+        if (takeCard !== '' && takeCard.id === payload.id) {
+          draft.buyTempleBuffer.takeCard = ''
+        } else {
+          draft.buyTempleBuffer.takeCard = payload
+        }
       });
     }
     case GAME_ID: {
@@ -60,8 +65,13 @@ export default function cards(state = initialState, { type, payload }) {
     }
     case TAKE_CARD_FROM_RESOURCES_TO_TEMPLE_BUFFER: {
       return produce(state, draft => {
-        draft.exchangeTempleBuffer.takeCard = draft.cardsInGame[0]
-        draft.exchangeTempleBuffer.source = 'cardsInGame'
+        const takeCard = draft.exchangeTempleBuffer.takeCard
+        if (takeCard !== '' && takeCard.id === draft.cardsInGame[0].id) {
+          draft.exchangeTempleBuffer.takeCard = ''
+        } else {
+          draft.exchangeTempleBuffer.takeCard = draft.cardsInGame[0]
+          draft.exchangeTempleBuffer.source = 'cardsInGame'
+        }
       });
     }
     case TAKE_CARD_FROM_MARKET_TO_TEMPLE_BUFFER: {
@@ -70,8 +80,13 @@ export default function cards(state = initialState, { type, payload }) {
           if (card.id === payload) return true
           else return false
         })
-        draft.exchangeTempleBuffer.source = 'marketCards'
-        draft.exchangeTempleBuffer.takeCard = draft.marketCards[index]
+        const takeCard = draft.exchangeTempleBuffer.takeCard
+        if (takeCard !== '' && takeCard.id === draft.marketCards[index].id) {
+          draft.exchangeTempleBuffer.takeCard = ''
+        } else {
+          draft.exchangeTempleBuffer.source = 'marketCards'
+          draft.exchangeTempleBuffer.takeCard = draft.marketCards[index]
+        }
       });
     }
     case TAKE_CARD_FROM_PLAYER_RESOURCES_TO_TEMPLE_BUFFER: {
@@ -80,7 +95,12 @@ export default function cards(state = initialState, { type, payload }) {
           if (card.id === payload) return true
           else return false
         })
-        draft.exchangeTempleBuffer.giveCard = draft[draft.playerNow].cards[index]
+        const giveCard = draft.exchangeTempleBuffer.giveCard
+        if (giveCard !== '' && giveCard.id === draft[draft.playerNow].cards[index].id) {
+          draft.exchangeTempleBuffer.giveCard = ''
+        } else {
+          draft.exchangeTempleBuffer.giveCard = draft[draft.playerNow].cards[index]
+        }
       });
     }
     case GIVE_CARDS: {
@@ -132,6 +152,7 @@ export default function cards(state = initialState, { type, payload }) {
           draft[draft.playerNow].points += developmentCardNow[0].point
           draft[draft.playerNow].developmentCards.push(...developmentCardNow)
           draft.developmentCards = draft.developmentCards.filter(el => el.id !== developmentCardNow[0].id)
+          draft.buyTempleBuffer.takeCard = ''
         }
         else if (developmentCardName === 'рыцарь') {
           const cornWood = draft[draft.playerNow].cards.filter(e => e.name === 'зерно').splice(0, 1)
@@ -143,6 +164,7 @@ export default function cards(state = initialState, { type, payload }) {
           draft.cardsInGame.push(...cornWood, ...woolClay, ...oreClay)
           draft[draft.playerNow].developmentCards.push(...developmentCardNow)
           draft.developmentCards = draft.developmentCards.filter(el => el.id !== developmentCardNow[0].id)
+          draft.buyTempleBuffer.takeCard = ''
         }
         else if (developmentCardName === 'город') {
           const cornWood = draft[draft.playerNow].cards.filter(e => e.name === 'зерно').splice(0, 2)
@@ -155,13 +177,14 @@ export default function cards(state = initialState, { type, payload }) {
           draft[draft.playerNow].developmentCards.push(...developmentCardNow)
           draft[draft.playerNow].points += developmentCardNow[0].point
           draft.developmentCards = draft.developmentCards.filter(el => el.id !== developmentCardNow[0].id)
+          draft.buyTempleBuffer.takeCard = ''
         }
         else if (developmentCardName === 'здание') {
           const oreClay = draft[draft.playerNow].cards.filter(e => e.name === 'руда').splice(0, 1)
           const woolClay = draft[draft.playerNow].cards.filter(e => e.name === 'шерсть').splice(0, 3)
           draft[draft.playerNow].cards = draft[draft.playerNow].cards.filter((e) => {
             return e.id !== oreClay[0].id && e.id !== woolClay[0].id &&
-            e.id !== woolClay[1].id && e.id !== woolClay[2].id
+              e.id !== woolClay[1].id && e.id !== woolClay[2].id
           })
           draft.cardsInGame.push(...oreClay, ...woolClay)
           draft[draft.playerNow].developmentCards.push(...developmentCardNow)
@@ -216,6 +239,8 @@ export default function cards(state = initialState, { type, payload }) {
             draft.step = false
           }
         }
+        draft.exchangeTempleBuffer.giveCard = ''
+        draft.exchangeTempleBuffer.takeCard = ''
       });
     }
     default:

@@ -1,37 +1,33 @@
 import React from 'react'
-import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { takeCardFromResourcesToTempleBuffer } from '../../Redux/actions';
-import { stepCheck } from '../../helpers';
+import { stepCheck, allActiveCheck, selectCheck } from '../../helpers';
+import { Card } from '../CommonStyledComponents/ScCard';
+import './Cardstyle.css'
 
-const Card = styled.div`
-    height: 150px;
-    background: #FFEB5E;
-    color: ${props => props.marketStep
-        ? 'white'
-        : 'green'};
-    width: 100px;
-  `;
 
 
 export default function CardResources() {
     const marketStep = useSelector(state => !state.cards.step)
-    // logic check
-    const playerNow = useSelector(state => state.playerNow)
-    const isActiveStep = stepCheck(playerNow)
+    const playerNow = useSelector(state => state.cards.playerNow)
+    const takeCard = useSelector(state => state.cards.exchangeTempleBuffer.takeCard)
+    const cardsInGame = useSelector(state => state.cards.cardsInGame)
     const dispatch = useDispatch()
+
+    const selected = selectCheck(takeCard.id, cardsInGame)
+    const allActive = allActiveCheck(
+        stepCheck(playerNow),
+        marketStep,
+    )
+
     return (
-        <Card marketStep={marketStep} isActiveStep={isActiveStep} onClick={() => {
-            marketStep
-                && isActiveStep
-                && dispatch(takeCardFromResourcesToTempleBuffer())
-        }}>
-
-            РЕСУРСЫ ЕБТ!
-            {   marketStep
-                && isActiveStep
-                && 'active'}
+        <Card
+            {...{ allActive, selected, }}
+            onClick={() => allActive && dispatch(takeCardFromResourcesToTempleBuffer())}>
+            <div className="card-background">
+                <div className="card-frame">
+                </div>
+            </div>
         </Card>
-
     )
 }

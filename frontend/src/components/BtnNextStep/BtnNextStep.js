@@ -1,24 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { changeStep, swapCards, giveCards, buyDevelopmentCards } from '../../Redux/actions'
-import { actionCardModifications } from './actionCardModifications'
 import * as actions from '../../Redux/actions'
-import {sagaStateTransfer,sagaWinnerNow} from '../../Redux/saga/saga-actions'
-import { stepCheck } from '../../helpers'
+import {sagaStateTransfer, sagaWinnerNow} from '../../Redux/saga/saga-actions'
+import { stepCheck, actionCardModifications } from '../../helpers'
+import {Btn} from './ScBtnNextStep'
 
 
-const Btn = styled.div`
-        margin: auto;
-        background-color: green;
-        padding: 15px 40px;
-        width: 150px;
-        border-radius: 4px;
-        color: white;
-        text-align: center;
-        vertical-align: middle;
-        font-size: 2rem;
-    `
+
 export default function BtnNextStep() {
 
     const dispatch = useDispatch()
@@ -30,8 +19,6 @@ export default function BtnNextStep() {
     const buyTempleBuffer = useSelector(state => state.cards.buyTempleBuffer.takeCard)
     const countedDevelopCardsParameters = useSelector(state =>
         state.cards[playerNow].countedDevelopCardsParameters)
-
-    // test logic   
     const isActiveStep = stepCheck(playerNow)
     const [flag ,setFlag] = useState(false)
 
@@ -68,11 +55,6 @@ export default function BtnNextStep() {
         }
         dispatch(changeStep());
         setFlag(true)
-            
-          
-    
-        /// logic testing
-        // socketVadim.send(JSON.stringify(state))
     }
 
     return (
