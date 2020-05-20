@@ -2,10 +2,10 @@ import {setReceivedCardsState,resivedChangeStep, winnerNowRedux} from '../Redux/
 import {messageReceived} from '../Redux/chat-actions';
 
 
-const setupSocket = (dispatch, cb) => {
+const setupSocket = (dispatch, callBack) => {
     const socket = new WebSocket('ws://localhost:3001');
 
-    socket.onopen = cb
+    socket.onopen = callBack
     
     socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
