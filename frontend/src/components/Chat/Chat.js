@@ -15,12 +15,12 @@ export default function Chat() {
   if (localStoragePlayer === 'player1') author = state.player1.name;
   if (localStoragePlayer === 'player2') author = state.player2.name;
 
-  const [message, setMessage] = useState('');
+  const [text, setText] = useState('');
 
   const keyPress = (e) => {
     if (e.key === 'Enter') {
-      dispatch(addMessage(message, author))
-      setMessage('')
+      dispatch(addMessage(text, author))
+      setText('')
     }
   };
 
@@ -39,8 +39,8 @@ export default function Chat() {
         </div>
       </div>
       <input className="chat-list-input" type="text" placeholder="Введите текст и нажмите Enter"
-      value={message}
-      onChange={(e) => setMessage(e.target.value)}
+      value={text}
+      onChange={(e) => setText(e.target.value)}
       onKeyPress={keyPress}/>
 
     </div>
