@@ -7,6 +7,8 @@ const logger = require('morgan');
 const http = require('http');
 const WebSocket = require('ws');
 require('dotenv').config();
+const GameRoom = require('./models/room');
+
 
 const app = express();
 const server = http.createServer(app);
@@ -25,32 +27,70 @@ const broadcast = (data, ws) => {
   })
 };
 
-const state = {
 
+  const resaveStateToDb = async (id, state) => {
+    try{
+      const room = await  GameRoom.findById(id);
+      room.state = state;
+      room.save();
+      return;
+    }catch(e){
+      console.log('resaveStateToDb ERROR', e)
+    }
+    return;
 };
+
+const searchStateInDb = async (id) => {
+  try{
+    const room = await GameRoom.findById(id);
+    const stateNow = room.state
+    return stateNow;
+
+  } catch(e){
+    console.log('resaveStateToDb ERROR', e)
+  }
+};
+
 
 wss.on('connection', ws => {
   console.log('connect new user'); //@saga_step_3
 
-  ws.on('message', (message) => { //@saga_step_4
+  ws.on('message', async (message) => { //@saga_step_4
 
     const data = JSON.parse(message);
-    console.log(data, '<><><><><><><><');
     switch (data.type) {
-      case 'TEST':  //@saga_step_5
-        console.log('TEST_SERVER');
-        broadcast({  //@saga_step_6
-          type:'TEST_SERVER_TO_CLIENT',
-          state: data.state
-        }, ws)
-        break;
         case 'SAGA_STATE_TRANSFER':
-          console.log('SAGA_STATE_TRANSFERSAGA_STATE_TRANSFERSAGA_STATE_TRANSFER');
+          await resaveStateToDb(data.id, data.state)
+          broadcast({
+            type: 'TEST_STATE_SERVER_TO_CLIENT',
+            state: data.state
+          }, ws);
           break;
+          case 'STEP_CHANGE':
+            broadcast({
+              type: 'CHANGE_STEP_TO_CLIENT',
+            }, ws);
+            break;
+            case 'SAGA_SEARCH_ROOM_IN_DB':
+              const stateNow = await searchStateInDb(data.id) 
+              ws.send(JSON.stringify({
+                type: 'STATE_FOR_PLAYER_2_RECIVED',
+                state: stateNow
+              }))
+              break;
+            case 'SAGA_WINNER_NOW':
+              ws.send(JSON.stringify({
+                type: 'WINNER_NOW_TO_CLIENT',
+                winner: data.playerNow
+              }));
+              broadcast({
+                type: 'WINNER_NOW_TO_CLIENT',
+                winner: data.playerNow
+              }, ws);
+              break;
           default:
             break;
     }
-
   })
   ws.on('close', () => {
     console.log('user disconnect');

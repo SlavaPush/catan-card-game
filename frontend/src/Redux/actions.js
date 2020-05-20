@@ -14,6 +14,10 @@ import {
   TAKE_CARD_FROM_RESOURCES_TO_TEMPLE_BUFFER,
   TAKE_CARD_FROM_PLAYER_RESOURCES_TO_TEMPLE_BUFFER,
   TAKE_CARD_FROM_DEVELOPMENT_CARDS_TO_TEMPLE_BUFFER,
+  RESEIVED_STEP_CHANGE,
+  PLAYER_NAME,
+  GAME_ID,
+  WINNER_NOW_TO_CLIENT,
 } from "./types";
 
 
@@ -90,7 +94,10 @@ export const buyDevelopmentCards = (developmentCardName) => {
 };
 
 export const changeStep = () => {
-  return { type: STEP_CHANGE };
+  return { type: STEP_CHANGE }; //CHANGE_STEP
+};
+export const resivedChangeStep = () => {
+  return { type: RESEIVED_STEP_CHANGE };
 };
 
 export const setTotalCount = (totalCount, player) => {
@@ -100,6 +107,29 @@ export const setTotalCount = (totalCount, player) => {
       player,
       totalCount,
     }
+  }
+}
+export const playerName = (who, name) => {
+  return {
+    type: PLAYER_NAME,
+    payload: {
+      who,
+      name,
+    }
+  }
+}
+export const gameId = (id) => {
+  return {
+    type: GAME_ID,
+    payload: {
+      id,
+    }
+  }
+}
+export const winnerNowRedux = (winner) => {
+  return {
+    type: WINNER_NOW_TO_CLIENT,
+    payload: winner
   }
 }
 

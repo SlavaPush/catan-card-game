@@ -35,7 +35,7 @@ const Title = styled.div`
     font-size: 2rem;
     text-align: center;
     padding: 10px 0;
-    `
+    `;
 const countCards = (cards) => {
     return cards.reduce((final, card) => {
         const index = final.findIndex(arr => arr[0].name === card.name)
