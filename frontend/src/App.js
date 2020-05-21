@@ -23,14 +23,13 @@ function App({ match }) {
   if (match.params.player) {
     localStorage.setItem('player', match.params.player);
   }
-  const urlPl2 = `http://localhost:3000/${match.params.id}/player2`
-
 
   const state = useSelector(state => state.cards);
 
   useEffect(() => {
     if (match.params.player === 'player1') {
       dispatch(sagaStateTransfer(match.params.id, state))
+      dispatch(changemodalNameCard('urlPl2')) 
     }
 
   }, [dispatch]);
@@ -51,9 +50,9 @@ function App({ match }) {
       </ContainerPlayField>
       <ContainerControlPanel>
         <BtnNextStep />
-        <SidebarCounter urlPl2={urlPl2} />
+        <SidebarCounter />
       </ContainerControlPanel>
-      <Modal isShow={modalNameCard} onCancel={() => dispatch(changemodalNameCard())} />
+      <Modal isShow={modalNameCard} onCancel={() => dispatch(changemodalNameCard()) } />
       <Chat />
     </MainContainer>
   );

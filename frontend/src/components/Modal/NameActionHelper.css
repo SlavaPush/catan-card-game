@@ -1,0 +1,56 @@
+.ts{
+  margin: 15px;
+  font-family: 'Times New Roman', Times, serif ;
+
+}
+.ts h1{
+  text-align: center;
+}
+.ts h2,h3,h4,h5,h6{
+  text-align: left;
+}
+.ts h1{
+  font-size: 32px;
+  margin-bottom: 7px;
+  font-weight: bold;
+}
+.ts h3{
+  font-size: 24px;
+  font-weight: bolder;
+  margin-bottom: 5px;
+}
+.ts p{
+  font-size: 16px;
+  font-weight: 550;
+  text-indent: 1.5em; /* Отступ первой строки */
+  text-align: justify; /* Выравнивание по ширине */
+  margin-bottom: 5px;
+}
+.ts span{
+  display: flex;
+  font-size: 30px;
+  font-weight: 550;
+  text-align: center;
+  justify-self: center;
+}
+.inputHidden{
+opacity: 0;
+}
+.copyButtonInput{
+  margin: 70px 100px 15px 120px
+}
+.winnerCSS {
+text-align: center;
+font-family: 'Times New Roman', Times, serif ;
+font-weight: bold;
+margin-top: 40px;
+}
+.winnerCSS span {
+  font-size: 22px;
+  margin-top: 20px;
+  margin-bottom: 17px;
+}
+.winnerCSS p {
+  font-size: 20px;
+  margin-bottom: 40px;
+}
