@@ -47,11 +47,11 @@ payload: {
   payload: {'statefkfjnakfjnkjn roagn4weo'},
 }
 {
-  type: 'REMOVE_OPPONENT_CARD',
-  payload: 'player2'
+  type: 'SAGA_REMOVE_OPPONENT_CARD',
+  payload: 'player1'
 }
  {
-  type: 'CITY_LOGIC',
+  type: 'SAGA_CITY_LOGIC',
   payload: {
     playerNow:'player1',
     countString:'Four'

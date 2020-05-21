@@ -19,7 +19,9 @@ import {
   GAME_ID,
   WINNER_NOW_TO_CLIENT,
   REMOVE_OPPONENT_CARD,
+  SAGA_REMOVE_OPPONENT_CARD,
   CITY_LOGIC,
+  SAGA_CITY_LOGIC,
 } from "./types";
 
 
@@ -134,10 +136,24 @@ export const winnerNowRedux = (winner) => {
     payload: winner
   }
 }
+export const sagaRemoveOpponentCard = (playerNow) => {
+  return {
+    type: SAGA_REMOVE_OPPONENT_CARD,
+    playerNow
+  }
+}
 export const removeOpponentCard = (playerNow) => {
   return {
     type: REMOVE_OPPONENT_CARD,
     payload: playerNow
+  }
+}
+
+export const sagaCityLogic = (playerNow,countString) => {
+  return {
+    type: SAGA_CITY_LOGIC,
+      playerNow,
+      countString
   }
 }
 export const cityLogic = (playerNow,countString) => {

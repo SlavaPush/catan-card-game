@@ -1,4 +1,10 @@
-import {setReceivedCardsState,resivedChangeStep,winnerNowRedux} from '../Redux/actions';
+import {
+  setReceivedCardsState,
+  resivedChangeStep,
+  winnerNowRedux,
+  removeOpponentCard,
+  cityLogic,
+} from '../Redux/actions';
 
 
 const setupSocket = (dispatch, cb) => {
@@ -21,6 +27,14 @@ const setupSocket = (dispatch, cb) => {
                 break;
               case 'WINNER_NOW_TO_CLIENT':
                 dispatch(winnerNowRedux(data.winner))
+                break;
+              case 'REMOVE_OPPONENT_CARD':
+                dispatch(removeOpponentCard(data.payload))
+                break;
+              case 'CITY_LOGIC':
+                console.log(data);
+                
+                dispatch(cityLogic(data.playerNow,data.countString))
                 break;
       }
     }
