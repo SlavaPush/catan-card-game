@@ -54,6 +54,7 @@ function App({ match }) {
         <SidebarCounter urlPl2={urlPl2} />
       </ContainerControlPanel>
       <Modal isShow={modalNameCard} onCancel={() => dispatch(changemodalNameCard())} />
+      <Chat />
     </MainContainer>
   );
 }
