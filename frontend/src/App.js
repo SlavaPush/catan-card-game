@@ -55,6 +55,7 @@ function App({ match }) {
         <Chat/>
       </ContainerControlPanel>
       <Modal isShow={modalNameCard} onCancel={() => dispatch(changemodalNameCard())} />
+      <Chat />
     </MainContainer>
   );
 }
