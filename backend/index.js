@@ -110,6 +110,15 @@ wss.on('connection', ws => {
                  countString:data.payload.countString,
               }, ws);
               break;
+
+              case 'ADD_MESSAGE':
+                broadcast({
+                  type: 'MESSAGE_RECEIVED',
+                  message: data.message,
+                  author: data.author
+                }, ws);
+                break;
+
           default:
             break;
     }
