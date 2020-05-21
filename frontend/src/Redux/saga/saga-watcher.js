@@ -26,6 +26,16 @@ function* sagaWatcherWinner(socket) {
     yield socket.send(JSON.stringify(action));
   });
 }
+function* sagaRemoveOpponentCardWatcher(socket) {
+  yield takeEvery('SAGA_REMOVE_OPPONENT_CARD', function* (action) {
+    yield socket.send(JSON.stringify(action));
+  });
+}
+function* sagaCityLogicWatcher(socket) {
+  yield takeEvery('SAGA_CITY_LOGIC', function* (action) {
+    yield socket.send(JSON.stringify(action));
+  });
+}
 
 function* sagaWatcherMessage(socket) {
   yield takeEvery('ADD_MESSAGE', function* (action) {
@@ -39,6 +49,8 @@ export default function* (socket) {
     sagaWatcher2(socket),
     sagaWatcher3(socket),
     sagaWatcherWinner(socket),
+    sagaRemoveOpponentCardWatcher(socket),
+    sagaCityLogicWatcher(socket),
     sagaWatcherMessage(socket)
   ]);
 }
