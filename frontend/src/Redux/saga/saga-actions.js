@@ -14,12 +14,15 @@ export const sagaSearchStateInRoom = (id) => {
     id
   }
 };
+
 export const sagaWinnerNow = (playerNow) => {
   return {
     type: 'SAGA_WINNER_NOW',
     playerNow
   }
 };
+
+
 
 //  btnnext disp(plNow)-> sagaAction -> back(plNow) -> front(plNow) всем кроме себя-> action (playerLOSER)
 

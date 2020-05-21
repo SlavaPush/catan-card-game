@@ -46,4 +46,14 @@ payload: {
   type: 'SET_RECEIVED_CARDS_STATE',
   payload: {'statefkfjnakfjnkjn roagn4weo'},
 }
-
+{
+  type: 'SAGA_REMOVE_OPPONENT_CARD',
+  payload: 'player1'
+}
+ {
+  type: 'SAGA_CITY_LOGIC',
+  payload: {
+    playerNow:'player1',
+    countString:'Four'
+  }
+}

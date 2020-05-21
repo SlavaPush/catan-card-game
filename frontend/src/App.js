@@ -3,6 +3,7 @@ import DevelopCardsRow from './components/DevelopCardsRow';
 import PlayerCardsRow from './components/PlayerCardsRow';
 import MarketCardsRow from './components/MarketCardsRow';
 import BtnNextStep from './components/BtnNextStep';
+import Chat from './components/Chat';
 import { useDispatch, useSelector } from 'react-redux';
 import { allCardRandomUpdate, giveCards, changemodalNameCard } from './Redux/actions';
 import SidebarCounter from './components/SidebarCounter';
@@ -11,10 +12,9 @@ import Modal from './components/Modal'
 
 import {
   MainContainer,
-  ContainerPlayField,
+  ContainerPlayField, 
   ContainerControlPanel
-} from './components/CommonStyledComponents/ScApp'
-
+  } from './components/CommonStyledComponents/ScApp'
 
 function App({ match }) {
   const modalNameCard = useSelector(state => state.cards.modalNameCard)

@@ -9,7 +9,11 @@ export const initialState = {
       developmentCards: [],
       countedResourcesCardsName: [],
       countedDevelopCardsParameters: [],
-      points: 0
+      points: 0,
+      cityLogic:{
+        Two:false,
+        Four:false,
+      },
     },
     player2: {
       name: '',
@@ -17,7 +21,11 @@ export const initialState = {
       developmentCards: [],
       countedResourcesCardsName: [],
       countedDevelopCardsParameters: [],
-      points: 0
+      points: 0,
+      cityLogic:{
+        Two:false,
+        Four:false,
+      },
     },
     exchangeTempleBuffer: {
       takeCard: '',

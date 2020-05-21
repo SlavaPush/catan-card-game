@@ -88,6 +88,37 @@ wss.on('connection', ws => {
                 winner: data.playerNow
               }, ws);
               break;
+            case 'SAGA_REMOVE_OPPONENT_CARD':
+              ws.send(JSON.stringify({
+                type: 'REMOVE_OPPONENT_CARD',
+                payload: data.payload
+              }));
+              broadcast({
+                type: 'REMOVE_OPPONENT_CARD',
+                payload: data.payload
+              }, ws);
+              break;
+            case 'SAGA_CITY_LOGIC':
+              ws.send(JSON.stringify({
+                type: 'CITY_LOGIC',
+                 playerNow:data.payload.playerNow,
+                 countString:data.payload.countString,
+              }));
+              broadcast({
+                type: 'CITY_LOGIC',
+                 playerNow:data.payload.playerNow,
+                 countString:data.payload.countString,
+              }, ws);
+              break;
+
+              case 'ADD_MESSAGE':
+                broadcast({
+                  type: 'MESSAGE_RECEIVED',
+                  message: data.message,
+                  author: data.author
+                }, ws);
+                break;
+
           default:
             break;
     }

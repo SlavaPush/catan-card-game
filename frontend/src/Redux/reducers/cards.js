@@ -22,6 +22,8 @@ import {
   GAME_ID,
   WINNER_NOW_TO_CLIENT,
   CHANGE_MODAL_STATUS,
+  REMOVE_OPPONENT_CARD,
+  CITY_LOGIC,
 } from "../types";
 
 export default function cards(state = initialState, { type, payload }) {
@@ -249,6 +251,55 @@ export default function cards(state = initialState, { type, payload }) {
         draft.exchangeTempleBuffer.giveCard = ''
         draft.exchangeTempleBuffer.takeCard = ''
       });
+    }
+    case REMOVE_OPPONENT_CARD: {
+      return produce(state, draft => {
+        if (payload === 'player1') {
+         const player2Cards =  draft.player2.cards
+         const opponentCardSplice = player2Cards.splice(0, 1)
+         draft[payload].cards.push(...opponentCardSplice)
+      }
+      if (payload === 'player2') {
+        const player1Cards =  draft.player1.cards
+        const opponentCardSplice = player1Cards.splice(0, 1)
+        draft[payload].cards.push(...opponentCardSplice)
+     }
+      })
+    }
+    case CITY_LOGIC: {
+      return produce(state, draft => {
+        const cardsInGameNow = draft.cardsInGame
+        const {playerNow,countString} = payload
+        if (playerNow === 'player1' && !draft.player1.cityLogic[countString] && countString === 'Two') {
+         const player2Cards =  draft.player2.cards
+         const half_length = Math.floor(player2Cards.length / 2);    
+         const leftSide = player2Cards.splice(0,half_length);
+         cardsInGameNow.push(...leftSide)
+         draft.player2.cards = player2Cards
+         draft[playerNow].cityLogic.Two = true
+      }else if (playerNow === 'player2' && !draft.player2.cityLogic[countString] && countString === 'Two') {
+       const player1Cards =  draft.player1.cards
+       const half_length = Math.floor(player1Cards.length / 2);    
+       const leftSide = player1Cards.splice(0,half_length);
+       cardsInGameNow.push(...leftSide)
+       draft.player1.cards = player1Cards
+       draft[playerNow].cityLogic.Two = true
+      }else if (playerNow === 'player1' && !draft.player1.cityLogic[countString] && countString === 'Four') {
+        const BuildingCard = draft.player2.developmentCards.filter(e => e.name === 'здание').splice(0, 1)
+        if (BuildingCard) {
+          draft[playerNow].developmentCards.push(...BuildingCard)
+          draft.player2.developmentCards = draft.player2.developmentCards.filter(e => e.id !== BuildingCard[0].id)
+        }
+        draft[playerNow].cityLogic.Four = true
+      }else if (playerNow === 'player2' && !draft.player2.cityLogic[countString] && countString === 'Four') {
+        const BuildingCard = draft.player1.developmentCards.filter(e => e.name === 'здание').splice(0, 1)
+        if (BuildingCard) {
+          draft[playerNow].developmentCards.push(...BuildingCard)
+          draft.player1.developmentCards = draft.player1.developmentCards.filter(e => e.id !== BuildingCard[0].id)
+        }
+        draft[playerNow].cityLogic.Four = true
+     }
+      })
     }
     default:
       return state;

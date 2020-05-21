@@ -1,10 +1,19 @@
 import {setReceivedCardsState,resivedChangeStep, winnerNowRedux} from '../Redux/actions';
 
+import {
+  setReceivedCardsState,
+  resivedChangeStep,
+  winnerNowRedux,
+  removeOpponentCard,
+  cityLogic,
+} from '../Redux/actions';
+import {messageReceived} from '../Redux/chat-actions';
 
-const setupSocket = (dispatch, cb) => {
+
+const setupSocket = (dispatch, callBack) => {
     const socket = new WebSocket('ws://localhost:3001');
 
-    socket.onopen = cb
+    socket.onopen = callBack
     
     socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
@@ -22,6 +31,17 @@ const setupSocket = (dispatch, cb) => {
               case 'WINNER_NOW_TO_CLIENT':
                 dispatch(winnerNowRedux(data.winner))
                 break;
+              case 'REMOVE_OPPONENT_CARD':
+                dispatch(removeOpponentCard(data.payload))
+                break;
+              case 'CITY_LOGIC':
+                console.log(data);
+                
+                dispatch(cityLogic(data.playerNow,data.countString))
+                break;
+                case 'MESSAGE_RECEIVED':
+              dispatch(messageReceived(data.message, data.author));
+              break;
       }
     }
 
