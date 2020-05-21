@@ -9,10 +9,10 @@ export const Card = styled.div`
     filter: ${(props) => props.allActive
     ? 'grayscale(0%)'
     : 'grayscale(0%)'};
-    ${(props) => props.allActive && css`box-shadow: 0px 0px 4px 5px rgba(88,201,88,1)`};
-    ${(props) => props.selected && css`box-shadow: 0px 0px 10px 7px rgba(88,201,88,1)`};
+    ${(props) => props.allActive && css`box-shadow: 0px 0px 4px 5px #9B963E`};
+    ${(props) => props.selected && css`box-shadow: 0px 0px 10px 7px #9B963E`};
     &:hover {
-      ${(props) => props.allActive && `box-shadow: 0px 0px 10px 7px rgba(88,201,88,1)`}
+      ${(props) => props.allActive && `box-shadow: 0px 0px 10px 7px #9B963E`}
     };
   `;
 

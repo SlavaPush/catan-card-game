@@ -4,7 +4,7 @@ import { setTotalCount, setCounterResourcesCardName, setCounterDevelopCardsParam
 import PlayerCardResources from '../PlayerCardResources';
 import PlayerCardDevelopment from '../PlayerCardDevelopment';
 import { stepCheck, countCards, allActiveCheck } from '../../helpers';
-import { Container, ContainerPart, ContainerTitleAndCards, Title} from './ScPlayerCardsRow';
+import { Container, ContainerPart, ContainerTitleAndCardsDev, ContainerTitleAndCardsRes, Title} from './ScPlayerCardsRow';
 
 export default function PlayerCardsRow() {
     const dispatch = useDispatch()
@@ -35,7 +35,7 @@ export default function PlayerCardsRow() {
 
     return (
         <Container>
-            <ContainerTitleAndCards>
+            <ContainerTitleAndCardsDev>
                 <Title>
                     Постройки
                 </Title>
@@ -50,8 +50,8 @@ export default function PlayerCardsRow() {
                         />
                     ))}
                 </ContainerPart>
-            </ContainerTitleAndCards>
-            <ContainerTitleAndCards>
+            </ContainerTitleAndCardsDev>
+            <ContainerTitleAndCardsRes>
                 <Title>
                     Ресурсы
                 </Title>
@@ -64,7 +64,7 @@ export default function PlayerCardsRow() {
                         }} />
                     ))}
                 </ContainerPart>
-            </ContainerTitleAndCards>
+            </ContainerTitleAndCardsRes>
         </Container>
     )
 }

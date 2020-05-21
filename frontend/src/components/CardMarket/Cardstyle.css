@@ -45,7 +45,7 @@ body {
     border-right: 1px solid #a9a9a9;
 }
 
-.frame-header, .frame-art, .frame-type-line, .frame-text-box {
+.frame-header, .frame-art, .frame-art-res, .frame-type-line, .frame-text-box {
     box-shadow: 0 0 0 1px #171314, 0 0 0 3px rgb(113, 112, 38), -1px 1px 1px 2px #171314;
     margin-bottom: 7px;
 }
@@ -88,19 +88,32 @@ body {
 
 
 .frame-art {
-    height: 70%;
+    height: 135px;
+    width: 112px;
     margin: 0 3px;
     border-radius: 6px 6px 0 0;
 }
+
+.frame-art-res {
+    height: 161px;
+    margin: 0 3px;
+    width: 112px;
+    border-radius: 6px;
+}
+
 .info{
-    font-size: 14px;
+    font-size: 29px;
     border-radius: 50%;
-    height: 15px;
-    width: 15px;
+    height: 30px;
+    width: 30px;
     background-image: url(https://image.ibb.co/dFcNx7/tile_bg_2.jpg);
-    border: rgb(113, 112, 38) solid 1px;
+    border: rgb(113, 112, 38) solid 3px;
     text-align: center;
     color: black;
+    position: absolute;
+    bottom: 6px;
+    right: 10px;
+    font-weight: 500;
 }
 
 .frame-text-box {
@@ -115,6 +128,7 @@ body {
     border-radius: 0 0 10px 10px;
     display: flex;
     flex-direction: row;
+    font-weight: bold;
 }
 
 .flavour-text {

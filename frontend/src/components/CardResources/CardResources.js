@@ -4,6 +4,7 @@ import { takeCardFromResourcesToTempleBuffer } from '../../Redux/actions';
 import { stepCheck, allActiveCheck, selectCheck } from '../../helpers';
 import { Card } from '../CommonStyledComponents/ScCard';
 import './Cardstyle.css'
+import {changemodalNameCard } from '../../Redux/actions';
 
 
 
@@ -23,7 +24,11 @@ export default function CardResources() {
     return (
         <Card
             {...{ allActive, selected, }}
-            onClick={() => allActive && dispatch(takeCardFromResourcesToTempleBuffer())}>
+            onClick={() => allActive && dispatch(takeCardFromResourcesToTempleBuffer())}
+            onContextMenu={(e) => {
+                e.preventDefault()
+                dispatch(changemodalNameCard('ресурсы'))
+            }}>
             <div className="card-background">
                 <div className="card-frame">
                 </div>

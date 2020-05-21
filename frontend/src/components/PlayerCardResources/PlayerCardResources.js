@@ -4,6 +4,7 @@ import { takeCardFromPlayerResourcesToTempleBuffer } from '../../Redux/actions';
 import { Card } from '../CommonStyledComponents/ScCard';
 import { selectCheck } from '../../helpers';
 import './Cardstyle.css'
+import { cardsPhotos } from '../../helpers'
 
 
 export default function PlayerCardResources({ allActive, card }) {
@@ -26,14 +27,10 @@ export default function PlayerCardResources({ allActive, card }) {
                         <h1 className="name">{card[0].name}</h1>
                     </div>
 
-                    <img className="frame-art" src="/house.jpg" />
+                    <img className="frame-art-res" src={`/${cardsPhotos[card[0].name]}.jpg`} />
 
 
-                    <div className="frame-text-box">
-                        <div className="description ftb-inner-margin">
-                            Штук: {card.length}
-                        </div>
-                    </div>
+                    <div className="info">{card.length}</div>
                 </div>
             </div>
         </Card>

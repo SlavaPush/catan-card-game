@@ -29,5 +29,6 @@ export const initialState = {
     },
     step: false,
     playerNow: 'player1',
-    winner:''
+    winner:'',
+    modalNameCard: '',
   };

@@ -69,3 +69,14 @@ export const isItEnoughResources = (name, countedResourcesCardsName) => {
     }
     return true
 }
+export const cardsPhotos = {
+    'дорога': 'road',
+    'рыцарь': 'knight',
+    'город': 'city',
+    'здание': 'house',
+    'шерсть': 'ship',
+    'дерево': 'wood',
+    'руда': 'ore',
+    'глина': 'clay',
+    'зерно': 'corn',
+}

@@ -21,10 +21,17 @@ import {
   PLAYER_NAME,
   GAME_ID,
   WINNER_NOW_TO_CLIENT,
+  CHANGE_MODAL_STATUS,
 } from "../types";
 
 export default function cards(state = initialState, { type, payload }) {
   switch (type) {
+    case CHANGE_MODAL_STATUS: {
+      return produce(state, draft => {
+        if (payload) draft.modalNameCard = payload
+        else draft.modalNameCard = ''
+      });
+    }
     case SET_RECEIVED_CARDS_STATE: {
       return payload/* .state */;
     }
@@ -132,7 +139,7 @@ export default function cards(state = initialState, { type, payload }) {
               else draft.cardsInGame[draft.cardsInGame.length] = giveCard
             }
           });
-        } 
+        }
         draft.exchangeTempleBuffer.takeCard = ''
         draft.exchangeTempleBuffer.giveCard = ''
         draft.exchangeTempleBuffer.source = ''
@@ -224,8 +231,8 @@ export default function cards(state = initialState, { type, payload }) {
         draft[payload.player].points = payload.totalCount
       })
     }
-      case STEP_CHANGE:
-      case RESEIVED_STEP_CHANGE: {
+    case STEP_CHANGE:
+    case RESEIVED_STEP_CHANGE: {
       return produce(state, draft => {
         if (!state.step) {
           draft.step = true

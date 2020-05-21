@@ -14,7 +14,7 @@ justify-content: space-around;
 `;
 export const ContainerControlPanel = styled.div`
 height: 100vh;
-flex-basis:300px;
+flex-basis:230px;
 flex-grow: 1;
 display: flex;
 flex-direction: column;

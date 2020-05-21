@@ -4,6 +4,7 @@ import { takeCardFromMarketToTempleBuffer } from '../../Redux/actions';
 import { Card } from '../CommonStyledComponents/ScCard';
 import { selectCheck } from '../../helpers';
 import './Cardstyle.css'
+import { cardsPhotos } from '../../helpers'
 
 
 
@@ -26,15 +27,10 @@ export default function CardMarket({ card, allActive }) {
                         <h1 className="name">{card.name}</h1>
                     </div>
 
-                    <img className="frame-art" src="/house.jpg" />
+                    <img className="frame-art-res" src={`/${cardsPhotos[card.name]}.jpg`} />
 
 
-                    <div className="frame-text-box">
-                        <div className="description ftb-inner-margin">
-                            5 очков
-                          </div>
 
-                    </div>
                 </div>
             </div>
         </Card>

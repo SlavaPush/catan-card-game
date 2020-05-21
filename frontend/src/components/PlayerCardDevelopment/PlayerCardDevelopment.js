@@ -1,10 +1,11 @@
 import React from 'react'
 import { Card } from '../CommonStyledComponents/ScCard';
 import './Cardstyle.css'
+import { cardsPhotos } from '../../helpers'
 
 export default function PlayerCardDevelopment({ card }) {
     return (
-        <Card allActive={true}>
+        <Card >
             <div className="card-background">
 
                 <div className="card-frame">
@@ -13,12 +14,12 @@ export default function PlayerCardDevelopment({ card }) {
                         <h1 className="name">{card[0].name}</h1>
                     </div>
 
-                    <img className="frame-art" src="/house.jpg" />
+                    <img className="frame-art" src={`/${cardsPhotos[card[0].name]}.jpg`} />
 
 
                     <div className="frame-text-box">
                         <div className="description ftb-inner-margin">
-                            Штук: {card.length}
+                            карт: {card.length}
                         </div>
                     </div>
                 </div>

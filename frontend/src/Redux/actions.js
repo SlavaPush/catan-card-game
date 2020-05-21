@@ -18,9 +18,16 @@ import {
   PLAYER_NAME,
   GAME_ID,
   WINNER_NOW_TO_CLIENT,
+  CHANGE_MODAL_STATUS,
 } from "./types";
 
 
+export const changemodalNameCard = (nameCard) => {
+  return {
+    type: CHANGE_MODAL_STATUS,
+    payload: nameCard,
+  };
+};
 export const setReceivedCardsState = (state) => {
   return {
     type: SET_RECEIVED_CARDS_STATE,
