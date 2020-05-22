@@ -166,6 +166,10 @@ app.use(session({
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 
+app.get('*', (req, res) => {//DEPLOY
+  res.sendFile(path.resolve('../frontend/build/index.html'));
+});
+
 (async function start() {
   try {
     await mongoose.connect(MONGODB_URI, {
