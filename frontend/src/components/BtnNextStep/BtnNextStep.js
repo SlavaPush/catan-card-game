@@ -27,15 +27,10 @@ export default function BtnNextStep() {
           dispatch(sagaStateTransfer(state.gameId, state))
           setFlag(false)
         }
-        if (player1points >= 1 || player2points >= 1) {
-          if (playerNow === 'player1') {
-            dispatch (sagaWinnerNow('player2'))
-          }else{
-            dispatch (sagaWinnerNow('player1'))  
-          }
+        if (player1points >= 10 || player2points >= 10) {
+            dispatch (sagaWinnerNow(playerNow))
           dispatch(changemodalNameCard('endGame'))
       }
-          
     },[flag,player1points,player2points,playerNow])
     
     const nextStep = () => {

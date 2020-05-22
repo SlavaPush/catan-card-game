@@ -17,6 +17,7 @@
     "http-errors": "~1.6.3",
     "mongoose": "^5.9.14",
     "morgan": "~1.9.1",
+    "path": "^0.12.7",
     "ws": "^7.3.0"
   },
   "devDependencies": {
