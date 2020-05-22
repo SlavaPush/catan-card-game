@@ -89,7 +89,7 @@ const NameActionHelper = ({modalNameCard, onCancel})=>{
       <div className='ts '>
       <h3>Отправь другу прежде чем начать</h3>
       <input type="text" defaultValue={urlPl2} id="myInput" className='inputHidden'/>
-      <input className='copyButtonInput' type="button" value='Копировать ссылку' onClick={()=>{actionCopyURL(); onCancel()}} />
+      <button className='modal-button' onClick={()=>{actionCopyURL(); onCancel()}} >Копировать ссылку</button>
       {/* <button type="button" onClick={onCancel}> Закрыть </button> */}
       </div>
     )

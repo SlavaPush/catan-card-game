@@ -54,3 +54,22 @@ margin-top: 40px;
   font-size: 20px;
   margin-bottom: 40px;
 }
+
+.modal-button {
+  display: block;
+  margin: 15px auto;
+  width: 170px;
+  height: 35px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: 400;
+  font-size: 12px;
+  opacity: 0.8;
+  text-transform: uppercase;
+}
+
+.modal-button:hover {
+  width: 172px;
+  height: 37px;
+  transition: 0.2s all;
+}
