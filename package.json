@@ -6,9 +6,6 @@
   "scripts": {
     "build": "cd frontend && npm install && npm build",
     "start": "cd backend && npm install && npm start",
-    "dev":"run-p client server",
-    "server": "cd backend && npm run dev",
-    "client": "cd frontend && npm start"
   },
   "keywords": [],
   "author": "",
