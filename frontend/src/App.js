@@ -23,7 +23,7 @@ function App({ match }) {
   if (match.params.player) {
     localStorage.setItem('player', match.params.player);
   }
-//fafweggaggvev
+
   const state = useSelector(state => state.cards);
 
   useEffect(() => {
