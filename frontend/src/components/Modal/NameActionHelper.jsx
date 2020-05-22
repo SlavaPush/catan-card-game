@@ -84,7 +84,7 @@ const NameActionHelper = ({modalNameCard, onCancel})=>{
     )
   }
   else if (modalNameCard === 'urlPl2') {
-    const urlPl2 = `http://localhost:3000/game/${gameId}/player2` // DEPLOY
+    const urlPl2 = `${process.env.hrefPlayer2}${gameId}/player2` || `http://localhost:3000/game/${gameId}/player2` // DEPLOY
     return (
       <div className='ts '>
       <h3>Отправь другу прежде чем начать</h3>
