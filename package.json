@@ -6,9 +6,9 @@
   "scripts": {
     "build": "cd frontend && npm install && npm run build",
     "start": "cd backend && npm install && npm start",
-    "dev":"run-p client server",
-    "server": "cd backend && npm run dev",
-    "client": "cd frontend && npm start"
+    "dev":"run-p Frontclient Backserver",
+    "Backserver": "cd backend && npm run dev",
+    "Frontclient": "cd frontend && npm start"
   },
   "keywords": [],
   "author": "",

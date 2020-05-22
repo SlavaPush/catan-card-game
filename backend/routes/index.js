@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const GameRoom = require('../models/room')
 
-router.get('/', function(req, res, next) {
-});
+// router.get('/', function(req, res, next) {
+//   res.send('text')// DEPLOY
+// });
 
 router.get('/createRoom',async function(req, res, next) {
     try{
@@ -14,5 +15,7 @@ router.get('/createRoom',async function(req, res, next) {
       console.log('createRoom ERROR', e)
     }
 });
+
+
 
 module.exports = router;
