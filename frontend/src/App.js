@@ -1,4 +1,5 @@
 import React, { useEffect, useCallback } from 'react';
+import { useParams  } from "react-router-dom";
 import DevelopCardsRow from './components/DevelopCardsRow';
 import PlayerCardsRow from './components/PlayerCardsRow';
 import MarketCardsRow from './components/MarketCardsRow';
@@ -16,27 +17,28 @@ import {
   ContainerControlPanel
   } from './components/CommonStyledComponents/ScApp'
 
-function App({ match }) {
-  const modalNameCard = useSelector(state => state.cards.modalNameCard)
+function App() {
+  const modalNameCard = useSelector(state => state.cards.modalNameCard);
+  const {player, id} = useParams();
 
   const dispatch = useDispatch()
-  if (match.params.player) {
-    localStorage.setItem('player', match.params.player);
+  if (player) {
+    localStorage.setItem('player', player);
   }
 
   const state = useSelector(state => state.cards);
 
   useEffect(() => {
-    if (match.params.player === 'player1') {
-      dispatch(sagaStateTransfer(match.params.id, state))
+    if (player === 'player1') {
+      dispatch(sagaStateTransfer(id, state))
       dispatch(changemodalNameCard('urlPl2')) 
     }
 
   }, [dispatch]);
 
   useEffect(() => {
-    if (match.params.player === 'player2') {
-      dispatch(sagaSearchStateInRoom(match.params.id));
+    if (player === 'player2') {
+      dispatch(sagaSearchStateInRoom(id));
     }
   }, [dispatch]);
 
