@@ -1,0 +1,59 @@
+.playerStepInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+    background-image: url(https://image.ibb.co/dFcNx7/tile_bg_2.jpg);
+    border-radius: 12px;
+    box-shadow: 0 0 0 1px #171314, 0 0 0 3px rgb(113, 112, 38), -1px 1px 1px 2px #171314;
+    margin-top: 20px;
+    width: 100%;
+}
+.playerStepInfoCards{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+    background-image: url(https://image.ibb.co/dFcNx7/tile_bg_2.jpg);
+    border-radius: 12px;
+    box-shadow: 0 0 0 1px #171314, 0 0 0 3px rgb(113, 112, 38), -1px 1px 1px 2px #171314;
+    margin: 10px 0;
+    width: 100%;
+}
+.playerNowInfoStep {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.playerNowInfoStep {
+    margin: 10px;
+}
+
+.line {
+    width: 100%;
+    border-top: 2px solid rgb(113, 112, 38);
+}
+
+.imgEnemyCards {
+    display: flex;
+    justify-content: space-around;
+    height: 70px;
+    width: 100%;
+    margin: auto;
+}
+
+.imgEnemyCard {
+    border-radius: 6px;
+    height: 50px;
+    box-shadow: 0 0 0 1px #171314, 0 0 0 3px rgb(113, 112, 38), -1px 1px 1px 2px #171314;
+    margin: auto;
+}
+.playerNowInfoStepCards{
+    font-size: 20px;
+    font-weight: 600;
+    margin: 7px auto;
+}

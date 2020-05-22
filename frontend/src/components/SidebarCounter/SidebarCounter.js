@@ -1,20 +1,11 @@
 import React from 'react'
-import styled from 'styled-components'
 import { useSelector } from 'react-redux'
+import PlayerStepInfo from '../PlayerStepInfo.js'
+import BtnNextStep from '../BtnNextStep/index.js'
+import Chat from '../Chat/Chat.js'
 
-const Counter = styled.div`
-        margin: auto;
-        background-color: green;
-        padding: 15px 40px;
-        width: 150px;
-        border-radius: 4px;
-        color: white;
-        text-align: center;
-        vertical-align: middle;
-        font-size: 2rem;
-    `
 
-export default function SidebarCounter({urlPl2}) {
+export default function SidebarCounter({ urlPl2 }) {
     const step = useSelector(state => state.cards.step)
     const namePlayer1 = useSelector(state => state.cards.player1.name)
     const namePlayer2 = useSelector(state => state.cards.player2.name)
@@ -24,20 +15,16 @@ export default function SidebarCounter({urlPl2}) {
 
     return (
         <>
-            <Counter >
-                urlPl2:{urlPl2}
-                Ходит: {playerNowName}
-            </Counter>
-            <Counter >
-                Счет <br />
-                {namePlayer1}: {pointsPlayer1} <br />
-                {namePlayer2}: {pointsPlayer2}
-            </Counter>
-            <Counter >
-                {step
-                    ? 'Купите карту развития'
-                    : 'Обменяйте карту'}
-            </Counter>
+
+            <PlayerStepInfo {...{
+                playerNowName,
+                namePlayer1,
+                namePlayer2,
+                pointsPlayer1,
+                pointsPlayer2
+            }} />
+            <Chat />
+            <BtnNextStep />
         </>
     )
 }

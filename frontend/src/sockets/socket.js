@@ -10,7 +10,7 @@ import {messageReceived} from '../Redux/chat-actions';
 
 
 const setupSocket = (dispatch, callBack) => {
-    const socket = new WebSocket('ws://localhost:3001');
+    const socket = new WebSocket(process.env.WS_URL || 'ws://localhost:3001'); // DEPLOY
 
     socket.onopen = callBack
     
@@ -34,8 +34,6 @@ const setupSocket = (dispatch, callBack) => {
                 dispatch(removeOpponentCard(data.payload))
                 break;
               case 'CITY_LOGIC':
-                console.log(data);
-                
                 dispatch(cityLogic(data.playerNow,data.countString))
                 break;
                 case 'MESSAGE_RECEIVED':

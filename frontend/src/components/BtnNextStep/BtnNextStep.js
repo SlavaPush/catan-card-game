@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { changeStep, swapCards, giveCards, buyDevelopmentCards } from '../../Redux/actions'
 import * as actions from '../../Redux/actions'
-import {sagaStateTransfer, sagaWinnerNow} from '../../Redux/saga/saga-actions'
+import { sagaStateTransfer, sagaWinnerNow } from '../../Redux/saga/saga-actions'
 import { stepCheck, actionCardModifications } from '../../helpers'
-import {Btn} from './ScBtnNextStep'
+import { Btn, Img } from './ScBtnNextStep'
 
 
 
@@ -20,27 +20,23 @@ export default function BtnNextStep() {
     const countedDevelopCardsParameters = useSelector(state =>
         state.cards[playerNow].countedDevelopCardsParameters)
     const isActiveStep = stepCheck(playerNow)
-    const [flag ,setFlag] = useState(false)
+    const [flag, setFlag] = useState(false)
 
-    useEffect(()=>{
+    useEffect(() => {
         if (flag) {
-          dispatch(sagaStateTransfer(state.gameId, state))
-          setFlag(false)
+            dispatch(sagaStateTransfer(state.gameId, state))
+            setFlag(false)
         }
-
-          
-    },[flag])
-    
+        if (player1points >= 10 || player2points >= 10) {
+            dispatch (sagaWinnerNow(playerNow))
+          dispatch(changemodalNameCard('endGame'))
+      }
+    },[flag,player1points,player2points,playerNow])
     const nextStep = () => {
         dispatch(swapCards());
         if (step) {
             if (buyTempleBuffer) {
                 dispatch(buyDevelopmentCards(buyTempleBuffer))
-                if (player1points >= 1 || player2points >= 1) {// peredelat na 10
-                    console.log("nextStep -> player2points", player2points)
-                    dispatch (sagaWinnerNow(playerNow))
-                }
-
             }
             countedDevelopCardsParameters.forEach(cards =>
                 actionCardModifications[cards[0].name](
@@ -57,7 +53,8 @@ export default function BtnNextStep() {
 
     return (
         <Btn onClick={() => isActiveStep && nextStep()}>
-            NEXT
+            ДАЛЕЕ
+            <Img src={"/play.svg"}  />
         </Btn >
     )
 }

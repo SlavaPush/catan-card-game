@@ -18,6 +18,42 @@
     width: 420px;
     height: 300px;
     opacity: 1;
-    background-color: white;
-    border-radius: 3px;
+    /* background-color: white; */
+    border-radius: 20px;
   }
+
+.modalMY-container {
+    width: 420px;
+    height: 300px;
+    color: black;
+    z-index: 2;
+    filter: grayscale(0%);
+}
+
+.modalMY-background {
+    border: rgb(113, 112, 38) solid 2px;
+    height: 300px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    background: linear-gradient(45deg, rgb(235, 240, 168) 12%, transparent 0, transparent 88%, rgb(238, 241, 210) 0), linear-gradient(135deg, transparent 37%, rgb(195, 189, 107) 0, rgb(206, 212, 118) 63%, transparent 0), linear-gradient(45deg, transparent 37%, rgb(238, 236, 221) 0, rgb(238, 237, 221) 63%, transparent 0), rgb(155, 150, 62);
+    background-size: 40px 40px;
+    display: flex;
+    z-index: 0;
+}
+.modalMY-frame{
+  margin:3px;
+  background: #d3ded6;
+  background-image: url(https://image.ibb.co/dFcNx7/tile_bg_2.jpg);
+  border-radius: 10px;
+  width: 415px;
+  height: 294px;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 5px 6px;
+  font-size: 1em;
+  display: flex;
+  flex-direction: row; */
+}

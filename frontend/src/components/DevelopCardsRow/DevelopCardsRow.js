@@ -25,12 +25,21 @@ export default function DevelopCardRow() {
         }
     }, [])
 
+
+
     const countedDevelopmentCardsElements = countedDevelopmentCards.map(card => (
         <Card
             {...{
                 card,
                 countedResourcesCardsName,
                 key: card[0].id,
+                console: console.log(
+                    marketStep,
+                    stepCheck(playerNow),
+                    isItEnoughResources(
+                        card[0].name,
+                        countedResourcesCardsName)
+                ),
                 allActive: allActiveCheck(
                     marketStep,
                     stepCheck(playerNow),

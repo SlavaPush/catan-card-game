@@ -25,14 +25,13 @@ function App() {
   if (player) {
     localStorage.setItem('player', player);
   }
-  const urlPl2 = `http://localhost:3000/${id}/player2`
-
 
   const state = useSelector(state => state.cards);
 
   useEffect(() => {
     if (player === 'player1') {
       dispatch(sagaStateTransfer(id, state))
+      dispatch(changemodalNameCard('urlPl2')) 
     }
 
   }, [dispatch]);
@@ -52,11 +51,9 @@ function App() {
         <PlayerCardsRow />
       </ContainerPlayField>
       <ContainerControlPanel>
-        <BtnNextStep />
         <SidebarCounter urlPl2={urlPl2} />
       </ContainerControlPanel>
       <Modal isShow={modalNameCard} onCancel={() => dispatch(changemodalNameCard())} />
-      <Chat />
     </MainContainer>
   );
 }
