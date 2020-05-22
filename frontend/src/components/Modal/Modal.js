@@ -2,6 +2,7 @@ import React from "react";
 import { useTransition, animated } from "react-spring";
 import './modalStyle.css'
 import { useSelector } from "react-redux";
+import NameActionHelper from "./NameActionHelper";
 
 function Modal({ isShow, onCancel }) {
   const props = useTransition(isShow, null, {
@@ -33,12 +34,15 @@ function Modal({ isShow, onCancel }) {
       })}
       {props.map(({ item, props, key }) => {
         return item ? (
+          
           <animated.div key={key} style={props} className="modal-container">
-            <h2 className="modal__title">{modalNameCard}</h2>
-            <button type="button" onClick={onCancel}>
-              CLOSE
-            </button>
+           <div className="modalMY-background">
+          <div className="modalMY-frame">
+            <NameActionHelper {...{modalNameCard,onCancel }} />
+            </div>
+          </div>
           </animated.div>
+
         ) : null;
       })}
     </React.Fragment>
