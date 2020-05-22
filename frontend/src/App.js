@@ -49,11 +49,9 @@ function App({ match }) {
         <PlayerCardsRow />
       </ContainerPlayField>
       <ContainerControlPanel>
-        <BtnNextStep />
-        <SidebarCounter />
+        <SidebarCounter urlPl2={urlPl2} />
       </ContainerControlPanel>
-      <Modal isShow={modalNameCard} onCancel={() => dispatch(changemodalNameCard()) } />
-      <Chat />
+      <Modal isShow={modalNameCard} onCancel={() => dispatch(changemodalNameCard())} />
     </MainContainer>
   );
 }

@@ -9,6 +9,8 @@ import {changemodalNameCard } from '../../Redux/actions';
 
 export default function CardDev({ card, allActive, selected }) {
     const dispatch = useDispatch();
+    
+    console.log("CardDev -> allActive", allActive)
     return (
         <Card
             {...{ allActive, selected }}

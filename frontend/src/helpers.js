@@ -31,8 +31,8 @@ export const actionCardModifications = {
     },
     'город': (countedDevelopCardsParameters, dispatch, { sagaCityLogic }, playerNow) => {
       const numberOfCards = countedDevelopCardsParameters.find(cards => cards[0].name === 'город')
-      if (numberOfCards.length = 2) dispatch(sagaCityLogic(playerNow,'Two')) 
-      if (numberOfCards.length = 4) dispatch(sagaCityLogic(playerNow,'Four')) 
+      if (numberOfCards.length === 2) dispatch(sagaCityLogic(playerNow,'Two')) 
+      if (numberOfCards.length === 4) dispatch(sagaCityLogic(playerNow,'Four')) 
      },
     'здание': (countedDevelopCardsParameters, dispatch, { sagaRemoveOpponentCard }, playerNow) => { 
       const numberOfCards = countedDevelopCardsParameters.find(cards => cards[0].name === 'здание')
@@ -88,4 +88,12 @@ export const cardsPhotos = {
     'руда': 'ore',
     'глина': 'clay',
     'зерно': 'corn',
+}
+
+export function shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
 }
