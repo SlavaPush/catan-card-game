@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
-import {addMessage} from '../../Redux/chat-actions';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addMessage } from '../../Redux/chat-actions';
 
 import './Chat.css';
 
@@ -26,23 +26,29 @@ export default function Chat() {
 
   return (
     <div className="chat-wrapper">
-      <div className="caht-list">
+      <div className="chat-header">
+        <p className='text-center'>
+          чат с соперником
+        </p>
+      </div>
+      <div className="chat-list">
         <div className="chat-list-item">
           {
-            messages ? messages.map(({message, author}, idx) => {
-              return <span className="chat-list-row message" key={idx}>
-              <p className="chat-list-author">{author}:</p>
-              {message}
-            </span>
+            messages ? messages.map(({ message, author }, idx) => {
+              return (
+                <div className="chat-list-row message" key={idx}>
+                  <div className="chat-list-author">{author}: {message}</div>
+                  
+                </div>
+              )
             }) : null
           }
         </div>
       </div>
       <input className="chat-list-input" type="text" placeholder="Введите текст и нажмите Enter"
-      value={text}
-      onChange={(e) => setText(e.target.value)}
-      onKeyPress={keyPress}/>
-
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        onKeyPress={keyPress} />
     </div>
   )
 }

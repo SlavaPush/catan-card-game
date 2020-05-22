@@ -50,12 +50,10 @@ function App({ match }) {
         <PlayerCardsRow />
       </ContainerPlayField>
       <ContainerControlPanel>
-        <BtnNextStep />
+        
         <SidebarCounter urlPl2={urlPl2} />
-        <Chat/>
       </ContainerControlPanel>
       <Modal isShow={modalNameCard} onCancel={() => dispatch(changemodalNameCard())} />
-      <Chat />
     </MainContainer>
   );
 }

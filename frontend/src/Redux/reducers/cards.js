@@ -25,6 +25,7 @@ import {
   REMOVE_OPPONENT_CARD,
   CITY_LOGIC,
 } from "../types";
+import { shuffle } from "../../helpers";
 
 export default function cards(state = initialState, { type, payload }) {
   switch (type) {
@@ -213,8 +214,8 @@ export default function cards(state = initialState, { type, payload }) {
         const corn = new Array(14).fill('зерно')
         let cards = [...wool, ...wooD, ...ore, ...clay, ...corn]
         let cardsID = cards.map(el => { return { name: el, id: uuid() } })
-        cardsID.sort((a, b) => { return Math.random() - 0.5 })
-        draft.cardsInGame = cardsID;
+        // cardsID.sort((a, b) => { return Math.random() - 0.5 })
+        draft.cardsInGame = shuffle(cardsID);
 
         const road = new Array(9).fill('дорога')
         const knight = new Array(5).fill('рыцарь')

@@ -7,7 +7,7 @@ margin: 0 auto;
 `
 export const ContainerPlayField = styled.div`
 color: white;
-width: 80rem;
+width: 86rem;
 display: flex;
 flex-direction: column;
 justify-content: space-around;

@@ -34,8 +34,6 @@ const setupSocket = (dispatch, callBack) => {
                 dispatch(removeOpponentCard(data.payload))
                 break;
               case 'CITY_LOGIC':
-                console.log(data);
-                
                 dispatch(cityLogic(data.playerNow,data.countString))
                 break;
                 case 'MESSAGE_RECEIVED':
