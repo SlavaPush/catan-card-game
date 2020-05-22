@@ -10,6 +10,7 @@ export const Btn = styled.div`
         vertical-align: middle;
         font-size: 2rem;
         cursor: pointer;
+        user-select: none;
     `
 export const Img = styled.img`
     padding-left: 7px;
