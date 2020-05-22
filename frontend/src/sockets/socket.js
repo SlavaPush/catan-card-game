@@ -15,7 +15,7 @@ const setupSocket = (dispatch, callBack) => {
     socket.onopen = callBack
 
     setInterval(() => {
-      socket.send(‘ping’);
+      socket.send('ping');
     }, 20000);
     
     socket.onmessage = (event) => {
