@@ -8,10 +8,13 @@ const http = require('http');
 const WebSocket = require('ws');
 require('dotenv').config();
 const GameRoom = require('./models/room');
+const path = require('path')
 
 
 const app = express();
 const server = http.createServer(app);
+
+app.use(express.static(path.resolve('../frontend/build/')))// DEPLOY
 
 const wss = new WebSocket.Server({
   server
