@@ -1,0 +1,88 @@
+/* Remove outline on the forms and links */
+:active, :hover, :focus {
+  outline: 0;
+  outline-offset: 0;
+}
+
+* {
+  font-family: Montserrat, sans-serif;
+}
+
+
+.container {
+  margin-top: 200px;
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .input-frame {
+      border: rgb(113, 112, 38) solid 2px;
+      height: 400px;
+      width: 400px;
+      border-radius: 12px;
+      background: linear-gradient(45deg, rgb(235, 240, 168) 12%, transparent 0, transparent 88%, rgb(238, 241, 210) 0), linear-gradient(135deg, transparent 37%, rgb(195, 189, 107) 0, rgb(206, 212, 118) 63%, transparent 0), linear-gradient(45deg, transparent 37%, rgb(238, 236, 221) 0, rgb(238, 237, 221) 63%, transparent 0), rgb(155, 150, 62);
+      background-size: 40px 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 0;
+
+      .input-wrapper {
+        width: 99%;
+        height: 99%;
+        background-image: url(https://image.ibb.co/dFcNx7/tile_bg_2.jpg);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        &__title {
+          display: block;
+          margin: 80px auto 15px auto;
+          font-weight: 700;
+          font-size: 24px;
+          text-align: center;
+        }
+
+        &__item {
+          height: 40px;
+          width: 280px;
+          margin: 5px 0 2.5px 0;
+          border-radius: 6px;
+          font-size: 22px;
+          font-weight: 400;
+          text-align: center;
+          opacity: 0.7;
+        }
+
+
+        p{
+          display: block;
+          margin-top: 3px;
+          color: red;
+        }
+
+        &__button{
+          display: block;
+          margin: 15px auto;
+          width: 150px;
+          height: 30px;
+          cursor: pointer;
+          border-radius: 6px;
+          font-weight: 400;
+          font-size: 16px;
+          opacity: 0.8;
+          text-transform: uppercase;
+
+
+          &:hover {
+            width: 152px;
+            height: 32px;
+            transition: 0.2s all;
+          }
+
+        }
+      }
+    }
+  }
+}

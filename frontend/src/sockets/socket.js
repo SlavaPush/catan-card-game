@@ -10,9 +10,13 @@ import {messageReceived} from '../Redux/chat-actions';
 
 
 const setupSocket = (dispatch, callBack) => {
-    const socket = new WebSocket(process.env.WS_URL || 'ws://localhost:3001'); // DEPLOY
+    const socket = new WebSocket(window.location.origin.replace(/^http/, 'ws')); // DEPLOY
 
-    socket.onopen = callBack
+    socket.onopen = callBack;
+
+    setInterval(() => {
+      socket.send('ping');
+    }, 20000);
     
     socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
