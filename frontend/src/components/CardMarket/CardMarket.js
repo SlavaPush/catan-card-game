@@ -27,7 +27,7 @@ export default function CardMarket({ card, allActive }) {
                         <h1 className="name">{card.name}</h1>
                     </div>
 
-                    <img className="frame-art-res" src={`/${cardsPhotos[card.name]}.jpg`} />
+                    <img className="frame-art-res" src={`/${cardsPhotos[card.name]}.jpg`} alt={cardsPhotos[card.name]} />
 
 
 

@@ -271,34 +271,34 @@ export default function cards(state = initialState, { type, payload }) {
       return produce(state, draft => {
         const cardsInGameNow = draft.cardsInGame
         const {playerNow,countString} = payload
-        if (playerNow === 'player1' && !draft.player1.cityLogic[countString] && countString === 'Two') {
+        if (playerNow === 'player1' && !draft.player1.cityLogic[countString] && countString === 'One') {
          const player2Cards =  draft.player2.cards
          const half_length = Math.floor(player2Cards.length / 2);    
          const leftSide = player2Cards.splice(0,half_length);
          cardsInGameNow.push(...leftSide)
          draft.player2.cards = player2Cards
-         draft[playerNow].cityLogic.Two = true
-      }else if (playerNow === 'player2' && !draft.player2.cityLogic[countString] && countString === 'Two') {
+         draft[playerNow].cityLogic.One = true
+      }else if (playerNow === 'player2' && !draft.player2.cityLogic[countString] && countString === 'One') {
        const player1Cards =  draft.player1.cards
        const half_length = Math.floor(player1Cards.length / 2);    
        const leftSide = player1Cards.splice(0,half_length);
        cardsInGameNow.push(...leftSide)
        draft.player1.cards = player1Cards
-       draft[playerNow].cityLogic.Two = true
-      }else if (playerNow === 'player1' && !draft.player1.cityLogic[countString] && countString === 'Four') {
+       draft[playerNow].cityLogic.One = true
+      }else if (playerNow === 'player1' && !draft.player1.cityLogic[countString] && countString === 'Two') {
         const BuildingCard = draft.player2.developmentCards.filter(e => e.name === 'здание').splice(0, 1)
         if (BuildingCard) {
           draft[playerNow].developmentCards.push(...BuildingCard)
           draft.player2.developmentCards = draft.player2.developmentCards.filter(e => e.id !== BuildingCard[0].id)
         }
-        draft[playerNow].cityLogic.Four = true
-      }else if (playerNow === 'player2' && !draft.player2.cityLogic[countString] && countString === 'Four') {
+        draft[playerNow].cityLogic.Two = true
+      }else if (playerNow === 'player2' && !draft.player2.cityLogic[countString] && countString === 'Two') {
         const BuildingCard = draft.player1.developmentCards.filter(e => e.name === 'здание').splice(0, 1)
         if (BuildingCard) {
           draft[playerNow].developmentCards.push(...BuildingCard)
           draft.player1.developmentCards = draft.player1.developmentCards.filter(e => e.id !== BuildingCard[0].id)
         }
-        draft[playerNow].cityLogic.Four = true
+        draft[playerNow].cityLogic.Two = true
      }
       })
     }

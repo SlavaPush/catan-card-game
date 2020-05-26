@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React from 'react'
 import './NameActionHelper.css'
 import {useSelector, useDispatch} from 'react-redux'
 import { useHistory } from "react-router-dom";
@@ -29,8 +29,8 @@ const NameActionHelper = ({modalNameCard, onCancel})=>{
       <div className='ts'>
       <h1 >Город</h1>
       <h3>Действует один раз:</h3>
-      <p>Строительство Двух городов рушит экономику соперника! Последствия заставляют его объявить дефолт. Половина ресурсов обесцениваються и пропадают.</p>
-      <p>Строительство Четырех городов захватывает здание соперника!!! Колонизатор будь внимателен, если соперник еще не строил здание захват отменяется.</p>
+      <p>Строительство города рушит экономику соперника! Последствия заставляют его объявить дефолт. Половина ресурсов обесцениваються и пропадают.</p>
+      <p>Строительство Двух городов захватывает здание соперника!!! Колонизатор будь внимателен, если соперник еще не строил здание захват отменяется.</p>
       <h3>Цена:</h3>
       <p>2шт. Зерно + 3шт. Руда</p>
       {/* <button type="button" onClick={onCancel }> Закрыть </button> */}
@@ -84,8 +84,8 @@ const NameActionHelper = ({modalNameCard, onCancel})=>{
     )
   }
   else if (modalNameCard === 'urlPl2') {
-    const urlPl2 = `https://catan-card-game.herokuapp.com/game/${gameId}/player2` // DEPLOY
-    // const urlPl2 = `http://localhost:3000/game/${gameId}/player2` 
+    // const urlPl2 = `https://catan-card-game.herokuapp.com/game/${gameId}/player2` // DEPLOY
+    const urlPl2 = `http://localhost:3000/game/${gameId}/player2` 
     return (
       <div className='ts '>
       <h3>Отправь другу прежде чем начать</h3>
@@ -96,7 +96,6 @@ const NameActionHelper = ({modalNameCard, onCancel})=>{
     )
   }
   else if (modalNameCard === 'endGame') {
-    console.log(playerNow);
     
     return (
       <div className='winnerCSS'>

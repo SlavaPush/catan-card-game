@@ -31,8 +31,8 @@ export const actionCardModifications = {
     },
     'город': (countedDevelopCardsParameters, dispatch, { sagaCityLogic }, playerNow) => {
       const numberOfCards = countedDevelopCardsParameters.find(cards => cards[0].name === 'город')
+      if (numberOfCards.length === 1) dispatch(sagaCityLogic(playerNow,'One')) 
       if (numberOfCards.length === 2) dispatch(sagaCityLogic(playerNow,'Two')) 
-      if (numberOfCards.length === 4) dispatch(sagaCityLogic(playerNow,'Four')) 
      },
     'здание': (countedDevelopCardsParameters, dispatch, { sagaRemoveOpponentCard }, playerNow) => { 
       const numberOfCards = countedDevelopCardsParameters.find(cards => cards[0].name === 'здание')

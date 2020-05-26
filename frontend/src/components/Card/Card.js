@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { takeCardFromDevelopmentCardsToTempleBuffer } from '../../Redux/actions';
 import { Card } from '../CommonStyledComponents/ScCard';
 import './Cardstyle.css'
@@ -10,7 +10,6 @@ import {changemodalNameCard } from '../../Redux/actions';
 export default function CardDev({ card, allActive, selected }) {
     const dispatch = useDispatch();
     
-    console.log("CardDev -> allActive", allActive)
     return (
         <Card
             {...{ allActive, selected }}
@@ -24,7 +23,7 @@ export default function CardDev({ card, allActive, selected }) {
                     <div className="frame-header">
                         <h1 className="name">{card[0].name}</h1>
                     </div>
-                    <img className="frame-art" src={`/${cardsPhotos[card[0].name]}.jpg`} />
+                    <img className="frame-art" src={`/${cardsPhotos[card[0].name]}.jpg` } alt={cardsPhotos[card[0].name]} />
                     <div className="frame-text-box">
                         <div className="description ftb-inner-margin">
                             {card[0].point > 0 && card[0].point}
