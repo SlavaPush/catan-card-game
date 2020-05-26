@@ -27,7 +27,7 @@ export default function PlayerCardResources({ allActive, card }) {
                         <h1 className="name">{card[0].name}</h1>
                     </div>
 
-                    <img className="frame-art-res" src={`/${cardsPhotos[card[0].name]}.jpg`} />
+                    <img className="frame-art-res" src={`/${cardsPhotos[card[0].name]}.jpg`} alt={cardsPhotos[card[0].name]}/>
 
 
                     <div className="info">{card.length}</div>

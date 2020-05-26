@@ -6,7 +6,7 @@ import Chat from '../Chat/Chat.js'
 
 
 export default function SidebarCounter({ urlPl2 }) {
-    const step = useSelector(state => state.cards.step)
+    // const step = useSelector(state => state.cards.step)
     const namePlayer1 = useSelector(state => state.cards.player1.name)
     const namePlayer2 = useSelector(state => state.cards.player2.name)
     const pointsPlayer1 = useSelector(state => state.cards.player1.points)

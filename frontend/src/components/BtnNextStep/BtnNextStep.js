@@ -31,7 +31,7 @@ export default function BtnNextStep() {
             dispatch (sagaWinnerNow(playerNow))
           dispatch(changemodalNameCard('endGame'))
       }
-    },[flag,player1points,player2points,playerNow])
+    },[flag,player1points,player2points,playerNow,dispatch,state])
     const nextStep = () => {
         dispatch(swapCards());
         if (step) {

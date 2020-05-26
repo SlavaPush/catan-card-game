@@ -54,6 +54,6 @@ payload: {
   type: 'SAGA_CITY_LOGIC',
   payload: {
     playerNow:'player1',
-    countString:'Four'
+    countString:'Two'
   }
 }

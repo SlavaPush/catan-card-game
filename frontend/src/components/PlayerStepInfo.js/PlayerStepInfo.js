@@ -2,19 +2,19 @@ import React from 'react'
 import './PlayerStepInfo.css'
 import { cardsPhotos, countCards } from '../../helpers'
 import { useSelector } from 'react-redux'
-import styled from 'styled-components'
+// import styled from 'styled-components'
 
-const Counter = styled.div`
-        margin: auto;
-        background-color: green;
-        padding: 15px 40px;
-        width: 150px;
-        border-radius: 4px;
-        color: white;
-        text-align: center;
-        vertical-align: middle;
-        font-size: 2rem;
-    `
+// const Counter = styled.div`
+//         margin: auto;
+//         background-color: green;
+//         padding: 15px 40px;
+//         width: 150px;
+//         border-radius: 4px;
+//         color: white;
+//         text-align: center;
+//         vertical-align: middle;
+//         font-size: 2rem;
+//     `
 
 
 export default function PlayerStepInfo({
@@ -67,7 +67,7 @@ export default function PlayerStepInfo({
                 <div className="line"></div>
                 <div className="imgEnemyCards">
                     {countedDevCards.map(card => (
-                        <img className="imgEnemyCard" src={`/${cardsPhotos[card[0].name]}.jpg`} />
+                        <img className="imgEnemyCard" src={`/${cardsPhotos[card[0].name]}.jpg`} alt={cardsPhotos[card[0].name]}/>
                     )
                     )}
                 </div>
