@@ -14,7 +14,7 @@ export default function PlayerCardDevelopment({ card }) {
                         <h1 className="name">{card[0].name}</h1>
                     </div>
 
-                    <img className="frame-art" src={`/${cardsPhotos[card[0].name]}.jpg`} />
+                    <img className="frame-art" src={`/${cardsPhotos[card[0].name]}.jpg`} alt={`${card[0].name}`} />
 
 
                     <div className="frame-text-box">

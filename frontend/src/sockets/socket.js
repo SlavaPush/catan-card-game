@@ -10,7 +10,8 @@ import {messageReceived} from '../Redux/chat-actions';
 
 
 const setupSocket = (dispatch, callBack) => {
-    const socket = new WebSocket(window.location.origin.replace(/^http/, 'ws')); // DEPLOY
+    // const socket = new WebSocket(window.location.origin.replace(/^http/, 'ws')); // DEPLOY
+    const socket = new WebSocket('ws://localhost:3001');
 
     socket.onopen = callBack;
 
@@ -43,6 +44,7 @@ const setupSocket = (dispatch, callBack) => {
                 case 'MESSAGE_RECEIVED':
               dispatch(messageReceived(data.message, data.author));
               break;
+              default: console.log('onmessage type error');
       }
     }
 
