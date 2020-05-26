@@ -29,7 +29,7 @@ function App() {
 
   useEffect(() => {
     if (player === 'player1') {
-    if (state.gameId === '') {
+    if (state.gameId === '') {// experiment
       dispatch(setReceivedCardsState(reactLocalStorage.getObject('stateLS', state )))
     }else{
       dispatch(sagaStateTransfer(id, state))
