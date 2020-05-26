@@ -49,7 +49,7 @@ function App({ match }) {
         <PlayerCardsRow />
       </ContainerPlayField>
       <ContainerControlPanel>
-        <SidebarCounter urlPl2={urlPl2} />
+        <SidebarCounter  />
       </ContainerControlPanel>
       <Modal isShow={modalNameCard} onCancel={() => dispatch(changemodalNameCard())} />
     </MainContainer>
