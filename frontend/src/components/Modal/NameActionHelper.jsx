@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React from 'react'
 import './NameActionHelper.css'
 import {useSelector, useDispatch} from 'react-redux'
 import { useHistory } from "react-router-dom";
@@ -84,8 +84,8 @@ const NameActionHelper = ({modalNameCard, onCancel})=>{
     )
   }
   else if (modalNameCard === 'urlPl2') {
-    const urlPl2 = `https://catangame.herokuapp.com/game/${gameId}/player2` // DEPLOY
-    // const urlPl2 = `http://localhost:3000/game/${gameId}/player2` 
+    // const urlPl2 = `https://catan-card-game.herokuapp.com/game/${gameId}/player2` // DEPLOY
+    const urlPl2 = `http://localhost:3000/game/${gameId}/player2` 
     return (
       <div className='ts '>
       <h3>Отправь другу прежде чем начать</h3>
@@ -96,7 +96,6 @@ const NameActionHelper = ({modalNameCard, onCancel})=>{
     )
   }
   else if (modalNameCard === 'endGame') {
-    console.log(playerNow);
     
     return (
       <div className='winnerCSS'>
