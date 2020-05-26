@@ -4,11 +4,11 @@ import DevelopCardsRow from './components/DevelopCardsRow';
 import PlayerCardsRow from './components/PlayerCardsRow';
 import MarketCardsRow from './components/MarketCardsRow';
 import { useDispatch, useSelector } from 'react-redux';
-import { changemodalNameCard } from './Redux/actions';
+import { changemodalNameCard, setReceivedCardsState } from './Redux/actions';
 import SidebarCounter from './components/SidebarCounter';
 import { sagaStateTransfer, sagaSearchStateInRoom } from './Redux/saga/saga-actions';
 import Modal from './components/Modal'
-
+import {reactLocalStorage} from 'reactjs-localstorage';
 import {
   MainContainer,
   ContainerPlayField, 
@@ -18,8 +18,9 @@ import {
 function App() {
   const modalNameCard = useSelector(state => state.cards.modalNameCard);
   const {player, id} = useParams();
-
   const dispatch = useDispatch()
+
+
   if (player) {
     localStorage.setItem('player', player);
   }
@@ -28,8 +29,14 @@ function App() {
 
   useEffect(() => {
     if (player === 'player1') {
+    if (state.gameId === '') {
+      dispatch(setReceivedCardsState(reactLocalStorage.getObject('stateLS', state )))
+    }else{
       dispatch(sagaStateTransfer(id, state))
       dispatch(changemodalNameCard('urlPl2')) 
+      reactLocalStorage.setObject('stateLS', state )
+    }      
+      
     }
 
   }, [dispatch]);

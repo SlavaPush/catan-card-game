@@ -47,7 +47,7 @@ const searchStateInDb = async (id) => {
     const stateNow = room.state;
     return stateNow;
   } catch (e) {
-    console.log("resaveStateToDb ERROR", e);
+    console.log("searchStateInDb ERROR", e);
   }
 };
 
