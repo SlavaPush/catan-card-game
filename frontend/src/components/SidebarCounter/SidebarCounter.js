@@ -1,9 +1,8 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import PlayerStepInfo from '../PlayerStepInfo.js'
-import BtnNextStep from '../BtnNextStep/index.js'
-import Chat from '../Chat/Chat.js'
-
+import React from "react";
+import { useSelector } from "react-redux";
+import PlayerStepInfo from "../PlayerStepInfo.js";
+import BtnNextStep from "../BtnNextStep/index.js";
+import Chat from "../Chat/Chat.js";
 
 export default function SidebarCounter({ urlPl2 }) {
     // const step = useSelector(state => state.cards.step)

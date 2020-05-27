@@ -38,10 +38,10 @@ export default function Room() {
       <div className="container">
         <div className="row">
         <div className="animation-text-wrapper">
-            <div class="Iam">
+            <div className="Iam">
               <p>Колонизаторы.</p>
               <b>
-                <div class="innerIam">
+                <div className="innerIam">
                   Играй!<br /> 
                   Строй!<br />
                   Завоёвывай!<br />
