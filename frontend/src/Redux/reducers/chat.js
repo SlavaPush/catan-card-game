@@ -1,4 +1,5 @@
 import produce from 'immer';
+import {SET_RECEIVED_MESSAGE_STATE} from '../types'
 
 const initialState = {
   messages: []
@@ -13,6 +14,11 @@ const reducer = (state = initialState, action) => {
       if (!message) return state;
       return produce(state, draft => {
         draft.messages.push({message, author});
+      });
+
+    case SET_RECEIVED_MESSAGE_STATE:
+      return produce(state, draft => {
+        draft.messages = action.payload
       });
 
 
