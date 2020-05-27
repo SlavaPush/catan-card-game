@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { useParams  } from "react-router-dom";
 import DevelopCardsRow from './components/DevelopCardsRow';
@@ -8,24 +9,21 @@ import { changemodalNameCard } from './Redux/actions';
 import SidebarCounter from './components/SidebarCounter';
 import { sagaStateTransfer, sagaSearchStateInRoom } from './Redux/saga/saga-actions';
 import Modal from './components/Modal'
-// import {reactLocalStorage} from 'reactjs-localstorage';
 import {
   MainContainer,
-  ContainerPlayField, 
-  ContainerControlPanel
-  } from './components/CommonStyledComponents/ScApp'
+  ContainerPlayField,
+  ContainerControlPanel,
+} from "./components/CommonStyledComponents/ScApp";
 
 function App() {
-  const modalNameCard = useSelector(state => state.cards.modalNameCard);
-  const {player, id} = useParams();
-  const dispatch = useDispatch()
-
+  const modalNameCard = useSelector((state) => state.cards.modalNameCard);
+  const state = useSelector((state) => state.cards);
+  const { player, id } = useParams();
+  const dispatch = useDispatch();
 
   if (player) {
-    localStorage.setItem('player', player);
+    localStorage.setItem("player", player);
   }
-
-  const state = useSelector(state => state.cards);
 
   useEffect(() => {
     if (player === 'player1') {
@@ -35,9 +33,7 @@ function App() {
       dispatch(sagaStateTransfer(id, state))
       dispatch(changemodalNameCard('urlPl2')) 
     }      
-      
     }
-
   }, [dispatch]);
 
   useEffect(() => {
@@ -51,9 +47,8 @@ function App() {
   }, [dispatch]);
 
   return (
-
     <MainContainer>
-      <ContainerPlayField >
+      <ContainerPlayField>
         <DevelopCardsRow />
         <MarketCardsRow />
         <PlayerCardsRow />
@@ -61,10 +56,12 @@ function App() {
       <ContainerControlPanel>
         <SidebarCounter />
       </ContainerControlPanel>
-      <Modal isShow={modalNameCard} onCancel={() => dispatch(changemodalNameCard())} />
+      <Modal
+        isShow={modalNameCard}
+        onCancel={() => dispatch(changemodalNameCard())}
+      />
     </MainContainer>
   );
 }
 
 export default App;
-

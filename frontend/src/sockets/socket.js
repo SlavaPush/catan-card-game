@@ -11,6 +11,10 @@ import {messageReceived,setReceivedMessageState} from '../Redux/chat-actions';
 
 const setupSocket = (dispatch, callBack) => {
     // const socket = new WebSocket(window.location.origin.replace(/^http/, 'ws')); // DEPLOY
+    const socket = new WebSocket('ws://localhost:3001');
+
+const setupSocket = (dispatch, callBack) => {
+    // const socket = new WebSocket(window.location.origin.replace(/^http/, 'ws')); // DEPLOY
     const socket = new WebSocket('ws://localhost:3001'); 
     socket.onopen = callBack
 
