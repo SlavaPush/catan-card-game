@@ -23,8 +23,8 @@ export const initialState = {
       countedDevelopCardsParameters: [],
       points: 0,
       cityLogic:{
+        One:false,
         Two:false,
-        Four:false,
       },
     },
     exchangeTempleBuffer: {
