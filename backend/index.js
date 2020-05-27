@@ -29,25 +29,45 @@ const broadcast = (data, ws) => {
   });
 };
 
-const resaveStateToDb = async (id, state) => {
+const resaveStateCardsToDb = async (id, state) => {
   try {
     const room = await GameRoom.findById(id);
-    room.state = state;
+    room.state.cards = state;
     room.save();
     return;
   } catch (e) {
-    console.log("resaveStateToDb ERROR", e);
+    console.log("resaveStateCardsToDb ERROR", e);
+  }
+  return;
+};
+const pushStateMessageInDb = async (idRoom, author,message) => {
+  try {
+    const room = await GameRoom.findById(idRoom);
+    room.state.message.push({message, author})
+    room.save();
+    return;
+  } catch (e) {
+    console.log("resaveStateCardsToDb ERROR", e);
   }
   return;
 };
 
-const searchStateInDb = async (id) => {
+const searchStateCardsInDb = async (id) => {
   try {
     const room = await GameRoom.findById(id);
-    const stateNow = room.state;
+    const stateNow = room.state.cards;
     return stateNow;
   } catch (e) {
-    console.log("searchStateInDb ERROR", e);
+    console.log("searchStateCardsInDb ERROR", e);
+  }
+};
+const searchStateMessageInDb = async (id) => {
+  try {
+    const room = await GameRoom.findById(id);
+    const stateMessageNow = room.state.message;
+    return stateMessageNow;
+  } catch (e) {
+    console.log("searchStateCardsInDb ERROR", e);
   }
 };
 
@@ -60,7 +80,7 @@ wss.on("connection", (ws) => {
 
     switch (data.type) {
       case "SAGA_STATE_TRANSFER":
-        await resaveStateToDb(data.id, data.state);
+        await resaveStateCardsToDb(data.id, data.state);
         broadcast(
           {
             type: "TEST_STATE_SERVER_TO_CLIENT",
@@ -80,11 +100,13 @@ wss.on("connection", (ws) => {
         break;
 
       case "SAGA_SEARCH_ROOM_IN_DB":
-        const stateNow = await searchStateInDb(data.id);
+        const stateCardsNow = await searchStateCardsInDb(data.id);
+        const stateMessageNow = await searchStateMessageInDb(data.id);
         ws.send(
           JSON.stringify({
-            type: "STATE_FOR_PLAYER_2_RECIVED",
-            state: stateNow,
+            type: "STATE_CARDS_FOR_PLAYER_RECIVED",
+            state: stateCardsNow,
+            message: stateMessageNow,
           })
         );
         break;
@@ -140,6 +162,7 @@ wss.on("connection", (ws) => {
         break;
 
       case "ADD_MESSAGE":
+        await pushStateMessageInDb(data.idRoom, data.author,data.message);
         broadcast(
           {
             type: "MESSAGE_RECEIVED",

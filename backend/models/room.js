@@ -2,7 +2,10 @@ const {Schema, model} = require('mongoose');
 
 
 const roomSchema = new Schema({
-  state:{type:Object},
+  state:{
+    cards:{type:Object},
+    message:{type:Array},
+  },
   whoNow:{type:String}
 });
 

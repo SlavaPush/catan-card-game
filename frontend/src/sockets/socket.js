@@ -6,7 +6,7 @@ import {
   removeOpponentCard,
   cityLogic,
 } from '../Redux/actions';
-import {messageReceived} from '../Redux/chat-actions';
+import {messageReceived,setReceivedMessageState} from '../Redux/chat-actions';
 
 
 const setupSocket = (dispatch, callBack) => {
@@ -32,8 +32,9 @@ const setupSocket = (dispatch, callBack) => {
               case 'CHANGE_STEP_TO_CLIENT':
                 dispatch(resivedChangeStep())
                 break;
-              case 'STATE_FOR_PLAYER_2_RECIVED':
+              case 'STATE_CARDS_FOR_PLAYER_RECIVED':
                 dispatch(setReceivedCardsState(data.state))
+                dispatch(setReceivedMessageState(data.message))
                 break;
               case 'WINNER_NOW_TO_CLIENT':
                 dispatch(winnerNowRedux(data.winner))
