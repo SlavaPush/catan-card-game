@@ -13,7 +13,7 @@ import {
   sagaWinnerNow,
 } from "../../Redux/saga/saga-actions";
 import { stepCheck, actionCardModifications } from "../../helpers";
-import { Btn, Img } from "./ScBtnNextStep";
+import { Btn, Img, TextDiv, Spinner } from "./ScBtnNextStep";
 
 export default function BtnNextStep() {
   const dispatch = useDispatch();
@@ -28,7 +28,18 @@ export default function BtnNextStep() {
   const countedDevelopCardsParameters = useSelector(
     (state) => state.cards[playerNow].countedDevelopCardsParameters
   );
+  const isCardsChosen = useSelector((state) => {
+    const path = state.cards;
+    if (path.buyTempleBuffer.takeCard) return true;
+    if (
+      path.exchangeTempleBuffer.takeCard &&
+      path.exchangeTempleBuffer.giveCard
+    )
+      return true;
+    return false;
+  });
   const isActiveStep = stepCheck(playerNow);
+
   const [flag, setFlag] = useState(false);
 
   useEffect(() => {
@@ -41,29 +52,42 @@ export default function BtnNextStep() {
       dispatch(changemodalNameCard("endGame"));
     }
   }, [flag, player1points, player2points, playerNow, dispatch, state]);
-    const nextStep = () => {
-        dispatch(swapCards());
-        if (step) {
-            if (buyTempleBuffer) {
-                dispatch(buyDevelopmentCards(buyTempleBuffer))
-            }
-            countedDevelopCardsParameters.forEach(cards =>
-                actionCardModifications[cards[0].name](
-                    countedDevelopCardsParameters,
-                    dispatch,
-                    actions,
-                    playerNow,
-                ))
-            dispatch(giveCards(2, "cards", playerNow))
-        }
-        dispatch(changeStep());
-        setFlag(true)
+  const nextStep = () => {
+    dispatch(swapCards());
+    if (step) {
+      if (buyTempleBuffer) {
+        dispatch(buyDevelopmentCards(buyTempleBuffer));
+      }
+      countedDevelopCardsParameters.forEach((cards) =>
+        actionCardModifications[cards[0].name](
+          countedDevelopCardsParameters,
+          dispatch,
+          actions,
+          playerNow
+        )
+      );
+      dispatch(giveCards(2, "cards", playerNow));
+    }
+    dispatch(changeStep());
+    setFlag(true);
   };
 
   return (
-    <Btn onClick={() => isActiveStep && nextStep()}>
-      ДАЛЕЕ
-      <Img src={"/play.svg"} />
+    <Btn {...{ isActiveStep }} onClick={() => isActiveStep && nextStep()}>
+      <TextDiv>
+        {isActiveStep
+          ? isCardsChosen
+            ? step
+              ? "Купить"
+              : "Обменять"
+            : "Пропустить"
+          : "Ожидайте"}
+      </TextDiv>
+      {isActiveStep ? (
+        <Img src={"/play.svg"} />
+      ) : (
+        <Spinner src={"/Spinner-white.svg"} />
+      )}
     </Btn>
   );
 }
