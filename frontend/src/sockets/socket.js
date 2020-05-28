@@ -6,18 +6,16 @@ import {
   removeOpponentCard,
   cityLogic,
 } from '../Redux/actions';
-import {messageReceived} from '../Redux/chat-actions';
-
+import {messageReceived,setReceivedMessageState} from '../Redux/chat-actions';
 
 const setupSocket = (dispatch, callBack) => {
-    // const socket = new WebSocket(window.location.origin.replace(/^http/, 'ws')); // DEPLOY
-    const socket = new WebSocket('ws://localhost:3001');
-
-    socket.onopen = callBack;
+    const socket = new WebSocket(window.location.origin.replace(/^http/, 'ws')); // DEPLOY
+    // const socket = new WebSocket('ws://localhost:3001'); 
+    socket.onopen = callBack
 
     setInterval(() => {
-      socket.send('ping');
-    }, 20000);
+      socket.send(JSON.stringify({type:'ping'}));
+    }, 35000);// DEPLOY УВЕЛИЧИЛ ВРЕМЯ ДЛЯ ПРОВЕРКИ
     
     socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
@@ -29,8 +27,9 @@ const setupSocket = (dispatch, callBack) => {
               case 'CHANGE_STEP_TO_CLIENT':
                 dispatch(resivedChangeStep())
                 break;
-              case 'STATE_FOR_PLAYER_2_RECIVED':
+              case 'STATE_CARDS_FOR_PLAYER_RECIVED':
                 dispatch(setReceivedCardsState(data.state))
+                dispatch(setReceivedMessageState(data.message))
                 break;
               case 'WINNER_NOW_TO_CLIENT':
                 dispatch(winnerNowRedux(data.winner))
@@ -44,7 +43,8 @@ const setupSocket = (dispatch, callBack) => {
                 case 'MESSAGE_RECEIVED':
               dispatch(messageReceived(data.message, data.author));
               break;
-              default: console.log('onmessage type error');
+
+              default: break;
       }
     }
 

@@ -41,24 +41,23 @@ export default function BtnNextStep() {
       dispatch(changemodalNameCard("endGame"));
     }
   }, [flag, player1points, player2points, playerNow, dispatch, state]);
-  const nextStep = () => {
-    dispatch(swapCards());
-    if (step) {
-      if (buyTempleBuffer) {
-        dispatch(buyDevelopmentCards(buyTempleBuffer));
-      }
-      countedDevelopCardsParameters.forEach((cards) =>
-        actionCardModifications[cards[0].name](
-          countedDevelopCardsParameters,
-          dispatch,
-          actions,
-          playerNow
-        )
-      );
-      dispatch(giveCards(2, "cards", playerNow));
-    }
-    dispatch(changeStep());
-    setFlag(true);
+    const nextStep = () => {
+        dispatch(swapCards());
+        if (step) {
+            if (buyTempleBuffer) {
+                dispatch(buyDevelopmentCards(buyTempleBuffer))
+            }
+            countedDevelopCardsParameters.forEach(cards =>
+                actionCardModifications[cards[0].name](
+                    countedDevelopCardsParameters,
+                    dispatch,
+                    actions,
+                    playerNow,
+                ))
+            dispatch(giveCards(2, "cards", playerNow))
+        }
+        dispatch(changeStep());
+        setFlag(true)
   };
 
   return (

@@ -9,6 +9,7 @@ export default function Chat() {
   const dispatch = useDispatch();
   const messages = useSelector(state => state.chat.messages);
   const state = useSelector(state => state.cards);
+  const idRoom = useSelector(state => state.cards.gameId);
 
   const localStoragePlayer = localStorage.getItem('player');
   let author;
@@ -19,7 +20,7 @@ export default function Chat() {
 
   const keyPress = (e) => {
     if (e.key === 'Enter') {
-      dispatch(addMessage(text, author))
+      dispatch(addMessage(text, author, idRoom))
       setText('')
     }
   };
