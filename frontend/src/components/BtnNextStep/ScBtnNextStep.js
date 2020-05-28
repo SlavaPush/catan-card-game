@@ -1,18 +1,35 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 export const Btn = styled.div`
-        margin-bottom: 20px;
-        background-color: green;
-        padding: 15px 40px;
-        width: 150px;
-        border-radius: 4px;
-        color: white;
-        text-align: center;
-        vertical-align: middle;
-        font-size: 2rem;
-        cursor: pointer;
-        user-select: none;
-    `
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: green;
+  background-color: ${(props) => props.isActiveStep
+    ? 'green'
+    : 'grey'};;
+  width: 150px;
+  height: 50px;
+  width: 100%;
+  border-radius: 4px;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  user-select: none;
+  transition: .2s;
+  &:hover {
+    ${(props) => props.isActiveStep && `box-shadow: 0px 10px 5px 0px rgba(0,0,0,0.75);`} // <Thing> when hovered
+  }
+`;
 export const Img = styled.img`
-    padding-left: 7px;
-    height: 25px;
-`
+  margin-left: 7px;
+  height: 20px;
+`;
+export const Spinner = styled.img`
+  height: 45px;
+  width: 40px;
+`;
+export const TextDiv = styled.div`
+  display: flex;
+  align-items: center;
+`;
