@@ -9,13 +9,13 @@ import {
 import {messageReceived,setReceivedMessageState} from '../Redux/chat-actions';
 
 const setupSocket = (dispatch, callBack) => {
-    const socket = new WebSocket(window.location.origin.replace(/^http/, 'ws')); // DEPLOY
-    // const socket = new WebSocket('ws://localhost:3001'); 
+    // const socket = new WebSocket(window.location.origin.replace(/^http/, 'ws')); // DEPLOY
+    const socket = new WebSocket('ws://localhost:3001'); 
     socket.onopen = callBack
 
     setInterval(() => {
       socket.send(JSON.stringify({type:'ping'}));
-    }, 35000);// DEPLOY УВЕЛИЧИЛ ВРЕМЯ ДЛЯ ПРОВЕРКИ
+    }, 35000);//  УВЕЛИЧИЛ ВРЕМЯ ДЛЯ ПРОВЕРКИ
     
     socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
