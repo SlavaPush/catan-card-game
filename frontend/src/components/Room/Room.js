@@ -40,6 +40,7 @@ export default function Room() {
         <div className="animation-text-wrapper">
             <div className="Iam">
               <p>Колонизаторы.</p>
+              
               <b>
                 <div className="innerIam">
                   Играй!<br /> 
@@ -57,11 +58,11 @@ export default function Room() {
 
           <div className="input-frame col-md-4 offset-md-8">
             <div className="input-wrapper">
-              <h1 className="input-wrapper__title">Чтобы начать игру укажите имена игроков</h1>
-          <input type="text" className="input-wrapper__item" name="player_1" label="Игрок 1" placeholder="Введите ваше имя" required
+              <h1 className="input-wrapper__title">Введите имена игроков</h1>
+          <input type="text" className="input-wrapper__item" name="player_1" label="Игрок 1" placeholder="Ваше имя" required
           onChange={(e) => {setPlayer_1(e.target.value)}}
           />
-          <input type="text" className="input-wrapper__item" name="playe_2" label="Игрок 2" placeholder="Введите имя соперника" required
+          <input type="text" className="input-wrapper__item" name="playe_2" label="Игрок 2" placeholder="Имя соперника" required
           onChange={(e) => {setPlayer_2(e.target.value)}}
           />
           {nameError ? <p>Вы забыли ввести имена</p> : null}
