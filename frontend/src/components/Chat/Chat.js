@@ -46,7 +46,7 @@ export default function Chat() {
           }
         </div>
       </div>
-      <input className="chat-list-input" type="text" placeholder="Введите текст и нажмите Enter"
+      <input className="chat-list-input" type="text" placeholder="Отправить - Enter"
         value={text}
         onChange={(e) => setText(e.target.value)}
         onKeyPress={keyPress} />
