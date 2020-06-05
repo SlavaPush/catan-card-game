@@ -124,7 +124,9 @@ const NameActionHelper = ({ modalNameCard, onCancel }) => {
           <span>{`Поздравляю с победой ${player1Name} !!!`}</span>
         )}
         <p>Заходите еще!!!</p>
-        <button onClick={newGame}> новая игра </button>
+        <button
+        className="modal-button-large"
+        onClick={newGame}> новая игра </button>
       </div>
     );
   }
