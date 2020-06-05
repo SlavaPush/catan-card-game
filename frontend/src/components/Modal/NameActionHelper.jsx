@@ -92,8 +92,8 @@ const NameActionHelper = ({ modalNameCard, onCancel }) => {
       </div>
     );
   } else if (modalNameCard === "urlPl2") {
-    // const urlPl2 = `https://catan-card-game.herokuapp.com/game/${gameId}/player2` // DEPLOY
-    const urlPl2 = `http://localhost:3000/game/${gameId}/player2`;
+    const urlPl2 = `https://catan-card-game.herokuapp.com/game/${gameId}/player2` // DEPLOY
+    // const urlPl2 = `http://localhost:3000/game/${gameId}/player2`;
     return (
       <div className="ts ">
         <h3>Отправь ссылку другу для начала игры</h3>
