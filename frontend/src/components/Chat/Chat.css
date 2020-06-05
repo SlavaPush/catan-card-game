@@ -47,7 +47,7 @@ textarea:focus, input:focus{
   border-radius: 12px;
   box-shadow: 0 0 0 1px #171314, 0 0 0 3px rgb(113, 112, 38), -1px 1px 1px 2px #171314;
   margin: 10px auto;
-  overflow: hidden;
+  overflow: scroll;
   display: flex;
   flex: 1 0 200px;
   flex-direction: column-reverse;
