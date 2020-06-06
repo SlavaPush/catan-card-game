@@ -3,17 +3,17 @@ import styled from 'styled-components';
 export const MainContainer = styled.div`
 display: flex;
 max-width: 1500px;
-margin: 10px auto;
+margin: 0 auto;
 `
 export const ContainerPlayField = styled.div`
 color: white;
 width: 86rem;
 display: flex;
 flex-direction: column;
-justify-content: space-between;
+justify-content: space-around;
 `;
 export const ContainerControlPanel = styled.div`
-height: 95vh;
+height: 100vh;
 flex-basis:230px;
 flex-grow: 1;
 display: flex;

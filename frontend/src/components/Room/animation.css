@@ -6,8 +6,7 @@
 }
 .Iam p {
   height: 50px;
-  font-size: 70px;
-  font-weight: 500;
+  float: left;
   margin-right: 0.3em;
   margin-top: 37px;
 }

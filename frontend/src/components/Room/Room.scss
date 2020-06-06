@@ -28,23 +28,20 @@
       z-index: 0;
 
       .input-wrapper {
-        width: 396px;
-        height: 396px;
+        width: 99%;
+        height: 99%;
         background-image: url(https://image.ibb.co/dFcNx7/tile_bg_2.jpg);
         border-radius: 10px;
         display: flex;
         align-items: center;
         flex-direction: column;
-        position: relative;
-       
 
         &__title {
           display: block;
-          margin: 80px 20px 40px 20px;
+          margin: 80px auto 15px auto;
           font-weight: 700;
-          font-size: 28px;
+          font-size: 24px;
           text-align: center;
-          color: #2a2a2a;
         }
 
         &__item {
@@ -52,23 +49,14 @@
           width: 280px;
           margin: 5px 0 2.5px 0;
           border-radius: 6px;
-          font-size: 18px;
-          font-weight: 500;
+          font-size: 22px;
+          font-weight: 400;
           text-align: center;
           opacity: 0.7;
-          transition: box-shadow .3s;
-          border: grey solid 1px;
-          &:hover {
-            box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.4);
-          }
         }
 
 
         p{
-          position: absolute;
-          top: 32%;
-          left: 50%;
-          transform: translate(-50%, -50%);
           display: block;
           margin-top: 3px;
           color: red;
@@ -76,25 +64,21 @@
 
         &__button{
           display: block;
-          margin: 40px auto;
-          width: 170px;
-          height: 40px;
+          margin: 15px auto;
+          width: 150px;
+          height: 30px;
           cursor: pointer;
           border-radius: 6px;
-          font-weight: 600;
+          font-weight: 400;
           font-size: 16px;
           opacity: 0.8;
           text-transform: uppercase;
-          transition: box-shadow .2s;
-          border: 1px solid grey;
+
 
           &:hover {
-            box-shadow: 0px 6px 10px 0px rgba(0,0,0,0.75);
-          }
-          &:active{
-            box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.75);
-            transition: .1s;
-            padding: 0px;
+            width: 152px;
+            height: 32px;
+            transition: 0.2s all;
           }
 
         }
