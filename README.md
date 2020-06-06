@@ -6,9 +6,9 @@
 
 ## Изображения
 <p align="center">
-  <img src="/image/start.jpg" width="300" title="start">
-  <img src="/image/buy.jpg" width="300" title="buy">
-  <img src="/image/change.jpg" width="300" title="change">
+  <img src="/image/start.jpg" width="250" title="start">
+  <img src="/image/buy.jpg" width="250" title="buy">
+  <img src="/image/change.jpg" width="250" title="change">
 </p>
 
 ## Авторы 
