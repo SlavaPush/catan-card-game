@@ -4,6 +4,13 @@
 Карточная версия игры Колонизаторы с возможностью создания игровой комнаты для 2-х игроков.
 Групповой проект. Создан с целью закрепления изученных технологий.
 
+## Изображения
+<p align="center">
+  <img src="/image/start.jpg" width="350" title="start">
+  <img src="/image/buy.jpg" width="350" title="buy">
+  <img src="/image/change.jpg" width="350" title="change">
+</p>
+
 ## Авторы 
 
 - [Вадим Кривошеин](https://github.com/VSKrivoshein)
