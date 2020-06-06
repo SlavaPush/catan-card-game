@@ -1,71 +1,114 @@
-.ts{
+.ts {
   margin: 15px;
-  font-family: 'Times New Roman', Times, serif ;
-
+  font-family: 'Times New Roman', Times, serif;
 }
-.ts h1{
+
+.ts h1 {
   text-align: center;
 }
-.ts h2,h3,h4,h5,h6{
-  text-align: left;
+
+.h2card {
+  font-size: 20px;
 }
-.ts h1{
+
+.pcard {
+  margin-top: 14px;
+}
+
+.h2cardPrice {
+  font-size: 20px;
+  margin: 12px 0;
+}
+
+.ts .pCardPrice {
+  text-align: center;
+  text-indent: 0px;
+}
+
+.ts h2, h3, h4, h5, h6 {
+  text-align: center;
+}
+
+.ts h1 {
   font-size: 32px;
   margin-bottom: 7px;
   font-weight: bold;
 }
-.ts h3{
-  font-size: 24px;
+
+.ts h3 {
+  margin: 0 auto;
+  font-size: 29px;
   font-weight: bolder;
   margin-bottom: 5px;
 }
-.ts p{
+
+.ts p {
   font-size: 16px;
   font-weight: 550;
-  text-indent: 1.5em; /* Отступ первой строки */
-  text-align: justify; /* Выравнивание по ширине */
+  text-indent: 1.5em;
+  /* Отступ первой строки */
+  text-align: justify;
+  /* Выравнивание по ширине */
   margin-bottom: 5px;
 }
-.ts span{
+
+.ts span {
   display: flex;
   font-size: 30px;
   font-weight: 550;
   text-align: center;
   justify-self: center;
 }
-.inputHidden{
-opacity: 0;
+
+.inputHidden {
+  opacity: 0;
 }
-.copyButtonInput{
+
+.copyButtonInput {
   margin: 70px 100px 15px 120px
 }
+
 .winnerCSS {
-text-align: center;
-font-family: 'Times New Roman', Times, serif ;
-font-weight: bold;
-margin-top: 40px;
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  margin-top: 40px;
 }
+
 .winnerCSS span {
   font-size: 22px;
   margin-top: 20px;
   margin-bottom: 17px;
 }
+
 .winnerCSS p {
   font-size: 20px;
   margin-bottom: 40px;
 }
 
-.modal-button {
+.modal-button-large {
   display: block;
-  margin: 15px auto;
-  width: 170px;
-  height: 35px;
+  margin: 20px auto;
+  width: 250px;
+  height: 40px;
   cursor: pointer;
   border-radius: 6px;
-  font-weight: 400;
-  font-size: 12px;
+  font-weight: 600;
+  font-size: 16px;
   opacity: 0.8;
   text-transform: uppercase;
+  transition: box-shadow .2s;
+  border: 1px solid grey;
+}
+
+.modal-button-large:hover {
+  box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.75);
+}
+
+.modal-button-large:active {
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.75);
+  transition: .1s;
+  padding: 0px;
 }
 
 .modal-button:hover {

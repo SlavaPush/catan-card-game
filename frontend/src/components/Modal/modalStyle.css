@@ -48,12 +48,11 @@
   background-image: url(https://image.ibb.co/dFcNx7/tile_bg_2.jpg);
   border-radius: 10px;
   width: 415px;
-  height: 294px;
-  /* display: flex;
+  height: 284px;
+  display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   padding: 5px 6px;
   font-size: 1em;
   display: flex;
-  flex-direction: row; */
 }
