@@ -41,6 +41,7 @@ textarea:focus, input:focus{
   outline: none;
 }
 .chat-list{
+  overflow: hidden;
   width: 100%;
   box-sizing: border-box;
   background-image: url(https://image.ibb.co/dFcNx7/tile_bg_2.jpg);
